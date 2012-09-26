@@ -36,12 +36,12 @@ namespace TRock.FileReplicator
 
         public void Initialize()
         {
-            _regionManager.RequestNavigate(AppRegions.LeftRegion, new Uri(typeof(IFilesetListView).Name, UriKind.RelativeOrAbsolute));
-
             if (!_filesetService.Filesets.Any())
             {
                 _regionManager.RequestNavigate(AppRegions.MainRegion, new Uri(typeof(IWelcomeView).Name, UriKind.RelativeOrAbsolute));
             }
+
+            _regionManager.RequestNavigate(AppRegions.LeftRegion, new Uri(typeof(IFilesetListView).Name, UriKind.RelativeOrAbsolute));
 
             Application.Current.MainWindow.Closing += (sender, args) =>
             {
