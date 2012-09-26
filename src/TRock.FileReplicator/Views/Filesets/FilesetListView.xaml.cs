@@ -1,11 +1,35 @@
 ﻿using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 using TRock.FileReplicator.ViewModels;
 
 namespace TRock.FileReplicator.Views.Filesets
 {
+    public class DisableEnterDataGrid : DataGrid
+    {
+        #region Methods
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter || e.Key != Key.Return)
+            {
+                base.OnKeyDown(e);
+            }
+            else
+            {
+                var currentCell = CurrentCell;
+                var currentIndex = SelectedIndex;
+                base.OnKeyDown(e);
+                SelectedIndex = currentIndex;
+                CurrentCell = currentCell;
+            }
+        }
+
+        #endregion Methods
+    }
+
     public partial class FilesetListView : UserControl, IFilesetListView
     {
         #region Constructors

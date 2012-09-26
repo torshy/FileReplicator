@@ -5,7 +5,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ViewModels="clr-namespace:TRock.FileReplicator.ViewModels"
-    xmlns:Controls="clr-namespace:TRock.FileReplicator.Controls" mc:Ignorable="d"
+    xmlns:Controls="clr-namespace:TRock.FileReplicator.Controls"
+    xmlns:Filesets="clr-namespace:TRock.FileReplicator.Views.Filesets" mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300">
     <DockPanel
@@ -41,14 +42,15 @@
                     Source="../../Resources/Light/appbar.save.png" />
             </Button>
         </StackPanel>
-        <DataGrid
+        <Filesets:DisableEnterDataGrid
             ItemsSource="{Binding Filesets}"
             IsSynchronizedWithCurrentItem="True"
             AutoGenerateColumns="False"
             IsReadOnly="False"
             SelectionUnit="FullRow"
             HeadersVisibility="None"
-            SelectionChanged="DataGridSelectionChanged">
+            SelectionChanged="DataGridSelectionChanged"
+            Style="{StaticResource {x:Type DataGrid}}">
             <ItemsControl.ContextMenu>
                 <Controls:CommandBarContextMenu
                     DataContext="{Binding PlacementTarget.DataContext.CommandBar, RelativeSource={RelativeSource Self}}" />
@@ -107,6 +109,6 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
-        </DataGrid>
+        </Filesets:DisableEnterDataGrid>
     </DockPanel>
 </UserControl>
