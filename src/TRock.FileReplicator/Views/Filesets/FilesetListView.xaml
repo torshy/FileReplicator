@@ -50,6 +50,7 @@
             SelectionUnit="FullRow"
             HeadersVisibility="None"
             SelectionChanged="DataGridSelectionChanged"
+            ContextMenuOpening="DataGridContextMenuOpening"
             Style="{StaticResource {x:Type DataGrid}}">
             <ItemsControl.ContextMenu>
                 <Controls:CommandBarContextMenu

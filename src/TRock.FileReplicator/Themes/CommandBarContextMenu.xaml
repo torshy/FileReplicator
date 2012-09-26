@@ -37,7 +37,7 @@
                     Margin="6,0,6,0"
                     VerticalAlignment="Center"
                     ContentSource="Icon"
-                    MaxHeight="18" />
+                    MaxHeight="24" />
                 <Border
                     Name="Check"
                     Width="13"

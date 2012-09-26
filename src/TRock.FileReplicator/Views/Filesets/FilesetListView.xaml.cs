@@ -66,6 +66,12 @@ namespace TRock.FileReplicator.Views.Filesets
             Model.RefreshCommandBar(multiSelector.SelectedItems.OfType<FilesetViewModel>());
         }
 
+        private void DataGridContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            var multiSelector = (MultiSelector)sender;
+            Model.RefreshCommandBar(multiSelector.SelectedItems.OfType<FilesetViewModel>());
+        }
+
         #endregion Methods
     }
 }

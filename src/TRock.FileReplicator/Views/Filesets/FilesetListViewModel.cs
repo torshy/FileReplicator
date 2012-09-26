@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media.Imaging;
 
 using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Commands;
@@ -26,6 +28,7 @@ namespace TRock.FileReplicator.Views.Filesets
 
         private readonly ObservableCollection<FilesetViewModel> _filesets;
         private readonly IFilesetService _filesetService;
+        private readonly IFileReplicationService _replicationService;
 
         private IDisposable _filesetAdded;
         private IDisposable _filesetRemoved;
@@ -36,9 +39,10 @@ namespace TRock.FileReplicator.Views.Filesets
 
         #region Constructors
 
-        public FilesetListViewModel(IFilesetService filesetService)
+        public FilesetListViewModel(IFilesetService filesetService, IFileReplicationService replicationService)
         {
             _filesetService = filesetService;
+            _replicationService = replicationService;
             _filesets = new ObservableCollection<FilesetViewModel>();
 
             AddFilesetCommand = new DelegateCommand(ExecuteAddFileset);
@@ -99,9 +103,59 @@ namespace TRock.FileReplicator.Views.Filesets
         {
             CommandBar.Clear();
 
-            if (selectedFilesets.Any())
+            var filesetViewModels = selectedFilesets as FilesetViewModel[] ?? selectedFilesets.ToArray();
+
+            if (filesetViewModels.Any())
             {
-                CommandBar.AddCommand("Clone", new DelegateCommand<IEnumerable<FilesetViewModel>>(ExecuteCloneFilesets), selectedFilesets);
+                var filesetViewModel = filesetViewModels.First();
+
+                CommandBar
+                    .AddCommand(new CommandModel
+                    {
+                        Content = "Clone",
+                        Command = new DelegateCommand<IEnumerable<FilesetViewModel>>(ExecuteCloneFilesets),
+                        CommandParameter = selectedFilesets,
+                        Icon = new Image
+                        {
+                            Source =
+                                new BitmapImage(new Uri("pack://application:,,,/Resources/light/appbar.list.two.png"))
+                        }
+                    })
+                    .AddCommand(new CommandModel
+                    {
+                        Content = filesetViewModel.IsEnabled ? "Deactivate" : "Activate",
+                        Command = new DelegateCommand<FilesetViewModel>(model => model.IsEnabled = !model.IsEnabled),
+                        CommandParameter = filesetViewModel,
+                        Icon = new Image
+                        {
+                            Source = filesetViewModel.IsEnabled
+                                ? new BitmapImage(new Uri("pack://application:,,,/Resources/light/appbar.eye.close.png"))
+                                : new BitmapImage(new Uri("pack://application:,,,/Resources/light/appbar.eye.check.png"))
+                        }
+                    });
+
+                if (filesetViewModel.Includes.Any() || filesetViewModel.Excludes.Any())
+                {
+                    CommandBar.AddCommand(new CommandModel
+                    {
+                        Content = "Execute file copy",
+                        Command = new DelegateCommand<FilesetViewModel>(model =>
+                        {
+                            var fs = _filesetService.Filesets.FirstOrDefault(f => f.Id == model.Id);
+
+                            if (fs != null)
+                            {
+                                _replicationService.Execute(fs);
+                            }
+                        }),
+                        CommandParameter = filesetViewModel,
+                        Icon = new Image
+                        {
+                            Source =
+                                new BitmapImage(new Uri("pack://application:,,,/Resources/light/appbar.layer.png"))
+                        }
+                    });
+                }
             }
         }
 
