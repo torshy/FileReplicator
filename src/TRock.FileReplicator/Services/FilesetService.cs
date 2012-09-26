@@ -122,11 +122,11 @@ namespace TRock.FileReplicator.Services
                 if (File.Exists(path))
                 {
                     File.Delete(path);
+                }
 
-                    if (_filesets.Remove(fileset))
-                    {
-                        _filesetRemoved.OnNext(fileset);
-                    }
+                if (_filesets.Remove(fileset))
+                {
+                    _filesetRemoved.OnNext(fileset);
                 }
             });
         }
