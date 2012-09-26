@@ -146,6 +146,7 @@ namespace TRock.FileReplicator.Views.Filesets
             Filesets = CollectionViewSource.GetDefaultView(_filesets);
             Filesets.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             Filesets.CurrentChanged += CurrentFilesetChanged;
+            Filesets.MoveCurrentTo(null);
             Filesets.MoveCurrentToFirst();
         }
 
