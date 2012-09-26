@@ -1,0 +1,78 @@
+﻿<Controls:MetroWindow
+    x:Class="TRock.FileReplicator.Shell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:Regions="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+    xmlns:FileReplicator="clr-namespace:TRock.FileReplicator"
+    Title="FILE REPLICATOR"
+    Height="600"
+    Width="800"
+    MinWidth="350"
+    MinHeight="350"
+    Icon="Resources\app.ico"
+    ShowIconOnTitleBar="True">
+    <Controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Controls:MetroWindow.Resources>
+    <Controls:MetroWindow.WindowCommands>
+        <Controls:WindowCommands>
+            <Button
+                Visibility="Hidden"
+                Command="{Binding OpenSettingsViewCommand}">
+                <StackPanel
+                    Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <SolidColorBrush
+                            x:Key="BlackBrush"
+                            Color="White" />
+                    </StackPanel.Resources>
+                    <Rectangle
+                        Width="16"
+                        Height="16">
+                        <Rectangle.Fill>
+                            <VisualBrush
+                                Stretch="Uniform"
+                                Visual="{StaticResource appbar_settings}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock
+                        Foreground="{DynamicResource BlackBrush}"
+                        Text="Settings"
+                        Margin="4,0,0,0" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.WindowCommands>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="0.2*"
+                MinWidth="100" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Controls:TransitioningContentControl
+            Grid.Column="0"
+            FocusVisualStyle="{x:Null}"
+            Regions:RegionManager.RegionName="{x:Static FileReplicator:AppRegions.LeftRegion}"
+            Transition="RightTransition" />
+
+        <GridSplitter
+            Width="2"
+            Background="{DynamicResource AccentColorBrush}"
+            ResizeDirection="Columns"
+            ResizeBehavior="BasedOnAlignment" />
+
+        <Controls:TransitioningContentControl
+            Grid.Column="1"
+            FocusVisualStyle="{x:Null}"
+            Regions:RegionManager.RegionName="{x:Static FileReplicator:AppRegions.MainRegion}"
+            Transition="LeftTransition" />
+    </Grid>
+</Controls:MetroWindow>

@@ -1,0 +1,112 @@
+﻿<UserControl
+    x:Class="TRock.FileReplicator.Views.Filesets.FilesetListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ViewModels="clr-namespace:TRock.FileReplicator.ViewModels"
+    xmlns:Controls="clr-namespace:TRock.FileReplicator.Controls" mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+    <DockPanel
+        Margin="4">
+        <StackPanel
+            Orientation="Horizontal"
+            DockPanel.Dock="Top"
+            Height="25"
+            Margin="0,0,0,8">
+            <Button
+                Command="{Binding AddFilesetCommand}"
+                ToolTip="Add new fileset"
+                Margin="0,0,4,0"
+                Padding="0">
+                <Image
+                    Source="../../Resources/Light/appbar.add.png" />
+            </Button>
+            <Button
+                Command="{Binding RemoveFilesetCommand}"
+                CommandParameter="{Binding Filesets.CurrentItem}"
+                ToolTip="Remove selected fileset"
+                Margin="0,0,4,0"
+                Padding="0">
+                <Image
+                    Source="../../Resources/Light/appbar.minus.png" />
+            </Button>
+            <Button
+                Command="{Binding SaveAllFilesetsCommand}"
+                ToolTip="Save all filesets"
+                Margin="0,0,4,0"
+                Padding="0">
+                <Image
+                    Source="../../Resources/Light/appbar.save.png" />
+            </Button>
+        </StackPanel>
+        <DataGrid
+            ItemsSource="{Binding Filesets}"
+            IsSynchronizedWithCurrentItem="True"
+            AutoGenerateColumns="False"
+            IsReadOnly="False"
+            SelectionUnit="FullRow"
+            HeadersVisibility="None"
+            SelectionChanged="DataGridSelectionChanged">
+            <ItemsControl.ContextMenu>
+                <Controls:CommandBarContextMenu
+                    DataContext="{Binding PlacementTarget.DataContext.CommandBar, RelativeSource={RelativeSource Self}}" />
+            </ItemsControl.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn
+                    Width="*">
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate
+                            DataType="{x:Type ViewModels:FilesetViewModel}">
+                            <DockPanel
+                                Name="panel">
+                                <Image
+                                    DockPanel.Dock="Left"
+                                    Height="25"
+                                    Source="../../Resources/Dark/appbar.edit.png"
+                                    Margin="0,0,4,0" />
+                                <TextBox
+                                    Text="{Binding Name}" />
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate
+                            DataType="{x:Type ViewModels:FilesetViewModel}">
+                            <DockPanel
+                                Name="panel">
+                                <Image
+                                    Name="image"
+                                    DockPanel.Dock="Left"
+                                    Height="25"
+                                    Source="../../Resources/Light/appbar.eye.close.png"
+                                    Margin="0,0,4,0"
+                                    ToolTip="Not active" />
+                                <TextBlock
+                                    Text="{Binding Name}"
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Center" 
+                                    Cursor="Hand" />
+                            </DockPanel>
+                            <DataTemplate.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding IsEnabled}"
+                                    Value="True">
+                                    <Setter
+                                        Property="Source"
+                                        Value="../../Resources/Light/appbar.eye.check.png"
+                                        TargetName="image" />
+                                    <Setter
+                                        Property="ToolTip"
+                                        Value="Active"
+                                        TargetName="image" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

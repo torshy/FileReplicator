@@ -1,0 +1,138 @@
+﻿<UserControl
+    x:Class="TRock.FileReplicator.Views.Fileset.Tabs.Scripting"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:Models="clr-namespace:TRock.FileReplicator.Models"
+    xmlns:ViewModels="clr-namespace:TRock.FileReplicator.ViewModels"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate
+            DataType="{x:Type Models:ScriptExpression}">
+            <DockPanel
+                Margin="0,1,0,1">
+                <Image
+                    DockPanel.Dock="Left"
+                    Source="../../../Resources/Light/appbar.column.one.png" />
+                <Button
+                    DockPanel.Dock="Right"
+                    Padding="0"
+                    Command="{Binding DataContext.EditScriptCommand, RelativeSource={RelativeSource AncestorType={x:Type GroupBox}}}"
+                    CommandParameter="{Binding}">
+                    <Image
+                        Source="../../../Resources/Light/appbar.edit.png" />
+                </Button>
+                <TextBlock
+                    Text="{Binding Expression}"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Center" />
+            </DockPanel>
+        </DataTemplate>
+        <DataTemplate
+            DataType="{x:Type Models:ScriptFile}">
+            <DockPanel
+                Margin="0,1,0,1">
+                <Image
+                    DockPanel.Dock="Left"
+                    Source="../../../Resources/Light/appbar.page.code.png" />
+                <Button
+                    DockPanel.Dock="Right"
+                    Padding="0"
+                    Command="{Binding DataContext.EditScriptCommand, RelativeSource={RelativeSource AncestorType={x:Type GroupBox}}}"
+                    CommandParameter="{Binding}">
+                    <Image
+                        Source="../../../Resources/Light/appbar.edit.png" />
+                </Button>
+                <TextBlock
+                    Text="{Binding Path}"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Center" />
+            </DockPanel>
+        </DataTemplate>
+
+        <DataTemplate
+            DataType="{x:Type ViewModels:ScriptViewModel}">
+            <GroupBox>
+                <GroupBox.Header>
+                    <TextBlock
+                        Text="{Binding Title}" />
+                </GroupBox.Header>
+                <DockPanel>
+                    <StackPanel
+                        DockPanel.Dock="Top"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Height="25">
+                        <TextBlock
+                            Text="Snippet"
+                            VerticalAlignment="Center" />
+                        <Button
+                            Margin="4,0,4,0"
+                            Command="{Binding AddExpressionCommand}"
+                            ToolTip="Add files to include in the copy routine">
+                            <Image
+                                Source="../../../Resources/Light/appbar.add.png" />
+                        </Button>
+                        <Button
+                            Command="{Binding RemoveScriptCommand}"
+                            CommandParameter="{Binding SelectedItem, ElementName=CopyEventScriptsDataGrid}"
+                            ToolTip="Remove selected files from the copy routine">
+                            <Image
+                                Source="../../../Resources/Light/appbar.minus.png" />
+                        </Button>
+                        <TextBlock
+                            Margin="8,0,4,0"
+                            Text="File"
+                            VerticalAlignment="Center" />
+                        <Button
+                            Margin="0,0,4,0"
+                            Command="{Binding AddFileCommand}"
+                            ToolTip="Add files to include in the copy routine">
+                            <Image
+                                Source="../../../Resources/Light/appbar.add.png" />
+                        </Button>
+                        <Button
+                            Command="{Binding RemoveScriptCommand}"
+                            CommandParameter="{Binding SelectedItem, ElementName=CopyEventScriptsDataGrid}"
+                            ToolTip="Remove selected files from the copy routine">
+                            <Image
+                                Source="../../../Resources/Light/appbar.minus.png" />
+                        </Button>
+                    </StackPanel>
+                    <DataGrid
+                        Margin="0,4,0,0"
+                        Name="CopyEventScriptsDataGrid"
+                        ItemsSource="{Binding Scripts}"
+                        HeadersVisibility="None"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        RowHeight="30">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn
+                                Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ContentControl
+                                            Content="{Binding}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </GroupBox>
+        </DataTemplate>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <StackPanel>
+            <ContentControl
+                Content="{Binding Fileset.OnCopyScript}" />
+            <ContentControl
+                Content="{Binding Fileset.OnCopySuccessScript}" />
+            <ContentControl
+                Content="{Binding Fileset.OnCopyErrorScript}" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

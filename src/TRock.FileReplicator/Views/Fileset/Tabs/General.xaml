@@ -1,0 +1,196 @@
+﻿<UserControl
+    x:Class="TRock.FileReplicator.Views.Fileset.Tabs.General"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:FileReplicator="clr-namespace:TRock.FileReplicator"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style
+            TargetType="{x:Type TextBlock}"
+            x:Key="HeaderTextBlockStyle">
+            <Setter
+                Property="FontFamily"
+                Value="{DynamicResource {x:Static FileReplicator:AppTheme.FontFamilyLight}}" />
+            <Setter
+                Property="FontSize"
+                Value="{DynamicResource {x:Static FileReplicator:AppTheme.FontSizeLarge}}" />
+            <Setter
+                Property="Foreground"
+                Value="{DynamicResource {x:Static FileReplicator:AppTheme.SubtleBrushKey}}" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <StackPanel>
+            <GroupBox
+                Padding="4">
+                <GroupBox.Header>
+                    <TextBlock
+                        Text="General"
+                        Style="{StaticResource HeaderTextBlockStyle}" />
+                </GroupBox.Header>
+                <StackPanel>
+                    <CheckBox
+                        ToolTip="Enable/disable this fileset"
+                        IsChecked="{Binding Fileset.IsEnabled}"
+                        Content="Active" />
+                    <CheckBox
+                        ToolTip="Automatically kill locking processes?"
+                        IsChecked="{Binding Fileset.KillLockingProcess}"
+                        Content="Kill locking processes?" />
+                    <Button
+                        Command="{Binding ManualCopyCommand}"
+                        Height="25"
+                        HorizontalAlignment="Right"
+                        Padding="4,0,4,0">
+                        <DockPanel>
+                            <Image
+                                DockPanel.Dock="Left"
+                                Source="../../../Resources/Light/appbar.diagram.png" />
+                            <TextBlock
+                                Text="Execute manual copy"
+                                VerticalAlignment="Center" />
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox
+                Padding="4">
+                <GroupBox.Header>
+                    <TextBlock
+                        Text="Destination"
+                        Style="{StaticResource HeaderTextBlockStyle}" />
+                </GroupBox.Header>
+                <DockPanel>
+                    <Button
+                        Height="25"
+                        DockPanel.Dock="Right"
+                        Padding="2"
+                        Command="{Binding BrowseDestinationFolderCommand}"
+                        Margin="4,0,0,0">
+                        <Image
+                            Source="../../../Resources/Light/appbar.folder.open.png" />
+                    </Button>
+                    <xctk:WatermarkTextBox
+                        Watermark="Browse to where the files will be copied"
+                        Text="{Binding Fileset.DestinationPath}" />
+                </DockPanel>
+            </GroupBox>
+            <GroupBox
+                Padding="4">
+                <GroupBox.Header>
+                    <TextBlock
+                        Text="Source"
+                        Style="{StaticResource HeaderTextBlockStyle}" />
+                </GroupBox.Header>
+                <DockPanel>
+                    <Button
+                        Height="25"
+                        DockPanel.Dock="Right"
+                        Padding="2"
+                        Command="{Binding BrowseSourceFolderCommand}"
+                        Margin="4,0,0,0">
+                        <Image
+                            Source="../../../Resources/Light/appbar.folder.open.png" />
+                    </Button>
+                    <xctk:WatermarkTextBox
+                        Watermark="Browse to where the files will be copied from"
+                        Text="{Binding Fileset.SourcePath}" />
+                </DockPanel>
+            </GroupBox>
+            <GroupBox
+                Padding="4"
+                AllowDrop="True"
+                Drop="DropIncludeFiles">
+                <GroupBox.Header>
+                    <DockPanel>
+                        <StackPanel
+                            Margin="8,0,0,0"
+                            DockPanel.Dock="Right"
+                            Orientation="Horizontal"
+                            Height="25">
+                            <Button
+                                Margin="0,0,4,0"
+                                Command="{Binding AddIncludeFileCommand}"
+                                ToolTip="Add files to include in the copy routine">
+                                <Image
+                                    Source="../../../Resources/Light/appbar.add.png" />
+                            </Button>
+                            <Button
+                                Command="{Binding RemoveIncludeFileCommand}"
+                                CommandParameter="{Binding SelectedItem, ElementName=IncludeFilesDataGrid}"
+                                ToolTip="Remove selected files from the copy routine">
+                                <Image
+                                    Source="../../../Resources/Light/appbar.minus.png" />
+                            </Button>
+                        </StackPanel>
+                        <TextBlock
+                            Text="Include files"
+                            Style="{StaticResource HeaderTextBlockStyle}" />
+                    </DockPanel>
+                </GroupBox.Header>
+                <DockPanel>
+                    <DataGrid
+                        Name="IncludeFilesDataGrid"
+                        ItemsSource="{Binding Fileset.Includes}"
+                        HeadersVisibility="None"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding RelativePath}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </GroupBox>
+            <GroupBox
+                Padding="4"
+                AllowDrop="True"
+                Drop="DropExcludeFiles">
+                <GroupBox.Header>
+                    <DockPanel>
+                        <StackPanel
+                            Margin="8,0,0,0"
+                            DockPanel.Dock="Right"
+                            Orientation="Horizontal"
+                            Height="25">
+                            <Button
+                                Margin="0,0,4,0"
+                                Command="{Binding AddExcludeFileCommand}"
+                                ToolTip="Add files to exclude from the copy routine">
+                                <Image
+                                    Source="../../../Resources/Light/appbar.add.png" />
+                            </Button>
+                            <Button
+                                Command="{Binding RemoveExcludeFileCommand}"
+                                CommandParameter="{Binding SelectedItem, ElementName=ExcludeFileDataGrid}"
+                                ToolTip="Remove selected files which are excluded from the copy routine">
+                                <Image
+                                    Source="../../../Resources/Light/appbar.minus.png" />
+                            </Button>
+                        </StackPanel>
+                        <TextBlock
+                            Text="Exclude files"
+                            Style="{StaticResource HeaderTextBlockStyle}" />
+                    </DockPanel>
+                </GroupBox.Header>
+                <DockPanel>
+                    <DataGrid
+                        Name="ExcludeFileDataGrid"
+                        ItemsSource="{Binding Fileset.Excludes}"
+                        HeadersVisibility="None"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding RelativePath}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </GroupBox>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

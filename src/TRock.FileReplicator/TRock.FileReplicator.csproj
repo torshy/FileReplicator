@@ -1,0 +1,3498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E5212257-7E4F-4864-B003-E82F1BC2ACAA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TRock.FileReplicator</RootNamespace>
+    <AssemblyName>FileReplicator</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\app.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=2.6.3.862, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration, Version=2.6.3.862, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification">
+      <HintPath>..\..\packages\Hardcodet.Wpf.TaskbarNotification.1.0.4.0\lib\net40\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\..\packages\AvalonEdit.4.2.0.8783\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="IronRuby, Version=1.1.3.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\IronRuby.1.1.3\Lib\IronRuby.dll</HintPath>
+    </Reference>
+    <Reference Include="IronRuby.Libraries, Version=1.1.3.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\IronRuby.1.1.3\Lib\IronRuby.Libraries.dll</HintPath>
+    </Reference>
+    <Reference Include="IronRuby.Libraries.Yaml, Version=1.1.3.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\IronRuby.1.1.3\Lib\IronRuby.Libraries.Yaml.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=0.9.0.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\MahApps.Metro.0.9.9.46-ALPHA\lib\net40\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\IronRuby.1.1.3\Lib\Microsoft.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.5.9\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.AutofacExtension, Version=1.0.24.0, Culture=neutral, PublicKeyToken=151cd86bf24ad997, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Prism.AutofacExtension.1.0.24.0\lib\net40\Prism.AutofacExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\..\packages\Rx-Core.2.0.20823\lib\Net40\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\..\packages\Rx-Interfaces.2.0.20823\lib\Net40\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\..\packages\Rx-Linq.2.0.20823\lib\Net40\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\..\packages\Rx-PlatformServices.2.0.20823\lib\Net40\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading">
+      <HintPath>..\..\packages\Rx-WPF.2.0.20823\lib\Net40\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\MahApps.Metro.0.9.9.46-ALPHA\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="TRock.Extensions">
+      <HintPath>..\..\lib\TRock\TRock.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.1.7.0\lib\net40\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="AppConstants.cs" />
+    <Compile Include="AppTaskbarIconHandler.cs" />
+    <Compile Include="AppTheme.cs" />
+    <Compile Include="Commands\AutomaticCommand%28of T%29.cs" />
+    <Compile Include="Commands\AutomaticCommand.cs" />
+    <Compile Include="Commands\AutomaticCompositeCommand.cs" />
+    <Compile Include="Commands\CanExecuteChangedCore.cs" />
+    <Compile Include="Commands\CompositeCommand.cs" />
+    <Compile Include="Commands\EventToCommand.cs" />
+    <Compile Include="Commands\INotifyPropertyChanged\INotifyPropertyChangedExtensions.cs" />
+    <Compile Include="Commands\INotifyPropertyChanged\NotifyPropertyChangedBase.cs" />
+    <Compile Include="Commands\INotifyPropertyChanged\NotifyPropertyChangedCore.cs" />
+    <Compile Include="Commands\INotifyPropertyChanged\PropertyChangedEventHandlerExtensions.cs" />
+    <Compile Include="Commands\ManualCommand%28of T%29.cs" />
+    <Compile Include="Commands\ManualCommand.cs" />
+    <Compile Include="Commands\MultiCommand.cs" />
+    <Compile Include="Commands\ObjectExtensions.cs" />
+    <Compile Include="Commands\ProjectedCollection.cs" />
+    <Compile Include="Commands\SafeGCHandle.cs" />
+    <Compile Include="Commands\SimplePropertyPath.cs" />
+    <Compile Include="Commands\StaticCommand%28of T%29.cs" />
+    <Compile Include="Commands\StaticCommand.cs" />
+    <Compile Include="Commands\WeakCollection.cs" />
+    <Compile Include="Commands\WeakReference.cs" />
+    <Compile Include="Controls\CommandBarContextMenu.cs" />
+    <Compile Include="Converters\InstanceToObjectTypeConverter.cs" />
+    <Compile Include="Converters\StringEmptyToVisibilityConverter.cs" />
+    <Compile Include="CustomAutofacAdapter.cs" />
+    <Compile Include="Events\CopiedEvent.cs" />
+    <Compile Include="Events\CopyErrorEvent.cs" />
+    <Compile Include="IShellViewModel.cs" />
+    <Compile Include="Models\ReplicationItem.cs" />
+    <Compile Include="Services\ActivityLogService.cs" />
+    <Compile Include="Services\CommandModel.cs" />
+    <Compile Include="Services\FileReplicationService.cs" />
+    <Compile Include="Services\FilesetService.cs" />
+    <Compile Include="Services\IActivityLogService.cs" />
+    <Compile Include="Services\ActivityLogEvent.cs" />
+    <Compile Include="Services\ICommandBar.cs" />
+    <Compile Include="Services\IFileReplicationService.cs" />
+    <Compile Include="ShellViewModel.cs" />
+    <Compile Include="ViewModels\FilesetViewModel.cs" />
+    <Compile Include="ViewModels\ScriptViewModel.cs" />
+    <Compile Include="Views\Filesets\FilesetListView.xaml.cs">
+      <DependentUpon>FilesetListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Filesets\FilesetListViewModel.cs" />
+    <Compile Include="Views\Filesets\IFilesetListView.cs" />
+    <Compile Include="Views\Filesets\IFilesetListViewModel.cs" />
+    <Compile Include="Views\Fileset\Tabs\ActivityLog.xaml.cs">
+      <DependentUpon>ActivityLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Fileset\FilesetView.xaml.cs">
+      <DependentUpon>FilesetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Fileset\FilesetViewViewModel.cs" />
+    <Compile Include="Views\Fileset\Tabs\General.xaml.cs">
+      <DependentUpon>General.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Fileset\IFilesetView.cs" />
+    <Compile Include="Views\Fileset\IFilesetViewViewModel.cs" />
+    <Compile Include="Views\Fileset\Dialogs\ScriptEditorWindow.xaml.cs">
+      <DependentUpon>ScriptEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Fileset\Tabs\Scripting.xaml.cs">
+      <DependentUpon>Scripting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Fileset\Dialogs\TextInputDialog.xaml.cs">
+      <DependentUpon>TextInputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\ISettingsView.cs" />
+    <Compile Include="Views\Settings\ISettingsViewModel.cs" />
+    <Compile Include="Views\Settings\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\SettingsViewModel.cs" />
+    <Compile Include="Views\Settings\Tabs\General.xaml.cs">
+      <DependentUpon>General.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileReplicatorBootstrapper.cs" />
+    <Compile Include="FileReplicatorModule.cs" />
+    <Compile Include="FileReplicatorModuleConfiguration.cs" />
+    <Compile Include="AppRegions.cs" />
+    <Compile Include="Models\Fileset.cs" />
+    <Compile Include="Models\FilesetItem.cs" />
+    <Compile Include="Models\Script.cs" />
+    <Compile Include="Models\ScriptExpression.cs" />
+    <Compile Include="Models\ScriptFile.cs" />
+    <Compile Include="Regions\TransitionContentControlRegionAdapter.cs" />
+    <Compile Include="Regions\TransitionSingleActiveRegion.cs" />
+    <Compile Include="Services\IFilesetService.cs" />
+    <Compile Include="Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Themes\CommandBarContextMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Filesets\FilesetListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Fileset\Tabs\ActivityLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Fileset\FilesetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Fileset\Tabs\General.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Fileset\Dialogs\ScriptEditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Fileset\Tabs\Scripting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Fileset\Dialogs\TextInputDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\Tabs\General.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\brick.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\brick_link.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\bug.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\bullet_black.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\bullet_toggle_minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\bullet_toggle_plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\date.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\find.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\loadingAnimation.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\macFFBgHack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\package.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\page_green.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\page_white_text.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\page_white_width.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\plugin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\ruby.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\tag_green.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\wrench.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\wrench_orange.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\images\zoom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\js\darkfish.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\js\jquery.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\js\quicksearch.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\js\thickbox-compressed.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\rdoc.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Content Include="Resources\Ruby.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Events\Copy.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Events\CopyError.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Events\CopySuccess.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\bigdecimal.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\digest.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\digest\md5.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\digest\sha1.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\enumerator.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\etc.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\fcntl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\iconv.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\mathn\complex.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\mathn\rational.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\nkf.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\open3.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\openssl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\parse_tree.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\PresentationCore.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\PresentationFramework.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\prime.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\rbconfig.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\repl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\socket.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\stringio.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\strscan.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\syslog.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\System.Core.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\System.Data.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\System.Drawing.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\System.Numerics.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\System.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\System.Windows.Forms.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\System.Xml.Linq.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\System.Xml.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\test\ispec.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\thread.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\Win32API.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\win32ole.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\WindowsBase.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\yaml.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\yaml\types.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\IronRuby\zlib.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\abbrev.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\base64.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\benchmark.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\bigdecimal\jacobian.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\bigdecimal\ludcmp.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\bigdecimal\math.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\bigdecimal\newton.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\bigdecimal\util.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\cgi.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\cgi\cookie.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\cgi\core.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\cgi\html.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\cgi\session.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\cgi\session\pstore.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\cgi\util.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\cmath.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\complex.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\complex18.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\csv.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\date.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\date\delta.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\date\delta\parser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\date\delta\parser.ry">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\date\format.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\debug.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\delegate.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\digest.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\digest\hmac.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\digest\sha2.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\dl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\dl\callback.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\dl\cparser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\dl\func.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\dl\import.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\dl\pack.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\dl\stack.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\dl\struct.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\dl\types.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\dl\value.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\drb.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\drb\acl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\drb\drb.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\drb\eq.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\drb\extserv.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\drb\extservm.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\drb\gw.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\drb\invokemethod.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\drb\observer.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\drb\ssl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\drb\timeridconv.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\drb\unix.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\e2mmap.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\English.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\erb.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\fiddle.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\fiddle\closure.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\fiddle\function.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\fileutils.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\find.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\forwardable.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\gem_prelude.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\getoptlong.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\gserver.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\ipaddr.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\cmd\chws.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\cmd\fork.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\cmd\help.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\cmd\load.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\cmd\nop.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\cmd\pushws.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\cmd\subirb.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\completion.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\context.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\extend-command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\ext\change-ws.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\ext\history.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\ext\loader.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\ext\math-mode.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\ext\multi-irb.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\ext\save-history.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\ext\tracer.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\ext\use-loader.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\ext\workspaces.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\frame.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\help.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\init.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\input-method.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\inspector.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\lc\error.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\lc\help-message">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\lc\ja\encoding_aliases.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\lc\ja\error.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\lc\ja\help-message">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\locale.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\magic-file.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\notifier.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\output-method.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\ruby-lex.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\ruby-token.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\slex.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\src_encoding.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\version.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\workspace.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\ws-for-case-2.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\irb\xmp.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\json.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\json\add\core.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\json\add\rails.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\json\common.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\json\editor.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\json\ext.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\json\version.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\kconv.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\logger.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\mathn.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\matrix.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\minitest\autorun.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\minitest\mock.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\minitest\spec.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\minitest\unit.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\mkmf.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\monitor.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\mutex_m.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\net\ftp.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\net\http.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\net\https.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\net\imap.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\net\pop.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\net\protocol.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\net\smtp.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\net\telnet.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\observer.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\open-uri.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\open3.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\openssl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\openssl\bn.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\openssl\buffering.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\openssl\cipher.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\openssl\digest.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\openssl\ssl-internal.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\openssl\ssl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\openssl\x509-internal.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\openssl\x509.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\optparse.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\optparse\date.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\optparse\shellwords.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\optparse\time.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\optparse\uri.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\optparse\version.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\ostruct.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\pathname.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\pp.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\prettyprint.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\prime.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\profile.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\profiler.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\pstore.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\coder.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\core_ext.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\deprecated.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\handler.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\json\tree_builder.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\nodes.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\nodes\alias.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\nodes\document.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\nodes\mapping.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\nodes\node.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\nodes\scalar.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\nodes\sequence.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\nodes\stream.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\omap.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\parser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\scalar_scanner.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\set.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\tree_builder.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\visitors.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\visitors\emitter.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\visitors\json_tree.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\visitors\to_ruby.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\visitors\visitor.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\psych\visitors\yaml_tree.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\racc\parser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\classic_namespace.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\clean.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\contrib\compositepublisher.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\contrib\ftptools.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\contrib\publisher.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\contrib\rubyforgepublisher.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\contrib\sshpublisher.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\gempackagetask.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\loaders\makefile.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\packagetask.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\rake_test_loader.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\rdoctask.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\runtest.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\tasklib.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\testtask.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rake\win32.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rational.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rational18.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rbconfig\datadir.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\alias.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\anon_class.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\any_method.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\attr.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\class_module.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\code_object.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\code_objects.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\constant.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\context.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\darkfish.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\markup.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\ri.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\classpage.rhtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\filepage.rhtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\generator\template\darkfish\index.rhtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\ghost_method.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\include.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\known_classes.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\attribute_manager.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\blank_line.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\document.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\formatter.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\formatter_test_case.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\heading.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\inline.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\list.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\list_item.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\paragraph.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\parser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\preprocess.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\raw.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\rule.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\to_ansi.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\to_bs.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\to_html.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\to_html_crossref.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\to_rdoc.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\to_test.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\markup\verbatim.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\meta_method.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\normal_class.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\normal_module.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\options.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\parser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\parser\c.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\parser\perl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\parser\ruby.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\parser\ruby_tools.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\parser\simple.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\rdoc.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\require.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\ri.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\ri\driver.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\ri\formatter.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\ri\paths.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\ri\store.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\ruby_lex.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\ruby_token.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\single_class.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\stats.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\task.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\text.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\tokenstream.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rdoc\top_level.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\resolv-replace.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\resolv.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\attlistdecl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\attribute.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\cdata.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\child.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\comment.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\doctype.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\document.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\dtd\attlistdecl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\dtd\dtd.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\dtd\elementdecl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\dtd\entitydecl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\dtd\notationdecl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\element.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\encoding.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\encodings\CP-1252.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\encodings\EUC-JP.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\encodings\ICONV.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\encodings\ISO-8859-1.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\encodings\ISO-8859-15.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\encodings\SHIFT-JIS.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\encodings\SHIFT_JIS.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\encodings\UNILE.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\encodings\US-ASCII.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\encodings\UTF-16.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\encodings\UTF-8.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\entity.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\formatters\default.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\formatters\pretty.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\formatters\transitive.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\functions.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\instruction.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\light\node.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\namespace.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\node.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\output.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\parent.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\parseexception.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\parsers\baseparser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\parsers\lightparser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\parsers\pullparser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\parsers\sax2parser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\parsers\streamparser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\parsers\treeparser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\parsers\ultralightparser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\parsers\xpathparser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\quickpath.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\rexml.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\sax2listener.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\source.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\streamlistener.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\syncenumerator.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\text.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\undefinednamespaceexception.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\validation\relaxng.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\validation\validation.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\validation\validationexception.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\xmldecl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\xmltokens.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\xpath.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rexml\xpath_parser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rinda\rinda.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rinda\ring.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rinda\tuplespace.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\ripper.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\ripper\core.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\ripper\filter.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\ripper\lexer.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\ripper\sexp.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\0.9.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\1.0.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\2.0.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\atom.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\content.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\content\1.0.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\content\2.0.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\converter.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\dublincore.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\dublincore\1.0.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\dublincore\2.0.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\dublincore\atom.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\image.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\itunes.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\0.9.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\1.0.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\2.0.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\atom.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\base.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\content.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\dublincore.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\entry.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\feed.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\image.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\itunes.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\slash.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\syndication.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\taxonomy.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\maker\trackback.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\parser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\rexmlparser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\rss.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\slash.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\syndication.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\taxonomy.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\trackback.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\utils.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\xml-stylesheet.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\xml.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\xmlparser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rss\xmlscanner.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\builder.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\build_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\cert_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\check_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\cleanup_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\contents_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\dependency_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\environment_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\fetch_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\generate_index_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\help_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\install_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\list_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\lock_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\mirror_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\outdated_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\owner_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\pristine_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\push_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\query_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\rdoc_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\search_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\server_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\setup_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\sources_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\specification_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\stale_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\uninstall_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\unpack_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\update_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\commands\which_command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\command_manager.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\config_file.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\custom_require.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\defaults.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\dependency.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\dependency_installer.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\dependency_list.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\doc_manager.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\errors.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\exceptions.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\ext.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\ext\builder.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\ext\configure_builder.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\ext\ext_conf_builder.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\ext\rake_builder.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\format.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\gemcutter_utilities.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\gem_openssl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\gem_path_searcher.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\gem_runner.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\indexer.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\installer.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\install_update_options.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\local_remote_options.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\old_format.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\package.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\package\f_sync_dir.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\package\tar_header.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\package\tar_input.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\package\tar_output.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\package\tar_reader.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\package\tar_reader\entry.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\package\tar_writer.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\package_task.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\platform.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\remote_fetcher.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\requirement.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\require_paths_builder.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\security.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\server.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\source_index.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\source_info_cache.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\source_info_cache_entry.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\specification.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\spec_fetcher.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\test_utilities.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\text.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\uninstaller.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\user_interaction.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\validator.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\version.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\rubygems\version_option.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\scanf.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\securerandom.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\set.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\shell.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\shellwords.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\shell\builtin-command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\shell\command-processor.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\shell\error.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\shell\filter.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\shell\process-controller.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\shell\system-command.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\shell\version.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\singleton.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\socket.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\baseemitter.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\basenode.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\constants.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\encoding.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\error.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\loader.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\rubytypes.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\stream.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\stringio.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\syck.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\tag.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\types.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\yamlnode.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\syck\ypath.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\sync.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\tempfile.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\test\unit.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\test\unit\assertions.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\test\unit\testcase.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\thread.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\thwait.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\time.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\timeout.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\tmpdir.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\tracer.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\tsort.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\ubygems.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\un.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\uri.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\uri\common.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\uri\ftp.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\uri\generic.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\uri\http.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\uri\https.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\uri\ldap.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\uri\ldaps.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\uri\mailto.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\weakref.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\accesslog.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\cgi.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\compat.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\config.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\cookie.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\htmlutils.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpauth.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpauth\authenticator.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpauth\basicauth.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpauth\digestauth.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpauth\htdigest.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpauth\htgroup.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpauth\htpasswd.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpauth\userdb.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpproxy.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httprequest.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpresponse.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\https.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpserver.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpservlet.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpservlet\abstract.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpservlet\cgihandler.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpservlet\cgi_runner.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpservlet\erbhandler.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpservlet\filehandler.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpservlet\prochandler.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpstatus.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httputils.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\httpversion.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\log.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\server.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\ssl.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\utils.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\webrick\version.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\Win32API.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\win32ole.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\win32ole\property.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\win32\registry.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\win32\resolv.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\win32\sspi.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\xmlrpc\base64.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\xmlrpc\client.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\xmlrpc\config.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\xmlrpc\create.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\xmlrpc\datetime.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\xmlrpc\httpserver.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\xmlrpc\marshal.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\xmlrpc\parser.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\xmlrpc\server.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\xmlrpc\utils.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\yaml.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\yaml\dbm.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\yaml\store.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Lib\Ruby\1.9.1\yaml\syck.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Modules\TestModule.rb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Entypo.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\app.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\dark\appbar.add.png" />
+    <Resource Include="Resources\dark\appbar.alert.png" />
+    <Resource Include="Resources\dark\appbar.alien.png" />
+    <Resource Include="Resources\dark\appbar.align.center.png" />
+    <Resource Include="Resources\dark\appbar.align.justify.png" />
+    <Resource Include="Resources\dark\appbar.align.left.png" />
+    <Resource Include="Resources\dark\appbar.align.right.png" />
+    <Resource Include="Resources\dark\appbar.anchor.png" />
+    <Resource Include="Resources\dark\appbar.archive.png" />
+    <Resource Include="Resources\dark\appbar.arrow.collapsed.png" />
+    <Resource Include="Resources\dark\appbar.arrow.down.png" />
+    <Resource Include="Resources\dark\appbar.arrow.down.up.png" />
+    <Resource Include="Resources\dark\appbar.arrow.expand.png" />
+    <Resource Include="Resources\dark\appbar.arrow.left.png" />
+    <Resource Include="Resources\dark\appbar.arrow.left.right.png" />
+    <Resource Include="Resources\dark\appbar.arrow.right.left.png" />
+    <Resource Include="Resources\dark\appbar.arrow.right.png" />
+    <Resource Include="Resources\dark\appbar.arrow.up.down.png" />
+    <Resource Include="Resources\dark\appbar.arrow.up.png" />
+    <Resource Include="Resources\dark\appbar.at.png" />
+    <Resource Include="Resources\dark\appbar.axis.three.png" />
+    <Resource Include="Resources\dark\appbar.barcode.png" />
+    <Resource Include="Resources\dark\appbar.base.png" />
+    <Resource Include="Resources\dark\appbar.bath.png" />
+    <Resource Include="Resources\dark\appbar.battery.0.png" />
+    <Resource Include="Resources\dark\appbar.battery.1.png" />
+    <Resource Include="Resources\dark\appbar.battery.2.png" />
+    <Resource Include="Resources\dark\appbar.battery.3.png" />
+    <Resource Include="Resources\dark\appbar.bed.png" />
+    <Resource Include="Resources\dark\appbar.bing.png" />
+    <Resource Include="Resources\dark\appbar.book.open.png" />
+    <Resource Include="Resources\dark\appbar.book.open.writing.png" />
+    <Resource Include="Resources\dark\appbar.book.png" />
+    <Resource Include="Resources\dark\appbar.book.side.png" />
+    <Resource Include="Resources\dark\appbar.box.layered.png" />
+    <Resource Include="Resources\dark\appbar.box.png" />
+    <Resource Include="Resources\dark\appbar.box.unfolded.png" />
+    <Resource Include="Resources\dark\appbar.cabinet.files.png" />
+    <Resource Include="Resources\dark\appbar.cabinet.in.png" />
+    <Resource Include="Resources\dark\appbar.cabinet.out.png" />
+    <Resource Include="Resources\dark\appbar.cabinet.png" />
+    <Resource Include="Resources\dark\appbar.calculator.png" />
+    <Resource Include="Resources\dark\appbar.calendar.14.png" />
+    <Resource Include="Resources\dark\appbar.calendar.31.png" />
+    <Resource Include="Resources\dark\appbar.calendar.png" />
+    <Resource Include="Resources\dark\appbar.camera.flash.auto.png" />
+    <Resource Include="Resources\dark\appbar.camera.flash.auto.selected.png" />
+    <Resource Include="Resources\dark\appbar.camera.flash.off.png" />
+    <Resource Include="Resources\dark\appbar.camera.flash.off.selected.png" />
+    <Resource Include="Resources\dark\appbar.camera.flash.png" />
+    <Resource Include="Resources\dark\appbar.camera.flash.selected.png" />
+    <Resource Include="Resources\dark\appbar.camera.png" />
+    <Resource Include="Resources\dark\appbar.cancel.png" />
+    <Resource Include="Resources\dark\appbar.candy.cane.png" />
+    <Resource Include="Resources\dark\appbar.cards.club.png" />
+    <Resource Include="Resources\dark\appbar.cards.diamond.png" />
+    <Resource Include="Resources\dark\appbar.cards.heart.png" />
+    <Resource Include="Resources\dark\appbar.cards.spade.png" />
+    <Resource Include="Resources\dark\appbar.cart.png" />
+    <Resource Include="Resources\dark\appbar.cd.eject.png" />
+    <Resource Include="Resources\dark\appbar.cd.png" />
+    <Resource Include="Resources\dark\appbar.chat.png" />
+    <Resource Include="Resources\dark\appbar.check.png" />
+    <Resource Include="Resources\dark\appbar.chess.bishop.png" />
+    <Resource Include="Resources\dark\appbar.chess.horse.png" />
+    <Resource Include="Resources\dark\appbar.chess.king.png" />
+    <Resource Include="Resources\dark\appbar.chess.pawn.png" />
+    <Resource Include="Resources\dark\appbar.chess.queen.png" />
+    <Resource Include="Resources\dark\appbar.chess.rook.png" />
+    <Resource Include="Resources\dark\appbar.chevron.down.png" />
+    <Resource Include="Resources\dark\appbar.chevron.left.png" />
+    <Resource Include="Resources\dark\appbar.chevron.right.png" />
+    <Resource Include="Resources\dark\appbar.chevron.up.png" />
+    <Resource Include="Resources\dark\appbar.city.chicago.png" />
+    <Resource Include="Resources\dark\appbar.city.png" />
+    <Resource Include="Resources\dark\appbar.city.sanfrancisco.png" />
+    <Resource Include="Resources\dark\appbar.city.seattle.png" />
+    <Resource Include="Resources\dark\appbar.clean.png" />
+    <Resource Include="Resources\dark\appbar.clear.inverse.png" />
+    <Resource Include="Resources\dark\appbar.clear.inverse.reflect.horizontal.png" />
+    <Resource Include="Resources\dark\appbar.clear.png" />
+    <Resource Include="Resources\dark\appbar.clear.reflect.horizontal.png" />
+    <Resource Include="Resources\dark\appbar.clipboard.edit.png" />
+    <Resource Include="Resources\dark\appbar.clipboard.file.png" />
+    <Resource Include="Resources\dark\appbar.clipboard.png" />
+    <Resource Include="Resources\dark\appbar.clock.png" />
+    <Resource Include="Resources\dark\appbar.close.png" />
+    <Resource Include="Resources\dark\appbar.closedcaption.off.png" />
+    <Resource Include="Resources\dark\appbar.closedcaption.png" />
+    <Resource Include="Resources\dark\appbar.cloud.add.png" />
+    <Resource Include="Resources\dark\appbar.cloud.delete.png" />
+    <Resource Include="Resources\dark\appbar.cloud.download.png" />
+    <Resource Include="Resources\dark\appbar.cloud.pause.png" />
+    <Resource Include="Resources\dark\appbar.cloud.play.png" />
+    <Resource Include="Resources\dark\appbar.cloud.png" />
+    <Resource Include="Resources\dark\appbar.cloud.upload.png" />
+    <Resource Include="Resources\dark\appbar.column.one.png" />
+    <Resource Include="Resources\dark\appbar.column.three.png" />
+    <Resource Include="Resources\dark\appbar.column.two.png" />
+    <Resource Include="Resources\dark\appbar.companioncube.png" />
+    <Resource Include="Resources\dark\appbar.cone.diagonal.png" />
+    <Resource Include="Resources\dark\appbar.cone.png" />
+    <Resource Include="Resources\dark\appbar.connect.png" />
+    <Resource Include="Resources\dark\appbar.connection.1x.png" />
+    <Resource Include="Resources\dark\appbar.connection.3g.png" />
+    <Resource Include="Resources\dark\appbar.connection.4g.png" />
+    <Resource Include="Resources\dark\appbar.connection.bluetooth.png" />
+    <Resource Include="Resources\dark\appbar.connection.ev.png" />
+    <Resource Include="Resources\dark\appbar.connection.wifi.png" />
+    <Resource Include="Resources\dark\appbar.console.png" />
+    <Resource Include="Resources\dark\appbar.contrast.png" />
+    <Resource Include="Resources\dark\appbar.control.eject.png" />
+    <Resource Include="Resources\dark\appbar.control.fastforward.png" />
+    <Resource Include="Resources\dark\appbar.control.guide.png" />
+    <Resource Include="Resources\dark\appbar.control.pause.png" />
+    <Resource Include="Resources\dark\appbar.control.play.live.png" />
+    <Resource Include="Resources\dark\appbar.control.play.png" />
+    <Resource Include="Resources\dark\appbar.control.rewind.png" />
+    <Resource Include="Resources\dark\appbar.control.stop.png" />
+    <Resource Include="Resources\dark\appbar.controller.snes.png" />
+    <Resource Include="Resources\dark\appbar.controller.xbox.png" />
+    <Resource Include="Resources\dark\appbar.copyright.png" />
+    <Resource Include="Resources\dark\appbar.creativecommons.png" />
+    <Resource Include="Resources\dark\appbar.creditcard.png" />
+    <Resource Include="Resources\dark\appbar.crop.png" />
+    <Resource Include="Resources\dark\appbar.crosshair.png" />
+    <Resource Include="Resources\dark\appbar.crown.png" />
+    <Resource Include="Resources\dark\appbar.cup.empty.png" />
+    <Resource Include="Resources\dark\appbar.cup.full.png" />
+    <Resource Include="Resources\dark\appbar.cup.half.png" />
+    <Resource Include="Resources\dark\appbar.cup.paper.png" />
+    <Resource Include="Resources\dark\appbar.cup.png" />
+    <Resource Include="Resources\dark\appbar.cupcake.png" />
+    <Resource Include="Resources\dark\appbar.currency.cent.png" />
+    <Resource Include="Resources\dark\appbar.currency.dollar.png" />
+    <Resource Include="Resources\dark\appbar.currency.euro.png" />
+    <Resource Include="Resources\dark\appbar.currency.grivna.png" />
+    <Resource Include="Resources\dark\appbar.currency.pound.png" />
+    <Resource Include="Resources\dark\appbar.currency.rubles.png" />
+    <Resource Include="Resources\dark\appbar.currency.rupee.png" />
+    <Resource Include="Resources\dark\appbar.currency.yen.png" />
+    <Resource Include="Resources\dark\appbar.cursor.default.outline.png" />
+    <Resource Include="Resources\dark\appbar.cursor.default.png" />
+    <Resource Include="Resources\dark\appbar.cursor.default.transform.horizontal.png" />
+    <Resource Include="Resources\dark\appbar.cusor.pointer.png" />
+    <Resource Include="Resources\dark\appbar.database.png" />
+    <Resource Include="Resources\dark\appbar.deeplink.png" />
+    <Resource Include="Resources\dark\appbar.deeplink.round.png" />
+    <Resource Include="Resources\dark\appbar.delete.png" />
+    <Resource Include="Resources\dark\appbar.diagram.png" />
+    <Resource Include="Resources\dark\appbar.dial.png" />
+    <Resource Include="Resources\dark\appbar.disconnect.png" />
+    <Resource Include="Resources\dark\appbar.disk.download.png" />
+    <Resource Include="Resources\dark\appbar.disk.png" />
+    <Resource Include="Resources\dark\appbar.door.enter.png" />
+    <Resource Include="Resources\dark\appbar.door.leave.png" />
+    <Resource Include="Resources\dark\appbar.download.png" />
+    <Resource Include="Resources\dark\appbar.dropbox.png" />
+    <Resource Include="Resources\dark\appbar.dropper.png" />
+    <Resource Include="Resources\dark\appbar.edit.png" />
+    <Resource Include="Resources\dark\appbar.email.gmail.png" />
+    <Resource Include="Resources\dark\appbar.email.hardedge.png" />
+    <Resource Include="Resources\dark\appbar.email.minimal.png" />
+    <Resource Include="Resources\dark\appbar.email.outlook.png" />
+    <Resource Include="Resources\dark\appbar.email.png" />
+    <Resource Include="Resources\dark\appbar.email.yahoo.png" />
+    <Resource Include="Resources\dark\appbar.equalizer.png" />
+    <Resource Include="Resources\dark\appbar.erase.png" />
+    <Resource Include="Resources\dark\appbar.error.png" />
+    <Resource Include="Resources\dark\appbar.exclamation.png" />
+    <Resource Include="Resources\dark\appbar.eye.check.png" />
+    <Resource Include="Resources\dark\appbar.eye.close.png" />
+    <Resource Include="Resources\dark\appbar.eye.png" />
+    <Resource Include="Resources\dark\appbar.facebook.connect.png" />
+    <Resource Include="Resources\dark\appbar.facebook.disconnect.png" />
+    <Resource Include="Resources\dark\appbar.facebook.heart.png" />
+    <Resource Include="Resources\dark\appbar.facebook.heartbreak.png" />
+    <Resource Include="Resources\dark\appbar.facebook.png" />
+    <Resource Include="Resources\dark\appbar.female.png" />
+    <Resource Include="Resources\dark\appbar.film.live.png" />
+    <Resource Include="Resources\dark\appbar.film.png" />
+    <Resource Include="Resources\dark\appbar.film.select.png" />
+    <Resource Include="Resources\dark\appbar.filter.alphabetical.png" />
+    <Resource Include="Resources\dark\appbar.filter.png" />
+    <Resource Include="Resources\dark\appbar.finder.png" />
+    <Resource Include="Resources\dark\appbar.flag.bear.png" />
+    <Resource Include="Resources\dark\appbar.flag.png" />
+    <Resource Include="Resources\dark\appbar.flag.wavy.png" />
+    <Resource Include="Resources\dark\appbar.folder.ellipsis.png" />
+    <Resource Include="Resources\dark\appbar.folder.open.png" />
+    <Resource Include="Resources\dark\appbar.folder.png" />
+    <Resource Include="Resources\dark\appbar.food.png" />
+    <Resource Include="Resources\dark\appbar.forklift.load.png" />
+    <Resource Include="Resources\dark\appbar.forklift.png" />
+    <Resource Include="Resources\dark\appbar.forrst.png" />
+    <Resource Include="Resources\dark\appbar.forsale.png" />
+    <Resource Include="Resources\dark\appbar.fullscreen.box.png" />
+    <Resource Include="Resources\dark\appbar.fullscreen.png" />
+    <Resource Include="Resources\dark\appbar.gas.png" />
+    <Resource Include="Resources\dark\appbar.gauge.0.png" />
+    <Resource Include="Resources\dark\appbar.gauge.100.png" />
+    <Resource Include="Resources\dark\appbar.gauge.25.png" />
+    <Resource Include="Resources\dark\appbar.gauge.50.png" />
+    <Resource Include="Resources\dark\appbar.gauge.75.png" />
+    <Resource Include="Resources\dark\appbar.gift.png" />
+    <Resource Include="Resources\dark\appbar.globe.png" />
+    <Resource Include="Resources\dark\appbar.globe.wire.png" />
+    <Resource Include="Resources\dark\appbar.google.png" />
+    <Resource Include="Resources\dark\appbar.googleplus.png" />
+    <Resource Include="Resources\dark\appbar.grade.a.minus.png" />
+    <Resource Include="Resources\dark\appbar.grade.a.plus.png" />
+    <Resource Include="Resources\dark\appbar.grade.a.png" />
+    <Resource Include="Resources\dark\appbar.grade.b.minus.png" />
+    <Resource Include="Resources\dark\appbar.grade.b.plus.png" />
+    <Resource Include="Resources\dark\appbar.grade.b.png" />
+    <Resource Include="Resources\dark\appbar.grade.c.minus.png" />
+    <Resource Include="Resources\dark\appbar.grade.c.plus.png" />
+    <Resource Include="Resources\dark\appbar.grade.c.png" />
+    <Resource Include="Resources\dark\appbar.grade.d.minus.png" />
+    <Resource Include="Resources\dark\appbar.grade.d.plus.png" />
+    <Resource Include="Resources\dark\appbar.grade.d.png" />
+    <Resource Include="Resources\dark\appbar.grade.e.png" />
+    <Resource Include="Resources\dark\appbar.grade.f.png" />
+    <Resource Include="Resources\dark\appbar.graph.bar.png" />
+    <Resource Include="Resources\dark\appbar.graph.boxplot.png" />
+    <Resource Include="Resources\dark\appbar.graph.line.down.png" />
+    <Resource Include="Resources\dark\appbar.graph.line.png" />
+    <Resource Include="Resources\dark\appbar.graph.line.up.png" />
+    <Resource Include="Resources\dark\appbar.greek.sigma.lowercase.png" />
+    <Resource Include="Resources\dark\appbar.greek.sigma.uppercase.png" />
+    <Resource Include="Resources\dark\appbar.grid.png" />
+    <Resource Include="Resources\dark\appbar.heart.outline.png" />
+    <Resource Include="Resources\dark\appbar.heart.png" />
+    <Resource Include="Resources\dark\appbar.heartbreak.png" />
+    <Resource Include="Resources\dark\appbar.home.png" />
+    <Resource Include="Resources\dark\appbar.hourglass.png" />
+    <Resource Include="Resources\dark\appbar.ie.png" />
+    <Resource Include="Resources\dark\appbar.image.ants.png" />
+    <Resource Include="Resources\dark\appbar.image.export.png" />
+    <Resource Include="Resources\dark\appbar.image.focus.png" />
+    <Resource Include="Resources\dark\appbar.image.hdr.png" />
+    <Resource Include="Resources\dark\appbar.image.multiple.png" />
+    <Resource Include="Resources\dark\appbar.image.png" />
+    <Resource Include="Resources\dark\appbar.image.redeye.png" />
+    <Resource Include="Resources\dark\appbar.image.select.png" />
+    <Resource Include="Resources\dark\appbar.inbox.in.png" />
+    <Resource Include="Resources\dark\appbar.inbox.out.png" />
+    <Resource Include="Resources\dark\appbar.inbox.png" />
+    <Resource Include="Resources\dark\appbar.infinite.png" />
+    <Resource Include="Resources\dark\appbar.information.circle.png" />
+    <Resource Include="Resources\dark\appbar.information.png" />
+    <Resource Include="Resources\dark\appbar.interface.button.png" />
+    <Resource Include="Resources\dark\appbar.interface.dropdown.png" />
+    <Resource Include="Resources\dark\appbar.interface.list.png" />
+    <Resource Include="Resources\dark\appbar.interface.password.png" />
+    <Resource Include="Resources\dark\appbar.interface.textbox.png" />
+    <Resource Include="Resources\dark\appbar.iphone.png" />
+    <Resource Include="Resources\dark\appbar.journal.png" />
+    <Resource Include="Resources\dark\appbar.key.old.png" />
+    <Resource Include="Resources\dark\appbar.key.png" />
+    <Resource Include="Resources\dark\appbar.laptop.png" />
+    <Resource Include="Resources\dark\appbar.layer.add.png" />
+    <Resource Include="Resources\dark\appbar.layer.delete.png" />
+    <Resource Include="Resources\dark\appbar.layer.minus.png" />
+    <Resource Include="Resources\dark\appbar.layer.png" />
+    <Resource Include="Resources\dark\appbar.layer.thick.png" />
+    <Resource Include="Resources\dark\appbar.layout.png" />
+    <Resource Include="Resources\dark\appbar.leaderboard.png" />
+    <Resource Include="Resources\dark\appbar.lifesaver.png" />
+    <Resource Include="Resources\dark\appbar.lightning.png" />
+    <Resource Include="Resources\dark\appbar.lines.horizontal.4.png" />
+    <Resource Include="Resources\dark\appbar.link.png" />
+    <Resource Include="Resources\dark\appbar.linkedin.png" />
+    <Resource Include="Resources\dark\appbar.list.check.png" />
+    <Resource Include="Resources\dark\appbar.list.one.png" />
+    <Resource Include="Resources\dark\appbar.list.png" />
+    <Resource Include="Resources\dark\appbar.list.two.png" />
+    <Resource Include="Resources\dark\appbar.location.add.png" />
+    <Resource Include="Resources\dark\appbar.location.circle.png" />
+    <Resource Include="Resources\dark\appbar.location.delete.png" />
+    <Resource Include="Resources\dark\appbar.location.foursquare.png" />
+    <Resource Include="Resources\dark\appbar.location.minus.png" />
+    <Resource Include="Resources\dark\appbar.location.png" />
+    <Resource Include="Resources\dark\appbar.location.round.png" />
+    <Resource Include="Resources\dark\appbar.lock.png" />
+    <Resource Include="Resources\dark\appbar.loop.png" />
+    <Resource Include="Resources\dark\appbar.magnify.add.png" />
+    <Resource Include="Resources\dark\appbar.magnify.minus.png" />
+    <Resource Include="Resources\dark\appbar.magnify.png" />
+    <Resource Include="Resources\dark\appbar.male.png" />
+    <Resource Include="Resources\dark\appbar.man.suitcase.fast.png" />
+    <Resource Include="Resources\dark\appbar.man.suitcase.png" />
+    <Resource Include="Resources\dark\appbar.man.suitcase.run.png" />
+    <Resource Include="Resources\dark\appbar.map.aerial.highway.png" />
+    <Resource Include="Resources\dark\appbar.map.aerial.png" />
+    <Resource Include="Resources\dark\appbar.map.png" />
+    <Resource Include="Resources\dark\appbar.map.satellite.png" />
+    <Resource Include="Resources\dark\appbar.marketplace.png" />
+    <Resource Include="Resources\dark\appbar.martini.png" />
+    <Resource Include="Resources\dark\appbar.medical.pulse.png" />
+    <Resource Include="Resources\dark\appbar.message.png" />
+    <Resource Include="Resources\dark\appbar.message.send.png" />
+    <Resource Include="Resources\dark\appbar.microphone.png" />
+    <Resource Include="Resources\dark\appbar.microsoft.tag.png" />
+    <Resource Include="Resources\dark\appbar.minus.png" />
+    <Resource Include="Resources\dark\appbar.money.png" />
+    <Resource Include="Resources\dark\appbar.monitor.play.png" />
+    <Resource Include="Resources\dark\appbar.monitor.png" />
+    <Resource Include="Resources\dark\appbar.monitor.to.png" />
+    <Resource Include="Resources\dark\appbar.mono.png" />
+    <Resource Include="Resources\dark\appbar.moon.first.quarter.png" />
+    <Resource Include="Resources\dark\appbar.moon.full.png" />
+    <Resource Include="Resources\dark\appbar.moon.new.png" />
+    <Resource Include="Resources\dark\appbar.moon.png" />
+    <Resource Include="Resources\dark\appbar.moon.sleep.png" />
+    <Resource Include="Resources\dark\appbar.moon.third.quarter.png" />
+    <Resource Include="Resources\dark\appbar.moon.waning.crescent.png" />
+    <Resource Include="Resources\dark\appbar.moon.waning.gibbous.png" />
+    <Resource Include="Resources\dark\appbar.moon.waxing.crescent.png" />
+    <Resource Include="Resources\dark\appbar.moon.waxing.gibbous.png" />
+    <Resource Include="Resources\dark\appbar.movie.clapper.png" />
+    <Resource Include="Resources\dark\appbar.movie.clapper.select.png" />
+    <Resource Include="Resources\dark\appbar.movie.clapper.solid.png" />
+    <Resource Include="Resources\dark\appbar.movie.clapper.solid.select.png" />
+    <Resource Include="Resources\dark\appbar.music.live.png" />
+    <Resource Include="Resources\dark\appbar.music.png" />
+    <Resource Include="Resources\dark\appbar.music.select.png" />
+    <Resource Include="Resources\dark\appbar.navigate.next.png" />
+    <Resource Include="Resources\dark\appbar.navigate.previous.png" />
+    <Resource Include="Resources\dark\appbar.network.png" />
+    <Resource Include="Resources\dark\appbar.new.png" />
+    <Resource Include="Resources\dark\appbar.new.window.png" />
+    <Resource Include="Resources\dark\appbar.noentry.png" />
+    <Resource Include="Resources\dark\appbar.notification.multiple.png" />
+    <Resource Include="Resources\dark\appbar.notification.png" />
+    <Resource Include="Resources\dark\appbar.nyan.png" />
+    <Resource Include="Resources\dark\appbar.os.android.png" />
+    <Resource Include="Resources\dark\appbar.os.arm.png" />
+    <Resource Include="Resources\dark\appbar.os.blackberry.png" />
+    <Resource Include="Resources\dark\appbar.os.chromium.png" />
+    <Resource Include="Resources\dark\appbar.os.ios.png" />
+    <Resource Include="Resources\dark\appbar.os.ubuntu.png" />
+    <Resource Include="Resources\dark\appbar.os.windows.8.png" />
+    <Resource Include="Resources\dark\appbar.os.windows.png" />
+    <Resource Include="Resources\dark\appbar.os.windowsphone.png" />
+    <Resource Include="Resources\dark\appbar.os.windowsphone.round.png" />
+    <Resource Include="Resources\dark\appbar.os.x64.png" />
+    <Resource Include="Resources\dark\appbar.os.x86.png" />
+    <Resource Include="Resources\dark\appbar.page.1.png" />
+    <Resource Include="Resources\dark\appbar.page.2.png" />
+    <Resource Include="Resources\dark\appbar.page.3.png" />
+    <Resource Include="Resources\dark\appbar.page.4.png" />
+    <Resource Include="Resources\dark\appbar.page.5.png" />
+    <Resource Include="Resources\dark\appbar.page.6.png" />
+    <Resource Include="Resources\dark\appbar.page.7.png" />
+    <Resource Include="Resources\dark\appbar.page.8.png" />
+    <Resource Include="Resources\dark\appbar.page.9.png" />
+    <Resource Include="Resources\dark\appbar.page.add.png" />
+    <Resource Include="Resources\dark\appbar.page.arrow.png" />
+    <Resource Include="Resources\dark\appbar.page.bold.png" />
+    <Resource Include="Resources\dark\appbar.page.check.png" />
+    <Resource Include="Resources\dark\appbar.page.code.png" />
+    <Resource Include="Resources\dark\appbar.page.corner.bookmark.png" />
+    <Resource Include="Resources\dark\appbar.page.corner.folded.png" />
+    <Resource Include="Resources\dark\appbar.page.corner.png" />
+    <Resource Include="Resources\dark\appbar.page.delete.png" />
+    <Resource Include="Resources\dark\appbar.page.edit.png" />
+    <Resource Include="Resources\dark\appbar.page.excel.png" />
+    <Resource Include="Resources\dark\appbar.page.gif.png" />
+    <Resource Include="Resources\dark\appbar.page.heart.png" />
+    <Resource Include="Resources\dark\appbar.page.heartbreak.png" />
+    <Resource Include="Resources\dark\appbar.page.hidden.png" />
+    <Resource Include="Resources\dark\appbar.page.jpg.png" />
+    <Resource Include="Resources\dark\appbar.page.minus.png" />
+    <Resource Include="Resources\dark\appbar.page.multiple.png" />
+    <Resource Include="Resources\dark\appbar.page.music.png" />
+    <Resource Include="Resources\dark\appbar.page.new.png" />
+    <Resource Include="Resources\dark\appbar.page.onenote.png" />
+    <Resource Include="Resources\dark\appbar.page.png" />
+    <Resource Include="Resources\dark\appbar.page.png.png" />
+    <Resource Include="Resources\dark\appbar.page.powerpoint.png" />
+    <Resource Include="Resources\dark\appbar.page.question.png" />
+    <Resource Include="Resources\dark\appbar.page.search.png" />
+    <Resource Include="Resources\dark\appbar.page.select.png" />
+    <Resource Include="Resources\dark\appbar.page.word.png" />
+    <Resource Include="Resources\dark\appbar.page.xml.png" />
+    <Resource Include="Resources\dark\appbar.palmtree.png" />
+    <Resource Include="Resources\dark\appbar.paper.png" />
+    <Resource Include="Resources\dark\appbar.paperclip.png" />
+    <Resource Include="Resources\dark\appbar.paperclip.rotated.png" />
+    <Resource Include="Resources\dark\appbar.paypal.png" />
+    <Resource Include="Resources\dark\appbar.people.png" />
+    <Resource Include="Resources\dark\appbar.people.status.png" />
+    <Resource Include="Resources\dark\appbar.phone.png" />
+    <Resource Include="Resources\dark\appbar.pie.png" />
+    <Resource Include="Resources\dark\appbar.pie.quarter.png" />
+    <Resource Include="Resources\dark\appbar.pin.png" />
+    <Resource Include="Resources\dark\appbar.pin.rotated.270.png" />
+    <Resource Include="Resources\dark\appbar.pin.rotated.315.png" />
+    <Resource Include="Resources\dark\appbar.places.png" />
+    <Resource Include="Resources\dark\appbar.plane.png" />
+    <Resource Include="Resources\dark\appbar.plane.rotated.135.png" />
+    <Resource Include="Resources\dark\appbar.plane.rotated.45.png" />
+    <Resource Include="Resources\dark\appbar.pokeball.png" />
+    <Resource Include="Resources\dark\appbar.power.png" />
+    <Resource Include="Resources\dark\appbar.projector.png" />
+    <Resource Include="Resources\dark\appbar.projector.screen.png" />
+    <Resource Include="Resources\dark\appbar.protractor.png" />
+    <Resource Include="Resources\dark\appbar.puzzle.png" />
+    <Resource Include="Resources\dark\appbar.puzzle.round.png" />
+    <Resource Include="Resources\dark\appbar.qr.png" />
+    <Resource Include="Resources\dark\appbar.question.png" />
+    <Resource Include="Resources\dark\appbar.radar.png" />
+    <Resource Include="Resources\dark\appbar.radar.screen.png" />
+    <Resource Include="Resources\dark\appbar.radioactive.png" />
+    <Resource Include="Resources\dark\appbar.redo.png" />
+    <Resource Include="Resources\dark\appbar.redo.point.png" />
+    <Resource Include="Resources\dark\appbar.refresh.png" />
+    <Resource Include="Resources\dark\appbar.repeat.png" />
+    <Resource Include="Resources\dark\appbar.reply.calendar.png" />
+    <Resource Include="Resources\dark\appbar.reply.email.png" />
+    <Resource Include="Resources\dark\appbar.reply.people.png" />
+    <Resource Include="Resources\dark\appbar.reset.png" />
+    <Resource Include="Resources\dark\appbar.return.png" />
+    <Resource Include="Resources\dark\appbar.ribbon.png" />
+    <Resource Include="Resources\dark\appbar.ribbon.wave.png" />
+    <Resource Include="Resources\dark\appbar.rss.png" />
+    <Resource Include="Resources\dark\appbar.ruler.png" />
+    <Resource Include="Resources\dark\appbar.save.png" />
+    <Resource Include="Resources\dark\appbar.scale.png" />
+    <Resource Include="Resources\dark\appbar.scale.unbalanced.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.a.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.b.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.c.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.d.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.e.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.f.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.g.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.h.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.i.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.j.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.k.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.l.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.m.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.n.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.o.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.p.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.q.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.r.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.s.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.t.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.u.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.v.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.w.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.x.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.y.png" />
+    <Resource Include="Resources\dark\appbar.scrabble.z.png" />
+    <Resource Include="Resources\dark\appbar.settings.png" />
+    <Resource Include="Resources\dark\appbar.share.png" />
+    <Resource Include="Resources\dark\appbar.shotglass.png" />
+    <Resource Include="Resources\dark\appbar.shuffle.png" />
+    <Resource Include="Resources\dark\appbar.sidebar.expand.left.png" />
+    <Resource Include="Resources\dark\appbar.sidebar.expand.right.png" />
+    <Resource Include="Resources\dark\appbar.sign.caution.png" />
+    <Resource Include="Resources\dark\appbar.sign.interstate.75.png" />
+    <Resource Include="Resources\dark\appbar.sign.interstate.94.png" />
+    <Resource Include="Resources\dark\appbar.sign.interstate.95.png" />
+    <Resource Include="Resources\dark\appbar.sign.interstate.png" />
+    <Resource Include="Resources\dark\appbar.sign.stop.png" />
+    <Resource Include="Resources\dark\appbar.skype.png" />
+    <Resource Include="Resources\dark\appbar.sleep.png" />
+    <Resource Include="Resources\dark\appbar.slice.png" />
+    <Resource Include="Resources\dark\appbar.smiley.angry.png" />
+    <Resource Include="Resources\dark\appbar.smiley.cry.png" />
+    <Resource Include="Resources\dark\appbar.smiley.frown.png" />
+    <Resource Include="Resources\dark\appbar.smiley.glasses.png" />
+    <Resource Include="Resources\dark\appbar.smiley.grin.png" />
+    <Resource Include="Resources\dark\appbar.smiley.grumpy.png" />
+    <Resource Include="Resources\dark\appbar.smiley.happy.png" />
+    <Resource Include="Resources\dark\appbar.smiley.kiki.png" />
+    <Resource Include="Resources\dark\appbar.smiley.squint.png" />
+    <Resource Include="Resources\dark\appbar.smiley.tounge.png" />
+    <Resource Include="Resources\dark\appbar.smiley.what.png" />
+    <Resource Include="Resources\dark\appbar.snowflake.png" />
+    <Resource Include="Resources\dark\appbar.sort.alphabetical.ascending.png" />
+    <Resource Include="Resources\dark\appbar.sort.alphabetical.descending.png" />
+    <Resource Include="Resources\dark\appbar.sort.numeric.ascending.png" />
+    <Resource Include="Resources\dark\appbar.sort.numeric.descending.png" />
+    <Resource Include="Resources\dark\appbar.sound.0.png" />
+    <Resource Include="Resources\dark\appbar.sound.1.png" />
+    <Resource Include="Resources\dark\appbar.sound.2.png" />
+    <Resource Include="Resources\dark\appbar.sound.3.png" />
+    <Resource Include="Resources\dark\appbar.sound.left.right.png" />
+    <Resource Include="Resources\dark\appbar.sound.mute.png" />
+    <Resource Include="Resources\dark\appbar.sound.stereo.png" />
+    <Resource Include="Resources\dark\appbar.sound.stereo.stack.png" />
+    <Resource Include="Resources\dark\appbar.speakerphone.png" />
+    <Resource Include="Resources\dark\appbar.star.add.png" />
+    <Resource Include="Resources\dark\appbar.star.delete.png" />
+    <Resource Include="Resources\dark\appbar.star.invincible.png" />
+    <Resource Include="Resources\dark\appbar.star.minus.png" />
+    <Resource Include="Resources\dark\appbar.star.png" />
+    <Resource Include="Resources\dark\appbar.steam.png" />
+    <Resource Include="Resources\dark\appbar.stock.down.png" />
+    <Resource Include="Resources\dark\appbar.stock.png" />
+    <Resource Include="Resources\dark\appbar.stock.up.png" />
+    <Resource Include="Resources\dark\appbar.stocking.png" />
+    <Resource Include="Resources\dark\appbar.stop.png" />
+    <Resource Include="Resources\dark\appbar.suitcase.png" />
+    <Resource Include="Resources\dark\appbar.tag.label.png" />
+    <Resource Include="Resources\dark\appbar.tag.png" />
+    <Resource Include="Resources\dark\appbar.tardis.png" />
+    <Resource Include="Resources\dark\appbar.text.size.png" />
+    <Resource Include="Resources\dark\appbar.thumbs.down.png" />
+    <Resource Include="Resources\dark\appbar.thumbs.up.png" />
+    <Resource Include="Resources\dark\appbar.tiles.four.png" />
+    <Resource Include="Resources\dark\appbar.tiles.nine.png" />
+    <Resource Include="Resources\dark\appbar.tiles.sixteen.png" />
+    <Resource Include="Resources\dark\appbar.timer.1.png" />
+    <Resource Include="Resources\dark\appbar.timer.2.png" />
+    <Resource Include="Resources\dark\appbar.timer.3.png" />
+    <Resource Include="Resources\dark\appbar.timer.4.png" />
+    <Resource Include="Resources\dark\appbar.timer.5.png" />
+    <Resource Include="Resources\dark\appbar.timer.alert.png" />
+    <Resource Include="Resources\dark\appbar.timer.check.png" />
+    <Resource Include="Resources\dark\appbar.timer.forward.png" />
+    <Resource Include="Resources\dark\appbar.timer.pause.png" />
+    <Resource Include="Resources\dark\appbar.timer.play.png" />
+    <Resource Include="Resources\dark\appbar.timer.png" />
+    <Resource Include="Resources\dark\appbar.timer.record.png" />
+    <Resource Include="Resources\dark\appbar.timer.rewind.png" />
+    <Resource Include="Resources\dark\appbar.timer.stop.png" />
+    <Resource Include="Resources\dark\appbar.tools.png" />
+    <Resource Include="Resources\dark\appbar.tournament.bracket.down.png" />
+    <Resource Include="Resources\dark\appbar.tournament.bracket.left.png" />
+    <Resource Include="Resources\dark\appbar.tournament.bracket.png" />
+    <Resource Include="Resources\dark\appbar.tournament.bracket.right.png" />
+    <Resource Include="Resources\dark\appbar.tournament.bracket.up.png" />
+    <Resource Include="Resources\dark\appbar.tower.png" />
+    <Resource Include="Resources\dark\appbar.train.png" />
+    <Resource Include="Resources\dark\appbar.transform.flip.horizontal.png" />
+    <Resource Include="Resources\dark\appbar.transform.flip.vertical.png" />
+    <Resource Include="Resources\dark\appbar.transform.rotate.left.png" />
+    <Resource Include="Resources\dark\appbar.transform.rotate.right.png" />
+    <Resource Include="Resources\dark\appbar.transit.arrive.png" />
+    <Resource Include="Resources\dark\appbar.transit.bus.png" />
+    <Resource Include="Resources\dark\appbar.transit.car.accident.png" />
+    <Resource Include="Resources\dark\appbar.transit.car.png" />
+    <Resource Include="Resources\dark\appbar.transit.congestion.png" />
+    <Resource Include="Resources\dark\appbar.transit.connection.departure.png" />
+    <Resource Include="Resources\dark\appbar.transit.connection.png" />
+    <Resource Include="Resources\dark\appbar.transit.construction.png" />
+    <Resource Include="Resources\dark\appbar.transit.depart.png" />
+    <Resource Include="Resources\dark\appbar.transit.distance.from.png" />
+    <Resource Include="Resources\dark\appbar.transit.distance.to.png" />
+    <Resource Include="Resources\dark\appbar.transit.hazard.png" />
+    <Resource Include="Resources\dark\appbar.tree.pine.png" />
+    <Resource Include="Resources\dark\appbar.trophy.png" />
+    <Resource Include="Resources\dark\appbar.truck.png" />
+    <Resource Include="Resources\dark\appbar.tux.png" />
+    <Resource Include="Resources\dark\appbar.tv.png" />
+    <Resource Include="Resources\dark\appbar.tv.syfy.png" />
+    <Resource Include="Resources\dark\appbar.twitter.bird.png" />
+    <Resource Include="Resources\dark\appbar.twitter.png" />
+    <Resource Include="Resources\dark\appbar.undo.png" />
+    <Resource Include="Resources\dark\appbar.undo.point.png" />
+    <Resource Include="Resources\dark\appbar.unlock.keyhole.png" />
+    <Resource Include="Resources\dark\appbar.unlock.png" />
+    <Resource Include="Resources\dark\appbar.unpin.png" />
+    <Resource Include="Resources\dark\appbar.unpin.rotated.270.png" />
+    <Resource Include="Resources\dark\appbar.unpin.rotated.315.png" />
+    <Resource Include="Resources\dark\appbar.upload.png" />
+    <Resource Include="Resources\dark\appbar.user.add.png" />
+    <Resource Include="Resources\dark\appbar.user.delete.png" />
+    <Resource Include="Resources\dark\appbar.user.minus.png" />
+    <Resource Include="Resources\dark\appbar.user.png" />
+    <Resource Include="Resources\dark\appbar.user.tie.png" />
+    <Resource Include="Resources\dark\appbar.uservoice.png" />
+    <Resource Include="Resources\dark\appbar.vector.circle.png" />
+    <Resource Include="Resources\dark\appbar.vector.line.curve.png" />
+    <Resource Include="Resources\dark\appbar.vector.line.png" />
+    <Resource Include="Resources\dark\appbar.vector.pen.add.png" />
+    <Resource Include="Resources\dark\appbar.vector.pen.convert.png" />
+    <Resource Include="Resources\dark\appbar.vector.pen.minus.png" />
+    <Resource Include="Resources\dark\appbar.vector.pen.png" />
+    <Resource Include="Resources\dark\appbar.vector.polygon.png" />
+    <Resource Include="Resources\dark\appbar.vector.rectangle.png" />
+    <Resource Include="Resources\dark\appbar.video.highdefinition.png" />
+    <Resource Include="Resources\dark\appbar.video.png" />
+    <Resource Include="Resources\dark\appbar.video.standarddefinition.png" />
+    <Resource Include="Resources\dark\appbar.warning.circle.png" />
+    <Resource Include="Resources\dark\appbar.warning.png" />
+    <Resource Include="Resources\dark\appbar.weather.chance.png" />
+    <Resource Include="Resources\dark\appbar.weather.overcast.png" />
+    <Resource Include="Resources\dark\appbar.weather.rain.png" />
+    <Resource Include="Resources\dark\appbar.weather.snow.png" />
+    <Resource Include="Resources\dark\appbar.weather.station.png" />
+    <Resource Include="Resources\dark\appbar.weather.sun.png" />
+    <Resource Include="Resources\dark\appbar.weather.symbol.png" />
+    <Resource Include="Resources\dark\appbar.weather.thunder.png" />
+    <Resource Include="Resources\dark\appbar.windowsphone.png" />
+    <Resource Include="Resources\dark\appbar.xbox.png" />
+    <Resource Include="Resources\dark\newspaper.png" />
+    <Resource Include="Resources\light\appbar.add.png" />
+    <Resource Include="Resources\light\appbar.alert.png" />
+    <Resource Include="Resources\light\appbar.alien.png" />
+    <Resource Include="Resources\light\appbar.align.center.png" />
+    <Resource Include="Resources\light\appbar.align.justify.png" />
+    <Resource Include="Resources\light\appbar.align.left.png" />
+    <Resource Include="Resources\light\appbar.align.right.png" />
+    <Resource Include="Resources\light\appbar.anchor.png" />
+    <Resource Include="Resources\light\appbar.archive.png" />
+    <Resource Include="Resources\light\appbar.arrow.collapsed.png" />
+    <Resource Include="Resources\light\appbar.arrow.down.png" />
+    <Resource Include="Resources\light\appbar.arrow.down.up.png" />
+    <Resource Include="Resources\light\appbar.arrow.expand.png" />
+    <Resource Include="Resources\light\appbar.arrow.left.png" />
+    <Resource Include="Resources\light\appbar.arrow.left.right.png" />
+    <Resource Include="Resources\light\appbar.arrow.right.left.png" />
+    <Resource Include="Resources\light\appbar.arrow.right.png" />
+    <Resource Include="Resources\light\appbar.arrow.up.down.png" />
+    <Resource Include="Resources\light\appbar.arrow.up.png" />
+    <Resource Include="Resources\light\appbar.at.png" />
+    <Resource Include="Resources\light\appbar.axis.three.png" />
+    <Resource Include="Resources\light\appbar.barcode.png" />
+    <Resource Include="Resources\light\appbar.base.png" />
+    <Resource Include="Resources\light\appbar.bath.png" />
+    <Resource Include="Resources\light\appbar.battery.0.png" />
+    <Resource Include="Resources\light\appbar.battery.1.png" />
+    <Resource Include="Resources\light\appbar.battery.2.png" />
+    <Resource Include="Resources\light\appbar.battery.3.png" />
+    <Resource Include="Resources\light\appbar.bed.png" />
+    <Resource Include="Resources\light\appbar.bing.png" />
+    <Resource Include="Resources\light\appbar.book.open.png" />
+    <Resource Include="Resources\light\appbar.book.open.writing.png" />
+    <Resource Include="Resources\light\appbar.book.png" />
+    <Resource Include="Resources\light\appbar.book.side.png" />
+    <Resource Include="Resources\light\appbar.box.layered.png" />
+    <Resource Include="Resources\light\appbar.box.png" />
+    <Resource Include="Resources\light\appbar.box.unfolded.png" />
+    <Resource Include="Resources\light\appbar.cabinet.files.png" />
+    <Resource Include="Resources\light\appbar.cabinet.in.png" />
+    <Resource Include="Resources\light\appbar.cabinet.out.png" />
+    <Resource Include="Resources\light\appbar.cabinet.png" />
+    <Resource Include="Resources\light\appbar.calculator.png" />
+    <Resource Include="Resources\light\appbar.calendar.14.png" />
+    <Resource Include="Resources\light\appbar.calendar.31.png" />
+    <Resource Include="Resources\light\appbar.calendar.png" />
+    <Resource Include="Resources\light\appbar.camera.flash.auto.png" />
+    <Resource Include="Resources\light\appbar.camera.flash.auto.selected.png" />
+    <Resource Include="Resources\light\appbar.camera.flash.off.png" />
+    <Resource Include="Resources\light\appbar.camera.flash.off.selected.png" />
+    <Resource Include="Resources\light\appbar.camera.flash.png" />
+    <Resource Include="Resources\light\appbar.camera.flash.selected.png" />
+    <Resource Include="Resources\light\appbar.camera.png" />
+    <Resource Include="Resources\light\appbar.cancel.png" />
+    <Resource Include="Resources\light\appbar.candy.cane.png" />
+    <Resource Include="Resources\light\appbar.cards.club.png" />
+    <Resource Include="Resources\light\appbar.cards.diamond.png" />
+    <Resource Include="Resources\light\appbar.cards.heart.png" />
+    <Resource Include="Resources\light\appbar.cards.spade.png" />
+    <Resource Include="Resources\light\appbar.cart.png" />
+    <Resource Include="Resources\light\appbar.cd.eject.png" />
+    <Resource Include="Resources\light\appbar.cd.png" />
+    <Resource Include="Resources\light\appbar.chat.png" />
+    <Resource Include="Resources\light\appbar.check.png" />
+    <Resource Include="Resources\light\appbar.chess.bishop.png" />
+    <Resource Include="Resources\light\appbar.chess.horse.png" />
+    <Resource Include="Resources\light\appbar.chess.king.png" />
+    <Resource Include="Resources\light\appbar.chess.pawn.png" />
+    <Resource Include="Resources\light\appbar.chess.queen.png" />
+    <Resource Include="Resources\light\appbar.chess.rook.png" />
+    <Resource Include="Resources\light\appbar.chevron.down.png" />
+    <Resource Include="Resources\light\appbar.chevron.left.png" />
+    <Resource Include="Resources\light\appbar.chevron.right.png" />
+    <Resource Include="Resources\light\appbar.chevron.up.png" />
+    <Resource Include="Resources\light\appbar.city.chicago.png" />
+    <Resource Include="Resources\light\appbar.city.png" />
+    <Resource Include="Resources\light\appbar.city.sanfrancisco.png" />
+    <Resource Include="Resources\light\appbar.city.seattle.png" />
+    <Resource Include="Resources\light\appbar.clean.png" />
+    <Resource Include="Resources\light\appbar.clear.inverse.png" />
+    <Resource Include="Resources\light\appbar.clear.inverse.reflect.horizontal.png" />
+    <Resource Include="Resources\light\appbar.clear.png" />
+    <Resource Include="Resources\light\appbar.clear.reflect.horizontal.png" />
+    <Resource Include="Resources\light\appbar.clipboard.edit.png" />
+    <Resource Include="Resources\light\appbar.clipboard.file.png" />
+    <Resource Include="Resources\light\appbar.clipboard.png" />
+    <Resource Include="Resources\light\appbar.clock.png" />
+    <Resource Include="Resources\light\appbar.close.png" />
+    <Resource Include="Resources\light\appbar.closedcaption.off.png" />
+    <Resource Include="Resources\light\appbar.closedcaption.png" />
+    <Resource Include="Resources\light\appbar.cloud.add.png" />
+    <Resource Include="Resources\light\appbar.cloud.delete.png" />
+    <Resource Include="Resources\light\appbar.cloud.download.png" />
+    <Resource Include="Resources\light\appbar.cloud.pause.png" />
+    <Resource Include="Resources\light\appbar.cloud.play.png" />
+    <Resource Include="Resources\light\appbar.cloud.png" />
+    <Resource Include="Resources\light\appbar.cloud.upload.png" />
+    <Resource Include="Resources\light\appbar.column.one.png" />
+    <Resource Include="Resources\light\appbar.column.three.png" />
+    <Resource Include="Resources\light\appbar.column.two.png" />
+    <Resource Include="Resources\light\appbar.companioncube.png" />
+    <Resource Include="Resources\light\appbar.cone.diagonal.png" />
+    <Resource Include="Resources\light\appbar.cone.png" />
+    <Resource Include="Resources\light\appbar.connect.png" />
+    <Resource Include="Resources\light\appbar.connection.1x.png" />
+    <Resource Include="Resources\light\appbar.connection.3g.png" />
+    <Resource Include="Resources\light\appbar.connection.4g.png" />
+    <Resource Include="Resources\light\appbar.connection.bluetooth.png" />
+    <Resource Include="Resources\light\appbar.connection.ev.png" />
+    <Resource Include="Resources\light\appbar.connection.wifi.png" />
+    <Resource Include="Resources\light\appbar.console.png" />
+    <Resource Include="Resources\light\appbar.contrast.png" />
+    <Resource Include="Resources\light\appbar.control.eject.png" />
+    <Resource Include="Resources\light\appbar.control.fastforward.png" />
+    <Resource Include="Resources\light\appbar.control.guide.png" />
+    <Resource Include="Resources\light\appbar.control.pause.png" />
+    <Resource Include="Resources\light\appbar.control.play.live.png" />
+    <Resource Include="Resources\light\appbar.control.play.png" />
+    <Resource Include="Resources\light\appbar.control.rewind.png" />
+    <Resource Include="Resources\light\appbar.control.stop.png" />
+    <Resource Include="Resources\light\appbar.controller.snes.png" />
+    <Resource Include="Resources\light\appbar.controller.xbox.png" />
+    <Resource Include="Resources\light\appbar.copyright.png" />
+    <Resource Include="Resources\light\appbar.creativecommons.png" />
+    <Resource Include="Resources\light\appbar.creditcard.png" />
+    <Resource Include="Resources\light\appbar.crop.png" />
+    <Resource Include="Resources\light\appbar.crosshair.png" />
+    <Resource Include="Resources\light\appbar.crown.png" />
+    <Resource Include="Resources\light\appbar.cup.empty.png" />
+    <Resource Include="Resources\light\appbar.cup.full.png" />
+    <Resource Include="Resources\light\appbar.cup.half.png" />
+    <Resource Include="Resources\light\appbar.cup.paper.png" />
+    <Resource Include="Resources\light\appbar.cup.png" />
+    <Resource Include="Resources\light\appbar.cupcake.png" />
+    <Resource Include="Resources\light\appbar.currency.cent.png" />
+    <Resource Include="Resources\light\appbar.currency.dollar.png" />
+    <Resource Include="Resources\light\appbar.currency.euro.png" />
+    <Resource Include="Resources\light\appbar.currency.grivna.png" />
+    <Resource Include="Resources\light\appbar.currency.pound.png" />
+    <Resource Include="Resources\light\appbar.currency.rubles.png" />
+    <Resource Include="Resources\light\appbar.currency.rupee.png" />
+    <Resource Include="Resources\light\appbar.currency.yen.png" />
+    <Resource Include="Resources\light\appbar.cursor.default.outline.png" />
+    <Resource Include="Resources\light\appbar.cursor.default.png" />
+    <Resource Include="Resources\light\appbar.cursor.default.transform.horizontal.png" />
+    <Resource Include="Resources\light\appbar.cusor.pointer.png" />
+    <Resource Include="Resources\light\appbar.database.png" />
+    <Resource Include="Resources\light\appbar.deeplink.png" />
+    <Resource Include="Resources\light\appbar.deeplink.round.png" />
+    <Resource Include="Resources\light\appbar.delete.png" />
+    <Resource Include="Resources\light\appbar.diagram.png" />
+    <Resource Include="Resources\light\appbar.dial.png" />
+    <Resource Include="Resources\light\appbar.disconnect.png" />
+    <Resource Include="Resources\light\appbar.disk.download.png" />
+    <Resource Include="Resources\light\appbar.disk.png" />
+    <Resource Include="Resources\light\appbar.door.enter.png" />
+    <Resource Include="Resources\light\appbar.door.leave.png" />
+    <Resource Include="Resources\light\appbar.download.png" />
+    <Resource Include="Resources\light\appbar.dropbox.png" />
+    <Resource Include="Resources\light\appbar.dropper.png" />
+    <Resource Include="Resources\light\appbar.edit.png" />
+    <Resource Include="Resources\light\appbar.email.gmail.png" />
+    <Resource Include="Resources\light\appbar.email.hardedge.png" />
+    <Resource Include="Resources\light\appbar.email.minimal.png" />
+    <Resource Include="Resources\light\appbar.email.outlook.png" />
+    <Resource Include="Resources\light\appbar.email.png" />
+    <Resource Include="Resources\light\appbar.email.yahoo.png" />
+    <Resource Include="Resources\light\appbar.equalizer.png" />
+    <Resource Include="Resources\light\appbar.erase.png" />
+    <Resource Include="Resources\light\appbar.error.png" />
+    <Resource Include="Resources\light\appbar.exclamation.png" />
+    <Resource Include="Resources\light\appbar.eye.check.png" />
+    <Resource Include="Resources\light\appbar.eye.close.png" />
+    <Resource Include="Resources\light\appbar.eye.png" />
+    <Resource Include="Resources\light\appbar.facebook.connect.png" />
+    <Resource Include="Resources\light\appbar.facebook.disconnect.png" />
+    <Resource Include="Resources\light\appbar.facebook.heart.png" />
+    <Resource Include="Resources\light\appbar.facebook.heartbreak.png" />
+    <Resource Include="Resources\light\appbar.facebook.png" />
+    <Resource Include="Resources\light\appbar.female.png" />
+    <Resource Include="Resources\light\appbar.film.live.png" />
+    <Resource Include="Resources\light\appbar.film.png" />
+    <Resource Include="Resources\light\appbar.film.select.png" />
+    <Resource Include="Resources\light\appbar.filter.alphabetical.png" />
+    <Resource Include="Resources\light\appbar.filter.png" />
+    <Resource Include="Resources\light\appbar.finder.png" />
+    <Resource Include="Resources\light\appbar.flag.bear.png" />
+    <Resource Include="Resources\light\appbar.flag.png" />
+    <Resource Include="Resources\light\appbar.flag.wavy.png" />
+    <Resource Include="Resources\light\appbar.folder.ellipsis.png" />
+    <Resource Include="Resources\light\appbar.folder.open.png" />
+    <Resource Include="Resources\light\appbar.folder.png" />
+    <Resource Include="Resources\light\appbar.food.png" />
+    <Resource Include="Resources\light\appbar.forklift.load.png" />
+    <Resource Include="Resources\light\appbar.forklift.png" />
+    <Resource Include="Resources\light\appbar.forrst.png" />
+    <Resource Include="Resources\light\appbar.forsale.png" />
+    <Resource Include="Resources\light\appbar.fullscreen.box.png" />
+    <Resource Include="Resources\light\appbar.fullscreen.png" />
+    <Resource Include="Resources\light\appbar.gas.png" />
+    <Resource Include="Resources\light\appbar.gauge.0.png" />
+    <Resource Include="Resources\light\appbar.gauge.100.png" />
+    <Resource Include="Resources\light\appbar.gauge.25.png" />
+    <Resource Include="Resources\light\appbar.gauge.50.png" />
+    <Resource Include="Resources\light\appbar.gauge.75.png" />
+    <Resource Include="Resources\light\appbar.gift.png" />
+    <Resource Include="Resources\light\appbar.globe.png" />
+    <Resource Include="Resources\light\appbar.globe.wire.png" />
+    <Resource Include="Resources\light\appbar.google.png" />
+    <Resource Include="Resources\light\appbar.googleplus.png" />
+    <Resource Include="Resources\light\appbar.grade.a.minus.png" />
+    <Resource Include="Resources\light\appbar.grade.a.plus.png" />
+    <Resource Include="Resources\light\appbar.grade.a.png" />
+    <Resource Include="Resources\light\appbar.grade.b.minus.png" />
+    <Resource Include="Resources\light\appbar.grade.b.plus.png" />
+    <Resource Include="Resources\light\appbar.grade.b.png" />
+    <Resource Include="Resources\light\appbar.grade.c.minus.png" />
+    <Resource Include="Resources\light\appbar.grade.c.plus.png" />
+    <Resource Include="Resources\light\appbar.grade.c.png" />
+    <Resource Include="Resources\light\appbar.grade.d.minus.png" />
+    <Resource Include="Resources\light\appbar.grade.d.plus.png" />
+    <Resource Include="Resources\light\appbar.grade.d.png" />
+    <Resource Include="Resources\light\appbar.grade.e.png" />
+    <Resource Include="Resources\light\appbar.grade.f.png" />
+    <Resource Include="Resources\light\appbar.graph.bar.png" />
+    <Resource Include="Resources\light\appbar.graph.boxplot.png" />
+    <Resource Include="Resources\light\appbar.graph.line.down.png" />
+    <Resource Include="Resources\light\appbar.graph.line.png" />
+    <Resource Include="Resources\light\appbar.graph.line.up.png" />
+    <Resource Include="Resources\light\appbar.greek.sigma.lowercase.png" />
+    <Resource Include="Resources\light\appbar.greek.sigma.uppercase.png" />
+    <Resource Include="Resources\light\appbar.grid.png" />
+    <Resource Include="Resources\light\appbar.heart.outline.png" />
+    <Resource Include="Resources\light\appbar.heart.png" />
+    <Resource Include="Resources\light\appbar.heartbreak.png" />
+    <Resource Include="Resources\light\appbar.home.png" />
+    <Resource Include="Resources\light\appbar.hourglass.png" />
+    <Resource Include="Resources\light\appbar.ie.png" />
+    <Resource Include="Resources\light\appbar.image.ants.png" />
+    <Resource Include="Resources\light\appbar.image.export.png" />
+    <Resource Include="Resources\light\appbar.image.focus.png" />
+    <Resource Include="Resources\light\appbar.image.hdr.png" />
+    <Resource Include="Resources\light\appbar.image.multiple.png" />
+    <Resource Include="Resources\light\appbar.image.png" />
+    <Resource Include="Resources\light\appbar.image.redeye.png" />
+    <Resource Include="Resources\light\appbar.image.select.png" />
+    <Resource Include="Resources\light\appbar.inbox.in.png" />
+    <Resource Include="Resources\light\appbar.inbox.out.png" />
+    <Resource Include="Resources\light\appbar.inbox.png" />
+    <Resource Include="Resources\light\appbar.infinite.png" />
+    <Resource Include="Resources\light\appbar.information.circle.png" />
+    <Resource Include="Resources\light\appbar.information.png" />
+    <Resource Include="Resources\light\appbar.interface.button.png" />
+    <Resource Include="Resources\light\appbar.interface.dropdown.png" />
+    <Resource Include="Resources\light\appbar.interface.list.png" />
+    <Resource Include="Resources\light\appbar.interface.password.png" />
+    <Resource Include="Resources\light\appbar.interface.textbox.png" />
+    <Resource Include="Resources\light\appbar.iphone.png" />
+    <Resource Include="Resources\light\appbar.journal.png" />
+    <Resource Include="Resources\light\appbar.key.old.png" />
+    <Resource Include="Resources\light\appbar.key.png" />
+    <Resource Include="Resources\light\appbar.laptop.png" />
+    <Resource Include="Resources\light\appbar.layer.add.png" />
+    <Resource Include="Resources\light\appbar.layer.delete.png" />
+    <Resource Include="Resources\light\appbar.layer.minus.png" />
+    <Resource Include="Resources\light\appbar.layer.png" />
+    <Resource Include="Resources\light\appbar.layer.thick.png" />
+    <Resource Include="Resources\light\appbar.layout.png" />
+    <Resource Include="Resources\light\appbar.leaderboard.png" />
+    <Resource Include="Resources\light\appbar.lifesaver.png" />
+    <Resource Include="Resources\light\appbar.lightning.png" />
+    <Resource Include="Resources\light\appbar.lines.horizontal.4.png" />
+    <Resource Include="Resources\light\appbar.link.png" />
+    <Resource Include="Resources\light\appbar.linkedin.png" />
+    <Resource Include="Resources\light\appbar.list.check.png" />
+    <Resource Include="Resources\light\appbar.list.one.png" />
+    <Resource Include="Resources\light\appbar.list.png" />
+    <Resource Include="Resources\light\appbar.list.two.png" />
+    <Resource Include="Resources\light\appbar.location.add.png" />
+    <Resource Include="Resources\light\appbar.location.circle.png" />
+    <Resource Include="Resources\light\appbar.location.delete.png" />
+    <Resource Include="Resources\light\appbar.location.foursquare.png" />
+    <Resource Include="Resources\light\appbar.location.minus.png" />
+    <Resource Include="Resources\light\appbar.location.png" />
+    <Resource Include="Resources\light\appbar.location.round.png" />
+    <Resource Include="Resources\light\appbar.lock.png" />
+    <Resource Include="Resources\light\appbar.loop.png" />
+    <Resource Include="Resources\light\appbar.magnify.add.png" />
+    <Resource Include="Resources\light\appbar.magnify.minus.png" />
+    <Resource Include="Resources\light\appbar.magnify.png" />
+    <Resource Include="Resources\light\appbar.male.png" />
+    <Resource Include="Resources\light\appbar.man.suitcase.fast.png" />
+    <Resource Include="Resources\light\appbar.man.suitcase.png" />
+    <Resource Include="Resources\light\appbar.man.suitcase.run.png" />
+    <Resource Include="Resources\light\appbar.map.aerial.highway.png" />
+    <Resource Include="Resources\light\appbar.map.aerial.png" />
+    <Resource Include="Resources\light\appbar.map.png" />
+    <Resource Include="Resources\light\appbar.map.satellite.png" />
+    <Resource Include="Resources\light\appbar.marketplace.png" />
+    <Resource Include="Resources\light\appbar.martini.png" />
+    <Resource Include="Resources\light\appbar.medical.pulse.png" />
+    <Resource Include="Resources\light\appbar.message.png" />
+    <Resource Include="Resources\light\appbar.message.send.png" />
+    <Resource Include="Resources\light\appbar.microphone.png" />
+    <Resource Include="Resources\light\appbar.microsoft.tag.png" />
+    <Resource Include="Resources\light\appbar.minus.png" />
+    <Resource Include="Resources\light\appbar.money.png" />
+    <Resource Include="Resources\light\appbar.monitor.play.png" />
+    <Resource Include="Resources\light\appbar.monitor.png" />
+    <Resource Include="Resources\light\appbar.monitor.to.png" />
+    <Resource Include="Resources\light\appbar.mono.png" />
+    <Resource Include="Resources\light\appbar.moon.first.quarter.png" />
+    <Resource Include="Resources\light\appbar.moon.full.png" />
+    <Resource Include="Resources\light\appbar.moon.new.png" />
+    <Resource Include="Resources\light\appbar.moon.png" />
+    <Resource Include="Resources\light\appbar.moon.sleep.png" />
+    <Resource Include="Resources\light\appbar.moon.third.quarter.png" />
+    <Resource Include="Resources\light\appbar.moon.waning.crescent.png" />
+    <Resource Include="Resources\light\appbar.moon.waning.gibbous.png" />
+    <Resource Include="Resources\light\appbar.moon.waxing.crescent.png" />
+    <Resource Include="Resources\light\appbar.moon.waxing.gibbous.png" />
+    <Resource Include="Resources\light\appbar.movie.clapper.png" />
+    <Resource Include="Resources\light\appbar.movie.clapper.select.png" />
+    <Resource Include="Resources\light\appbar.movie.clapper.solid.png" />
+    <Resource Include="Resources\light\appbar.movie.clapper.solid.select.png" />
+    <Resource Include="Resources\light\appbar.music.live.png" />
+    <Resource Include="Resources\light\appbar.music.png" />
+    <Resource Include="Resources\light\appbar.music.select.png" />
+    <Resource Include="Resources\light\appbar.navigate.next.png" />
+    <Resource Include="Resources\light\appbar.navigate.previous.png" />
+    <Resource Include="Resources\light\appbar.network.png" />
+    <Resource Include="Resources\light\appbar.new.png" />
+    <Resource Include="Resources\light\appbar.new.window.png" />
+    <Resource Include="Resources\light\appbar.noentry.png" />
+    <Resource Include="Resources\light\appbar.notification.multiple.png" />
+    <Resource Include="Resources\light\appbar.notification.png" />
+    <Resource Include="Resources\light\appbar.nyan.png" />
+    <Resource Include="Resources\light\appbar.os.android.png" />
+    <Resource Include="Resources\light\appbar.os.arm.png" />
+    <Resource Include="Resources\light\appbar.os.blackberry.png" />
+    <Resource Include="Resources\light\appbar.os.chromium.png" />
+    <Resource Include="Resources\light\appbar.os.ios.png" />
+    <Resource Include="Resources\light\appbar.os.ubuntu.png" />
+    <Resource Include="Resources\light\appbar.os.windows.8.png" />
+    <Resource Include="Resources\light\appbar.os.windows.png" />
+    <Resource Include="Resources\light\appbar.os.windowsphone.png" />
+    <Resource Include="Resources\light\appbar.os.windowsphone.round.png" />
+    <Resource Include="Resources\light\appbar.os.x64.png" />
+    <Resource Include="Resources\light\appbar.os.x86.png" />
+    <Resource Include="Resources\light\appbar.page.1.png" />
+    <Resource Include="Resources\light\appbar.page.2.png" />
+    <Resource Include="Resources\light\appbar.page.3.png" />
+    <Resource Include="Resources\light\appbar.page.4.png" />
+    <Resource Include="Resources\light\appbar.page.5.png" />
+    <Resource Include="Resources\light\appbar.page.6.png" />
+    <Resource Include="Resources\light\appbar.page.7.png" />
+    <Resource Include="Resources\light\appbar.page.8.png" />
+    <Resource Include="Resources\light\appbar.page.9.png" />
+    <Resource Include="Resources\light\appbar.page.add.png" />
+    <Resource Include="Resources\light\appbar.page.arrow.png" />
+    <Resource Include="Resources\light\appbar.page.bold.png" />
+    <Resource Include="Resources\light\appbar.page.check.png" />
+    <Resource Include="Resources\light\appbar.page.code.png" />
+    <Resource Include="Resources\light\appbar.page.corner.bookmark.png" />
+    <Resource Include="Resources\light\appbar.page.corner.folded.png" />
+    <Resource Include="Resources\light\appbar.page.corner.png" />
+    <Resource Include="Resources\light\appbar.page.delete.png" />
+    <Resource Include="Resources\light\appbar.page.edit.png" />
+    <Resource Include="Resources\light\appbar.page.excel.png" />
+    <Resource Include="Resources\light\appbar.page.gif.png" />
+    <Resource Include="Resources\light\appbar.page.heart.png" />
+    <Resource Include="Resources\light\appbar.page.heartbreak.png" />
+    <Resource Include="Resources\light\appbar.page.hidden.png" />
+    <Resource Include="Resources\light\appbar.page.jpg.png" />
+    <Resource Include="Resources\light\appbar.page.minus.png" />
+    <Resource Include="Resources\light\appbar.page.multiple.png" />
+    <Resource Include="Resources\light\appbar.page.music.png" />
+    <Resource Include="Resources\light\appbar.page.new.png" />
+    <Resource Include="Resources\light\appbar.page.onenote.png" />
+    <Resource Include="Resources\light\appbar.page.png" />
+    <Resource Include="Resources\light\appbar.page.png.png" />
+    <Resource Include="Resources\light\appbar.page.powerpoint.png" />
+    <Resource Include="Resources\light\appbar.page.question.png" />
+    <Resource Include="Resources\light\appbar.page.search.png" />
+    <Resource Include="Resources\light\appbar.page.select.png" />
+    <Resource Include="Resources\light\appbar.page.word.png" />
+    <Resource Include="Resources\light\appbar.page.xml.png" />
+    <Resource Include="Resources\light\appbar.palmtree.png" />
+    <Resource Include="Resources\light\appbar.paper.png" />
+    <Resource Include="Resources\light\appbar.paperclip.png" />
+    <Resource Include="Resources\light\appbar.paperclip.rotated.png" />
+    <Resource Include="Resources\light\appbar.paypal.png" />
+    <Resource Include="Resources\light\appbar.people.png" />
+    <Resource Include="Resources\light\appbar.people.status.png" />
+    <Resource Include="Resources\light\appbar.phone.png" />
+    <Resource Include="Resources\light\appbar.pie.png" />
+    <Resource Include="Resources\light\appbar.pie.quarter.png" />
+    <Resource Include="Resources\light\appbar.pin.png" />
+    <Resource Include="Resources\light\appbar.pin.rotated.270.png" />
+    <Resource Include="Resources\light\appbar.pin.rotated.315.png" />
+    <Resource Include="Resources\light\appbar.places.png" />
+    <Resource Include="Resources\light\appbar.plane.png" />
+    <Resource Include="Resources\light\appbar.plane.rotated.135.png" />
+    <Resource Include="Resources\light\appbar.plane.rotated.45.png" />
+    <Resource Include="Resources\light\appbar.pokeball.png" />
+    <Resource Include="Resources\light\appbar.power.png" />
+    <Resource Include="Resources\light\appbar.projector.png" />
+    <Resource Include="Resources\light\appbar.projector.screen.png" />
+    <Resource Include="Resources\light\appbar.protractor.png" />
+    <Resource Include="Resources\light\appbar.puzzle.png" />
+    <Resource Include="Resources\light\appbar.puzzle.round.png" />
+    <Resource Include="Resources\light\appbar.qr.png" />
+    <Resource Include="Resources\light\appbar.question.png" />
+    <Resource Include="Resources\light\appbar.radar.png" />
+    <Resource Include="Resources\light\appbar.radar.screen.png" />
+    <Resource Include="Resources\light\appbar.radioactive.png" />
+    <Resource Include="Resources\light\appbar.redo.png" />
+    <Resource Include="Resources\light\appbar.redo.point.png" />
+    <Resource Include="Resources\light\appbar.refresh.png" />
+    <Resource Include="Resources\light\appbar.repeat.png" />
+    <Resource Include="Resources\light\appbar.reply.calendar.png" />
+    <Resource Include="Resources\light\appbar.reply.email.png" />
+    <Resource Include="Resources\light\appbar.reply.people.png" />
+    <Resource Include="Resources\light\appbar.reset.png" />
+    <Resource Include="Resources\light\appbar.return.png" />
+    <Resource Include="Resources\light\appbar.ribbon.png" />
+    <Resource Include="Resources\light\appbar.ribbon.wave.png" />
+    <Resource Include="Resources\light\appbar.rss.png" />
+    <Resource Include="Resources\light\appbar.ruler.png" />
+    <Resource Include="Resources\light\appbar.save.png" />
+    <Resource Include="Resources\light\appbar.scale.png" />
+    <Resource Include="Resources\light\appbar.scale.unbalanced.png" />
+    <Resource Include="Resources\light\appbar.scrabble.a.png" />
+    <Resource Include="Resources\light\appbar.scrabble.b.png" />
+    <Resource Include="Resources\light\appbar.scrabble.c.png" />
+    <Resource Include="Resources\light\appbar.scrabble.d.png" />
+    <Resource Include="Resources\light\appbar.scrabble.e.png" />
+    <Resource Include="Resources\light\appbar.scrabble.f.png" />
+    <Resource Include="Resources\light\appbar.scrabble.g.png" />
+    <Resource Include="Resources\light\appbar.scrabble.h.png" />
+    <Resource Include="Resources\light\appbar.scrabble.i.png" />
+    <Resource Include="Resources\light\appbar.scrabble.j.png" />
+    <Resource Include="Resources\light\appbar.scrabble.k.png" />
+    <Resource Include="Resources\light\appbar.scrabble.l.png" />
+    <Resource Include="Resources\light\appbar.scrabble.m.png" />
+    <Resource Include="Resources\light\appbar.scrabble.n.png" />
+    <Resource Include="Resources\light\appbar.scrabble.o.png" />
+    <Resource Include="Resources\light\appbar.scrabble.p.png" />
+    <Resource Include="Resources\light\appbar.scrabble.q.png" />
+    <Resource Include="Resources\light\appbar.scrabble.r.png" />
+    <Resource Include="Resources\light\appbar.scrabble.s.png" />
+    <Resource Include="Resources\light\appbar.scrabble.t.png" />
+    <Resource Include="Resources\light\appbar.scrabble.u.png" />
+    <Resource Include="Resources\light\appbar.scrabble.v.png" />
+    <Resource Include="Resources\light\appbar.scrabble.w.png" />
+    <Resource Include="Resources\light\appbar.scrabble.x.png" />
+    <Resource Include="Resources\light\appbar.scrabble.y.png" />
+    <Resource Include="Resources\light\appbar.scrabble.z.png" />
+    <Resource Include="Resources\light\appbar.settings.png" />
+    <Resource Include="Resources\light\appbar.share.png" />
+    <Resource Include="Resources\light\appbar.shotglass.png" />
+    <Resource Include="Resources\light\appbar.shuffle.png" />
+    <Resource Include="Resources\light\appbar.sidebar.expand.left.png" />
+    <Resource Include="Resources\light\appbar.sidebar.expand.right.png" />
+    <Resource Include="Resources\light\appbar.sign.caution.png" />
+    <Resource Include="Resources\light\appbar.sign.interstate.75.png" />
+    <Resource Include="Resources\light\appbar.sign.interstate.94.png" />
+    <Resource Include="Resources\light\appbar.sign.interstate.95.png" />
+    <Resource Include="Resources\light\appbar.sign.interstate.png" />
+    <Resource Include="Resources\light\appbar.sign.stop.png" />
+    <Resource Include="Resources\light\appbar.skype.png" />
+    <Resource Include="Resources\light\appbar.sleep.png" />
+    <Resource Include="Resources\light\appbar.slice.png" />
+    <Resource Include="Resources\light\appbar.smiley.angry.png" />
+    <Resource Include="Resources\light\appbar.smiley.cry.png" />
+    <Resource Include="Resources\light\appbar.smiley.frown.png" />
+    <Resource Include="Resources\light\appbar.smiley.glasses.png" />
+    <Resource Include="Resources\light\appbar.smiley.grin.png" />
+    <Resource Include="Resources\light\appbar.smiley.grumpy.png" />
+    <Resource Include="Resources\light\appbar.smiley.happy.png" />
+    <Resource Include="Resources\light\appbar.smiley.kiki.png" />
+    <Resource Include="Resources\light\appbar.smiley.squint.png" />
+    <Resource Include="Resources\light\appbar.smiley.tounge.png" />
+    <Resource Include="Resources\light\appbar.smiley.what.png" />
+    <Resource Include="Resources\light\appbar.snowflake.png" />
+    <Resource Include="Resources\light\appbar.sort.alphabetical.ascending.png" />
+    <Resource Include="Resources\light\appbar.sort.alphabetical.descending.png" />
+    <Resource Include="Resources\light\appbar.sort.numeric.ascending.png" />
+    <Resource Include="Resources\light\appbar.sort.numeric.descending.png" />
+    <Resource Include="Resources\light\appbar.sound.0.png" />
+    <Resource Include="Resources\light\appbar.sound.1.png" />
+    <Resource Include="Resources\light\appbar.sound.2.png" />
+    <Resource Include="Resources\light\appbar.sound.3.png" />
+    <Resource Include="Resources\light\appbar.sound.left.right.png" />
+    <Resource Include="Resources\light\appbar.sound.mute.png" />
+    <Resource Include="Resources\light\appbar.sound.stereo.png" />
+    <Resource Include="Resources\light\appbar.sound.stereo.stack.png" />
+    <Resource Include="Resources\light\appbar.speakerphone.png" />
+    <Resource Include="Resources\light\appbar.star.add.png" />
+    <Resource Include="Resources\light\appbar.star.delete.png" />
+    <Resource Include="Resources\light\appbar.star.invincible.png" />
+    <Resource Include="Resources\light\appbar.star.minus.png" />
+    <Resource Include="Resources\light\appbar.star.png" />
+    <Resource Include="Resources\light\appbar.steam.png" />
+    <Resource Include="Resources\light\appbar.stock.down.png" />
+    <Resource Include="Resources\light\appbar.stock.png" />
+    <Resource Include="Resources\light\appbar.stock.up.png" />
+    <Resource Include="Resources\light\appbar.stocking.png" />
+    <Resource Include="Resources\light\appbar.stop.png" />
+    <Resource Include="Resources\light\appbar.suitcase.png" />
+    <Resource Include="Resources\light\appbar.tag.label.png" />
+    <Resource Include="Resources\light\appbar.tag.png" />
+    <Resource Include="Resources\light\appbar.tardis.png" />
+    <Resource Include="Resources\light\appbar.text.size.png" />
+    <Resource Include="Resources\light\appbar.thumbs.down.png" />
+    <Resource Include="Resources\light\appbar.thumbs.up.png" />
+    <Resource Include="Resources\light\appbar.tiles.four.png" />
+    <Resource Include="Resources\light\appbar.tiles.nine.png" />
+    <Resource Include="Resources\light\appbar.tiles.sixteen.png" />
+    <Resource Include="Resources\light\appbar.timer.1.png" />
+    <Resource Include="Resources\light\appbar.timer.2.png" />
+    <Resource Include="Resources\light\appbar.timer.3.png" />
+    <Resource Include="Resources\light\appbar.timer.4.png" />
+    <Resource Include="Resources\light\appbar.timer.5.png" />
+    <Resource Include="Resources\light\appbar.timer.alert.png" />
+    <Resource Include="Resources\light\appbar.timer.check.png" />
+    <Resource Include="Resources\light\appbar.timer.forward.png" />
+    <Resource Include="Resources\light\appbar.timer.pause.png" />
+    <Resource Include="Resources\light\appbar.timer.play.png" />
+    <Resource Include="Resources\light\appbar.timer.png" />
+    <Resource Include="Resources\light\appbar.timer.record.png" />
+    <Resource Include="Resources\light\appbar.timer.rewind.png" />
+    <Resource Include="Resources\light\appbar.timer.stop.png" />
+    <Resource Include="Resources\light\appbar.tools.png" />
+    <Resource Include="Resources\light\appbar.tournament.bracket.down.png" />
+    <Resource Include="Resources\light\appbar.tournament.bracket.left.png" />
+    <Resource Include="Resources\light\appbar.tournament.bracket.png" />
+    <Resource Include="Resources\light\appbar.tournament.bracket.right.png" />
+    <Resource Include="Resources\light\appbar.tournament.bracket.up.png" />
+    <Resource Include="Resources\light\appbar.tower.png" />
+    <Resource Include="Resources\light\appbar.train.png" />
+    <Resource Include="Resources\light\appbar.transform.flip.horizontal.png" />
+    <Resource Include="Resources\light\appbar.transform.flip.vertical.png" />
+    <Resource Include="Resources\light\appbar.transform.rotate.left.png" />
+    <Resource Include="Resources\light\appbar.transform.rotate.right.png" />
+    <Resource Include="Resources\light\appbar.transit.arrive.png" />
+    <Resource Include="Resources\light\appbar.transit.bus.png" />
+    <Resource Include="Resources\light\appbar.transit.car.accident.png" />
+    <Resource Include="Resources\light\appbar.transit.car.png" />
+    <Resource Include="Resources\light\appbar.transit.congestion.png" />
+    <Resource Include="Resources\light\appbar.transit.connection.departure.png" />
+    <Resource Include="Resources\light\appbar.transit.connection.png" />
+    <Resource Include="Resources\light\appbar.transit.construction.png" />
+    <Resource Include="Resources\light\appbar.transit.depart.png" />
+    <Resource Include="Resources\light\appbar.transit.distance.from.png" />
+    <Resource Include="Resources\light\appbar.transit.distance.to.png" />
+    <Resource Include="Resources\light\appbar.transit.hazard.png" />
+    <Resource Include="Resources\light\appbar.tree.pine.png" />
+    <Resource Include="Resources\light\appbar.trophy.png" />
+    <Resource Include="Resources\light\appbar.truck.png" />
+    <Resource Include="Resources\light\appbar.tux.png" />
+    <Resource Include="Resources\light\appbar.tv.png" />
+    <Resource Include="Resources\light\appbar.tv.syfy.png" />
+    <Resource Include="Resources\light\appbar.twitter.bird.png" />
+    <Resource Include="Resources\light\appbar.twitter.png" />
+    <Resource Include="Resources\light\appbar.undo.png" />
+    <Resource Include="Resources\light\appbar.undo.point.png" />
+    <Resource Include="Resources\light\appbar.unlock.keyhole.png" />
+    <Resource Include="Resources\light\appbar.unlock.png" />
+    <Resource Include="Resources\light\appbar.unpin.png" />
+    <Resource Include="Resources\light\appbar.unpin.rotated.270.png" />
+    <Resource Include="Resources\light\appbar.unpin.rotated.315.png" />
+    <Resource Include="Resources\light\appbar.upload.png" />
+    <Resource Include="Resources\light\appbar.user.add.png" />
+    <Resource Include="Resources\light\appbar.user.delete.png" />
+    <Resource Include="Resources\light\appbar.user.minus.png" />
+    <Resource Include="Resources\light\appbar.user.png" />
+    <Resource Include="Resources\light\appbar.user.tie.png" />
+    <Resource Include="Resources\light\appbar.uservoice.png" />
+    <Resource Include="Resources\light\appbar.vector.circle.png" />
+    <Resource Include="Resources\light\appbar.vector.line.curve.png" />
+    <Resource Include="Resources\light\appbar.vector.line.png" />
+    <Resource Include="Resources\light\appbar.vector.pen.add.png" />
+    <Resource Include="Resources\light\appbar.vector.pen.convert.png" />
+    <Resource Include="Resources\light\appbar.vector.pen.minus.png" />
+    <Resource Include="Resources\light\appbar.vector.pen.png" />
+    <Resource Include="Resources\light\appbar.vector.polygon.png" />
+    <Resource Include="Resources\light\appbar.vector.rectangle.png" />
+    <Resource Include="Resources\light\appbar.video.highdefinition.png" />
+    <Resource Include="Resources\light\appbar.video.png" />
+    <Resource Include="Resources\light\appbar.video.standarddefinition.png" />
+    <Resource Include="Resources\light\appbar.warning.circle.png" />
+    <Resource Include="Resources\light\appbar.warning.png" />
+    <Resource Include="Resources\light\appbar.weather.chance.png" />
+    <Resource Include="Resources\light\appbar.weather.overcast.png" />
+    <Resource Include="Resources\light\appbar.weather.rain.png" />
+    <Resource Include="Resources\light\appbar.weather.snow.png" />
+    <Resource Include="Resources\light\appbar.weather.station.png" />
+    <Resource Include="Resources\light\appbar.weather.sun.png" />
+    <Resource Include="Resources\light\appbar.weather.symbol.png" />
+    <Resource Include="Resources\light\appbar.weather.thunder.png" />
+    <Resource Include="Resources\light\appbar.windowsphone.png" />
+    <Resource Include="Resources\light\appbar.xbox.png" />
+    <Resource Include="Resources\light\newspaper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\handle.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
