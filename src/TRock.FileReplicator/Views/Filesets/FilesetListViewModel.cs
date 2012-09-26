@@ -12,9 +12,11 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.ViewModel;
 
+using TRock.FileReplicator.Commands;
 using TRock.FileReplicator.Services;
 using TRock.FileReplicator.ViewModels;
 using TRock.FileReplicator.Views.Fileset;
+using TRock.FileReplicator.Views.Welcome;
 
 namespace TRock.FileReplicator.Views.Filesets
 {
@@ -40,7 +42,7 @@ namespace TRock.FileReplicator.Views.Filesets
             _filesets = new ObservableCollection<FilesetViewModel>();
 
             AddFilesetCommand = new DelegateCommand(ExecuteAddFileset);
-            RemoveFilesetCommand = new DelegateCommand<FilesetViewModel>(ExecuteRemoveFileset, CanExecuteRemoveFileset);
+            RemoveFilesetCommand = new AutomaticCommand<FilesetViewModel>(ExecuteRemoveFileset, CanExecuteRemoveFileset);
             SaveAllFilesetsCommand = new DelegateCommand(ExecuteSaveAllFilesets);
             CommandBar = new CommandBar();
         }
@@ -77,7 +79,7 @@ namespace TRock.FileReplicator.Views.Filesets
             private set;
         }
 
-        public DelegateCommand<FilesetViewModel> RemoveFilesetCommand
+        public AutomaticCommand<FilesetViewModel> RemoveFilesetCommand
         {
             get;
             private set;
@@ -117,7 +119,9 @@ namespace TRock.FileReplicator.Views.Filesets
                 .ObserveOnDispatcher()
                 .Subscribe(fileset =>
                 {
-                    _filesets.Add(new FilesetViewModel(fileset));
+                    var viewModel = new FilesetViewModel(fileset);
+                    _filesets.Add(viewModel);
+                    Filesets.MoveCurrentTo(viewModel);
                 });
 
             _filesetRemoved = _filesetService
@@ -131,9 +135,16 @@ namespace TRock.FileReplicator.Views.Filesets
                     {
                         _filesets.Remove(fs);
                     }
+
+                    if (Filesets.IsEmpty)
+                    {
+                        _navigationService.Region.RegionManager.Regions[AppRegions.MainRegion]
+                            .RequestNavigate(typeof(IWelcomeView).Name);
+                    }
                 });
 
             Filesets = CollectionViewSource.GetDefaultView(_filesets);
+            Filesets.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             Filesets.CurrentChanged += CurrentFilesetChanged;
         }
 
@@ -208,7 +219,6 @@ namespace TRock.FileReplicator.Views.Filesets
                     .ContinueWith(task =>
                     {
                         Trace.WriteLineIf(task.IsFaulted, task.Exception);
-                        RemoveFilesetCommand.RaiseCanExecuteChanged();
                     });
             }
         }
@@ -220,14 +230,11 @@ namespace TRock.FileReplicator.Views.Filesets
                 .ContinueWith(task =>
                 {
                     Trace.WriteLineIf(task.IsFaulted, task.Exception);
-                    RemoveFilesetCommand.RaiseCanExecuteChanged();
                 });
         }
 
         private void CurrentFilesetChanged(object sender, EventArgs e)
         {
-            RemoveFilesetCommand.RaiseCanExecuteChanged();
-
             var selected = Filesets.CurrentItem as FilesetViewModel;
 
             if (selected != null)

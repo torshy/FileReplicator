@@ -3,6 +3,7 @@ using System.ComponentModel;
 
 using Microsoft.Practices.Prism.Commands;
 
+using TRock.FileReplicator.Commands;
 using TRock.FileReplicator.Services;
 using TRock.FileReplicator.ViewModels;
 
@@ -27,7 +28,7 @@ namespace TRock.FileReplicator.Views.Filesets
             get;
         }
 
-        DelegateCommand<FilesetViewModel> RemoveFilesetCommand
+        AutomaticCommand<FilesetViewModel> RemoveFilesetCommand
         {
             get;
         }

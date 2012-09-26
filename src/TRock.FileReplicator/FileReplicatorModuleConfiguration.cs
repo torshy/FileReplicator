@@ -3,6 +3,7 @@ using TRock.FileReplicator.Services;
 using TRock.FileReplicator.Views.Fileset;
 using TRock.FileReplicator.Views.Filesets;
 using TRock.FileReplicator.Views.Settings;
+using TRock.FileReplicator.Views.Welcome;
 
 namespace TRock.FileReplicator
 {
@@ -33,6 +34,9 @@ namespace TRock.FileReplicator
 
             builder.RegisterType<ShellViewModel>()
                 .As<IShellViewModel>();
+
+            builder.RegisterType<WelcomeView>().As<IWelcomeView>().Named<object>(typeof (IWelcomeView).Name);
+            builder.RegisterType<WelcomeViewModel>().As<IWelcomeViewModel>();
 
             builder.RegisterType<SettingsView>().As<ISettingsView>().Named<object>(typeof(ISettingsView).Name);
             builder.RegisterType<SettingsViewModel>().As<ISettingsViewModel>();

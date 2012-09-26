@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+
 using TRock.FileReplicator.ViewModels;
 
 namespace TRock.FileReplicator.Views.Filesets
@@ -33,10 +34,14 @@ namespace TRock.FileReplicator.Views.Filesets
 
         #endregion Properties
 
+        #region Methods
+
         private void DataGridSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var multiSelector = (MultiSelector)sender;
             Model.RefreshCommandBar(multiSelector.SelectedItems.OfType<FilesetViewModel>());
         }
+
+        #endregion Methods
     }
 }

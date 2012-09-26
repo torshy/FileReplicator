@@ -1,9 +1,13 @@
 ﻿using System;
-using Microsoft.Practices.Prism.Events;
+using System.Diagnostics;
+using System.Linq;
+using System.Windows;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
-using TRock.FileReplicator.Events;
+
+using TRock.FileReplicator.Services;
 using TRock.FileReplicator.Views.Filesets;
+using TRock.FileReplicator.Views.Welcome;
 
 namespace TRock.FileReplicator
 {
@@ -11,17 +15,19 @@ namespace TRock.FileReplicator
     {
         #region Fields
 
+        private readonly IFilesetService _filesetService;
         private readonly IRegionManager _regionManager;
-        private readonly IEventAggregator _eventAggregator;
 
         #endregion Fields
 
         #region Constructors
 
-        public FileReplicatorModule(IRegionManager regionManager, IEventAggregator eventAggregator)
+        public FileReplicatorModule(
+            IFilesetService filesetService,
+            IRegionManager regionManager)
         {
+            _filesetService = filesetService;
             _regionManager = regionManager;
-            _eventAggregator = eventAggregator;
         }
 
         #endregion Constructors
@@ -30,12 +36,17 @@ namespace TRock.FileReplicator
 
         public void Initialize()
         {
-            _eventAggregator.GetEvent<CopiedEvent>().Subscribe(item =>
-            {
-
-            }, ThreadOption.UIThread, true);
-
             _regionManager.RequestNavigate(AppRegions.LeftRegion, new Uri(typeof(IFilesetListView).Name, UriKind.RelativeOrAbsolute));
+
+            if (!_filesetService.Filesets.Any())
+            {
+                _regionManager.RequestNavigate(AppRegions.MainRegion, new Uri(typeof(IWelcomeView).Name, UriKind.RelativeOrAbsolute));
+            }
+
+            Application.Current.MainWindow.Closing += (sender, args) =>
+            {
+                _filesetService.Save().ContinueWith(t => { Trace.WriteLineIf(t.IsFaulted, t.Exception); }).Wait();
+            };
         }
 
         #endregion Methods

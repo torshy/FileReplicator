@@ -227,6 +227,12 @@
     <Compile Include="Views\Settings\Tabs\General.xaml.cs">
       <DependentUpon>General.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Welcome\IWelcomeView.cs" />
+    <Compile Include="Views\Welcome\IWelcomeViewModel.cs" />
+    <Compile Include="Views\Welcome\WelcomeView.xaml.cs">
+      <DependentUpon>WelcomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Welcome\WelcomeViewModel.cs" />
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -296,6 +302,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Settings\Tabs\General.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Welcome\WelcomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
