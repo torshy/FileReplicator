@@ -23,7 +23,6 @@
     <Controls:MetroWindow.WindowCommands>
         <Controls:WindowCommands>
             <Button
-                Visibility="Hidden"
                 Command="{Binding OpenSettingsViewCommand}">
                 <StackPanel
                     Orientation="Horizontal">

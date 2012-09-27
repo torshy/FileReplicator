@@ -2,6 +2,6 @@
 {
     public interface ISettingsViewModel
     {
-         
+        bool IsAutoStartupEnabled { get; set; }
     }
 }

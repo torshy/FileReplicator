@@ -26,7 +26,8 @@
             </Button>
         </StackPanel>
         <ListBox
-            ItemsSource="{Binding ActivityLog}">
+            ItemsSource="{Binding ActivityLog}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ItemsControl.ItemTemplate>
                 <DataTemplate
                     DataType="{x:Type Services:ActivityLogEvent}">
