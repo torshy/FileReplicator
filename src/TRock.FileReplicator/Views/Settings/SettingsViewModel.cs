@@ -61,7 +61,7 @@ namespace TRock.FileReplicator.Views.Settings
                     if (value)
                     {
                         var filePath = Process.GetCurrentProcess().MainModule.FileName;
-                        _autostartKey.SetValue(AppName, "\"" + filePath + "\"");
+                        _autostartKey.SetValue(AppName, "\"" + filePath + "\" /hidden");
                     }
                     else
                     {

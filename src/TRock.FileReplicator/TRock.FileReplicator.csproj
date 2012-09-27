@@ -180,6 +180,7 @@
     <Compile Include="Events\CopyErrorEvent.cs" />
     <Compile Include="IShellViewModel.cs" />
     <Compile Include="Models\ReplicationItem.cs" />
+    <Compile Include="Options.cs" />
     <Compile Include="Services\ActivityLogService.cs" />
     <Compile Include="Services\CommandModel.cs" />
     <Compile Include="Services\FileReplicationService.cs" />

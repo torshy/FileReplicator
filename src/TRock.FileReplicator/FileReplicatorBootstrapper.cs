@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 
 using Autofac;
+
 using IronRuby;
+
 using MahApps.Metro.Controls;
 
 using Microsoft.Practices.Prism.Events;
@@ -15,16 +17,33 @@ using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.Regions.Behaviors;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Scripting.Hosting;
+
 using Prism.AutofacExtension;
 
+using TRock.Extensions;
 using TRock.FileReplicator.Regions;
 using TRock.FileReplicator.Services;
-using TRock.Extensions;
 
 namespace TRock.FileReplicator
 {
     public class FileReplicatorBootstrapper : AutofacBootstrapper
     {
+        #region Properties
+
+        public bool StartMinimized
+        {
+            get;
+            set;
+        }
+
+        public bool StartHidden
+        {
+            get;
+            set;
+        }
+
+        #endregion Properties
+
         #region Methods
 
         protected override void ConfigureContainer(ContainerBuilder builder)
@@ -111,7 +130,13 @@ namespace TRock.FileReplicator
 
             WindowSettings.SetSave(shell, true);
             Application.Current.MainWindow = shell;
-            Application.Current.MainWindow.Show();
+            
+            if (!StartHidden)
+            {
+                Application.Current.MainWindow.Show();
+            }
+
+            Application.Current.MainWindow.WindowState = StartMinimized ? WindowState.Minimized : WindowState.Normal;
         }
 
         protected void CreateScriptRuntime(ContainerBuilder builder)
@@ -122,13 +147,13 @@ namespace TRock.FileReplicator
 
             var searchPaths = new List<string>(engine.GetSearchPaths())
             {
-                @".\Scripts\Lib", 
-                @".\Scripts\Lib\IronRuby", 
+                @".\Scripts\Lib",
+                @".\Scripts\Lib\IronRuby",
                 @".\Scripts\Lib\Ruby\1.9.1"
             };
 
             engine.SetSearchPaths(searchPaths);
-            
+
             builder.RegisterInstance(runtime);
             builder.RegisterInstance(engine);
 
