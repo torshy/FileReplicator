@@ -1,8 +1,8 @@
-﻿log.Invoke("Unable to copy " + fileInfo.FullSourcePath + ". " + exception.Message)
+﻿log.Invoke("Unable to copy " + fileInfo.FileName + ". " + exception.Message)
 
-if (fileset.Fileset.KillLockingProcess)
-    log.Invoke("Killing locking processes!")    
-    lockingProcesses = fileInfo.KillLockingProcesses()        
+if (fileset.KillLockingProcess)
+    log.Invoke("Killing locking processes!")
+    lockingProcesses = fileInfo.KillLockingProcesses()
     
     #Here we can schedule a relaunch of the locking process, or display a messagebox prompting the user to relaunch it
     lockingProcesses.each { |process| puts process + " is locking " + fileInfo.FullDestinationPath }    

@@ -90,7 +90,7 @@ namespace TRock.FileReplicator.Services
                     FullSourcePath = filePath,
                     FullDestinationPath = Path.Combine(fileset.DestinationPath, fileName)
                 };
-
+                replicationItem.Data.LockingProcesses = new string[0];
                 _replicationQueue.TryAdd(replicationItem);
             }
 
@@ -118,7 +118,7 @@ namespace TRock.FileReplicator.Services
                             FullSourcePath = file,
                             FullDestinationPath = Path.Combine(fileset.DestinationPath, fileName)
                         };
-
+                        replicationItem.Data.LockingProcesses = new string[0];
                         _replicationQueue.TryAdd(replicationItem);
                     }
                 }
@@ -207,7 +207,7 @@ namespace TRock.FileReplicator.Services
                                         FullSourcePath = filePath,
                                         FullDestinationPath = Path.Combine(fileset.DestinationPath, fileName)
                                     };
-
+                                    replicationItem.Data.LockingProcesses = new string[0];
                                     _replicationQueue.TryAdd(replicationItem);
                                 }
 
@@ -233,6 +233,7 @@ namespace TRock.FileReplicator.Services
                                                 FullSourcePath = filePath,
                                                 FullDestinationPath = Path.Combine(fileset.DestinationPath, fileName)
                                             };
+                                            replicationItem.Data.LockingProcesses = new string[0];
 
                                             _replicationQueue.TryAdd(replicationItem);
                                         }
