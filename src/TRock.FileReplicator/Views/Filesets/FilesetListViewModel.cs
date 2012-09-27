@@ -203,6 +203,7 @@ namespace TRock.FileReplicator.Views.Filesets
 
             Filesets = CollectionViewSource.GetDefaultView(_filesets);
             Filesets.GroupDescriptions.Add(new PropertyGroupDescription("Category"));
+            Filesets.SortDescriptions.Add(new SortDescription("Category", ListSortDirection.Ascending));
             Filesets.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             Filesets.CurrentChanged += CurrentFilesetChanged;
             Filesets.MoveCurrentTo(null);
