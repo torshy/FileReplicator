@@ -328,14 +328,28 @@ namespace TRock.FileReplicator.Services
                         }
                         catch (Exception e)
                         {
-                            scope.SetVariable("exception", e);
-                            ExecuteScripts(_scriptEngine, scope, currentItem.Fileset.OnCopyErrorScripts);
+                            try
+                            {
+                                scope.SetVariable("exception", e);
+                                ExecuteScripts(_scriptEngine, scope, currentItem.Fileset.OnCopyErrorScripts);
+                            }
+                            catch (Exception exception)
+                            {
+                                Trace.WriteLine(exception);
+                            }
 
                             _eventAggregator.GetEvent<CopyErrorEvent>().Publish(Tuple.Create(currentItem, e));
                         }
                         finally
                         {
-                            ExecuteScripts(_scriptEngine, scope, currentItem.Fileset.OnCopyFinallyScripts);
+                            try
+                            {
+                                ExecuteScripts(_scriptEngine, scope, currentItem.Fileset.OnCopyFinallyScripts);
+                            }
+                            catch (Exception e)
+                            {
+                                Trace.WriteLine(e);
+                            }
                         }
                     }
                 }
