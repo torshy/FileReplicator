@@ -14,7 +14,7 @@ namespace TRock.FileReplicator.Views.Fileset.Dialogs
         {
             InitializeComponent();
 
-            using(var fileStream = File.Open(Path.Combine("Resources", "Ruby.xshd"), FileMode.Open))
+            using(var fileStream = new FileStream(Path.Combine("Resources", "Ruby.xshd"), FileMode.Open, FileAccess.Read))
             {
                 XmlReader def = XmlReader.Create(fileStream);
                 _textEditor.SyntaxHighlighting = HighlightingLoader.Load(def, null);
