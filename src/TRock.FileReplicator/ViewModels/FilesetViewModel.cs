@@ -12,7 +12,7 @@ using TRock.FileReplicator.Models;
 
 namespace TRock.FileReplicator.ViewModels
 {
-    public class FilesetViewModel : NotificationObject, IWeakEventListener
+    public class FilesetViewModel : NotificationObject, IWeakEventListener, IDataErrorInfo
     {
         #region Fields
 
@@ -39,17 +39,20 @@ namespace TRock.FileReplicator.ViewModels
 
         public ScriptViewModel OnCopySuccessScript
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public ScriptViewModel OnCopyErrorScript
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public ScriptViewModel OnCopyScript
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public Guid Id
@@ -138,7 +141,7 @@ namespace TRock.FileReplicator.ViewModels
             }
             set
             {
-                _fileset.Category = value; 
+                _fileset.Category = value;
                 RaisePropertyChanged("Category");
             }
         }
@@ -153,7 +156,41 @@ namespace TRock.FileReplicator.ViewModels
             get { return _fileset.Excludes; }
         }
 
+        public string Error
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         #endregion Properties
+
+        #region Indexers
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+
+                if (columnName == "DestinationPath")
+                    if (string.IsNullOrEmpty(DestinationPath))
+                        result = "Please enter a destination path";
+                    else if (!Directory.Exists(DestinationPath))
+                        result = "Destination path doesn't exist";
+
+                if (columnName == "SourcePath")
+                    if (string.IsNullOrEmpty(SourcePath))
+                        result = "Please enter a source path";
+                    else if (!Directory.Exists(SourcePath))
+                        result = "Source path doesn't exist";
+
+                return result;
+            }
+        }
+
+        #endregion Indexers
 
         #region Methods
 
