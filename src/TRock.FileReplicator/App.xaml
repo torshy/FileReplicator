@@ -25,7 +25,7 @@
 
             <TaskbarNotification:TaskbarIcon
                 x:Key="App_TaskbarIcon"
-                IconSource="/Resources/app.ico">
+                IconSource="/Resources/trayapp.ico">
                 <TaskbarNotification:TaskbarIcon.TrayToolTip>
                     <Border
                         Background="{DynamicResource {x:Static FileReplicator:AppTheme.BackgroundBrushKey}}"

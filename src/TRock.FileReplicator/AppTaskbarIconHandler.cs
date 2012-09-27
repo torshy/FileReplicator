@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media.Imaging;
 
 using Autofac;
@@ -69,6 +70,8 @@ namespace TRock.FileReplicator
 
             _taskbarIcon.DoubleClickCommand = new DelegateCommand(ExecuteDoubleClick);
             _taskbarIcon.ContextMenu = new CommandBarContextMenu();
+            _taskbarIcon.ContextMenu.Placement = PlacementMode.Left;
+            _taskbarIcon.ContextMenu.FlowDirection = FlowDirection.RightToLeft;
             _taskbarIcon.ContextMenu.Opened += (sender, args) =>
             {
                 _commandBar.Clear();
