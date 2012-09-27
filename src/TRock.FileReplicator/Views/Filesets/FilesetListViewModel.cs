@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Windows.Controls;
@@ -13,12 +15,13 @@ using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.ViewModel;
-
+using Microsoft.Win32;
 using TRock.FileReplicator.Commands;
 using TRock.FileReplicator.Services;
 using TRock.FileReplicator.ViewModels;
 using TRock.FileReplicator.Views.Fileset;
 using TRock.FileReplicator.Views.Welcome;
+using TRock.Extensions;
 
 namespace TRock.FileReplicator.Views.Filesets
 {
@@ -48,6 +51,8 @@ namespace TRock.FileReplicator.Views.Filesets
             AddFilesetCommand = new DelegateCommand(ExecuteAddFileset);
             RemoveFilesetCommand = new AutomaticCommand<FilesetViewModel>(ExecuteRemoveFileset, CanExecuteRemoveFileset);
             SaveAllFilesetsCommand = new DelegateCommand(ExecuteSaveAllFilesets);
+            ExportFilesetCommand = new AutomaticCommand<FilesetViewModel>(ExecuteExportFileset, CanExecuteExportFileset);
+            ImportFilesetCommand = new DelegateCommand(ExecuteImportFileset);
             CommandBar = new CommandBar();
         }
 
@@ -90,6 +95,18 @@ namespace TRock.FileReplicator.Views.Filesets
         }
 
         public DelegateCommand SaveAllFilesetsCommand
+        {
+            get;
+            private set;
+        }
+
+        public AutomaticCommand<FilesetViewModel> ExportFilesetCommand
+        {
+            get;
+            private set;
+        }
+
+        public DelegateCommand ImportFilesetCommand
         {
             get;
             private set;
@@ -226,6 +243,56 @@ namespace TRock.FileReplicator.Views.Filesets
             {
                 _filesetRemoved.Dispose();
             }
+        }
+
+        private void ExecuteImportFileset()
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Title = "Select filesets to import";
+            dialog.Multiselect = true;
+            dialog.CheckFileExists = true;
+            dialog.CheckPathExists = true;
+            dialog.Filter = "Fileset (*.fis)|*.fis";
+
+            if (dialog.ShowDialog() == true)
+            {
+                dialog.FileNames.ForEach(file =>
+                {
+                    _filesetService
+                        .Add(() => new FileStream(file, FileMode.Open, FileAccess.Read))
+                        .ContinueWith(task =>
+                        {
+                            Trace.WriteLineIf(task.IsFaulted, task.Exception);
+                        });
+                });
+            }
+        }
+
+        private void ExecuteExportFileset(FilesetViewModel fileset)
+        {
+            var dialog = new SaveFileDialog();
+            dialog.Title = "Select location to export the fileset";
+            dialog.FileName = fileset.Id + ".fis";
+
+            if (dialog.ShowDialog() == true)
+            {
+                var fs = _filesetService.Filesets.FirstOrDefault(fvm => fvm.Id == fileset.Id);
+
+                if (fs != null)
+                {
+                    _filesetService
+                        .Save(fs, () => new FileStream(dialog.FileName, FileMode.Create))
+                        .ContinueWith(task =>
+                        {
+                            Trace.WriteLineIf(task.IsFaulted, task);
+                        });
+                }
+            }
+        }
+
+        private bool CanExecuteExportFileset(FilesetViewModel fileset)
+        {
+            return fileset != null;
         }
 
         private void OnFilesetPropertyChanged(object sender, PropertyChangedEventArgs e)

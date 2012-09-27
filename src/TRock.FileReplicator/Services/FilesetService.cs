@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reactive.Subjects;
 using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
 using TRock.FileReplicator.Models;
-using TRock.FileReplicator.ViewModels;
-using System.Linq;
 
 namespace TRock.FileReplicator.Services
 {
@@ -61,8 +60,8 @@ namespace TRock.FileReplicator.Services
 
             return Task<IEnumerable<Fileset>>.Factory.StartNew(state =>
             {
-                var sets = (IEnumerable<Fileset>) state;
-               
+                var sets = (IEnumerable<Fileset>)state;
+
                 foreach (var set in sets)
                 {
                     SaveFileset(set);
@@ -79,6 +78,23 @@ namespace TRock.FileReplicator.Services
                 SaveFileset(fileset);
                 return fileset;
             });
+        }
+
+        public Task Save(Fileset fileset, Func<Stream> streamFactory)
+        {
+            return Task.Factory.StartNew(s =>
+            {
+                var factory = (Func<Stream>) s;
+                using (var stream = factory())
+                using (var textWriter = new StreamWriter(stream))
+                using (var jsonWriter = new JsonTextWriter(textWriter))
+                {
+                    jsonWriter.Formatting = Formatting.Indented;
+                    var serializer = new JsonSerializer();
+                    serializer.TypeNameHandling = TypeNameHandling.Objects;
+                    serializer.Serialize(jsonWriter, fileset);
+                }
+            }, streamFactory);
         }
 
         public Task<Fileset> Add()
@@ -113,6 +129,28 @@ namespace TRock.FileReplicator.Services
             });
         }
 
+        public Task<Fileset> Add(Func<Stream> streamFactory)
+        {
+            return Task.Factory.StartNew(s =>
+            {
+                var factory = (Func<Stream>) s;
+                using (var stream = factory())
+                {
+                    var fs = LoadFilesetFromStream(stream);
+                    
+                    if (_filesets.Any(f => f.Id == fs.Id))
+                    {
+                        throw new ArgumentException("Fileset with same Id already exists");
+                    }
+
+                    _filesets.Add(fs);
+                    _filesetAdded.OnNext(fs);
+
+                    return fs;
+                }
+            }, streamFactory);
+        }
+
         public Task Remove(Fileset fileset)
         {
             return Task.Factory.StartNew(() =>
@@ -139,19 +177,13 @@ namespace TRock.FileReplicator.Services
                 {
                     try
                     {
-                        using (var stream = File.Open(file, FileMode.Open))
-                        using (var streamReader = new StreamReader(stream))
-                        using (var jsonReader = new JsonTextReader(streamReader))
-                        {
-                            var serializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.Objects };
-                            var fileset = serializer.Deserialize<Fileset>(jsonReader);
-                            _filesets.Add(fileset);
-                            _filesetAdded.OnNext(fileset);
-                        }
+                        var fileset = LoadFilesetFromFile(file);
+                        _filesets.Add(fileset);
+                        _filesetAdded.OnNext(fileset);
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e);
+                        Trace.WriteLine(e);
                     }
                 }
             })
@@ -159,6 +191,24 @@ namespace TRock.FileReplicator.Services
             {
                 Trace.WriteLineIf(task.IsFaulted, task.Exception);
             });
+        }
+
+        private Fileset LoadFilesetFromFile(string file)
+        {
+            using (var stream = File.Open(file, FileMode.Open))
+            {
+                return LoadFilesetFromStream(stream);
+            }
+        }
+
+        private Fileset LoadFilesetFromStream(Stream stream)
+        {
+            using (var streamReader = new StreamReader(stream))
+            using (var jsonReader = new JsonTextReader(streamReader))
+            {
+                var serializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.Objects };
+                return serializer.Deserialize<Fileset>(jsonReader);
+            }
         }
 
         private static void SaveFileset(Fileset fileset)

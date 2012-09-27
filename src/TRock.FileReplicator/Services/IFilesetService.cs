@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 using TRock.FileReplicator.Models;
@@ -33,7 +34,11 @@ namespace TRock.FileReplicator.Services
 
         Task<Fileset> Save(Fileset fileset);
 
+        Task Save(Fileset fileset, Func<Stream> streamFactory);
+
         Task<Fileset> Add();
+
+        Task<Fileset> Add(Func<Stream> streamFactory);
 
         Task Remove(Fileset fileset);
 

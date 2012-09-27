@@ -48,6 +48,23 @@
                 <Image
                     Source="../../Resources/Light/appbar.save.png" />
             </Button>
+            <Button
+                Command="{Binding ImportFilesetCommand}"
+                ToolTip="Import fileset"
+                Margin="0,0,4,0"
+                Padding="0">
+                <Image
+                    Source="../../Resources/Light/appbar.cabinet.in.png" />
+            </Button>
+            <Button
+                Command="{Binding ExportFilesetCommand}"
+                CommandParameter="{Binding Filesets.CurrentItem}"
+                ToolTip="Export fileset"
+                Margin="0,0,4,0"
+                Padding="0">
+                <Image
+                    Source="../../Resources/Light/appbar.cabinet.out.png" />
+            </Button>
         </StackPanel>
         <Filesets:DisableEnterDataGrid
             ItemsSource="{Binding Filesets}"
