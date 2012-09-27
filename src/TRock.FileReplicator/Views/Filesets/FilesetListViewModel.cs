@@ -4,18 +4,19 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Win32;
+
 using TRock.FileReplicator.Commands;
 using TRock.FileReplicator.Services;
 using TRock.FileReplicator.ViewModels;
@@ -30,6 +31,7 @@ namespace TRock.FileReplicator.Views.Filesets
         #region Fields
 
         private readonly ObservableCollection<FilesetViewModel> _filesets;
+        private readonly Dispatcher _dispatcher;
         private readonly IFilesetService _filesetService;
         private readonly IFileReplicationService _replicationService;
 
@@ -42,8 +44,12 @@ namespace TRock.FileReplicator.Views.Filesets
 
         #region Constructors
 
-        public FilesetListViewModel(IFilesetService filesetService, IFileReplicationService replicationService)
+        public FilesetListViewModel(
+            Dispatcher dispatcher,
+            IFilesetService filesetService, 
+            IFileReplicationService replicationService)
         {
+            _dispatcher = dispatcher;
             _filesetService = filesetService;
             _replicationService = replicationService;
             _filesets = new ObservableCollection<FilesetViewModel>();
@@ -299,7 +305,7 @@ namespace TRock.FileReplicator.Views.Filesets
         {
             if (e.PropertyName == "Category" && Filesets != null)
             {
-                Filesets.Refresh();
+                _dispatcher.BeginInvoke(new Action(Filesets.Refresh));
             }
         }
 

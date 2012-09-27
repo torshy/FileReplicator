@@ -28,6 +28,15 @@ namespace TRock.FileReplicator
 {
     public class FileReplicatorBootstrapper : AutofacBootstrapper
     {
+        #region Constructors
+
+        public FileReplicatorBootstrapper()
+        {
+            AppDomain.CurrentDomain.UnhandledException += UnhandledException;
+        }
+
+        #endregion Constructors
+
         #region Properties
 
         public bool StartMinimized
@@ -101,6 +110,10 @@ namespace TRock.FileReplicator
 
         protected override void InitializeModules()
         {
+            Directory.CreateDirectory(AppConstants.AppDataFolder);
+            Directory.CreateDirectory(AppConstants.FileSetsFolder);
+            Directory.CreateDirectory(AppConstants.LogFolder);
+
             Task.Factory.StartNew(() =>
             {
                 var engine = Container.Resolve<ScriptEngine>();
@@ -130,7 +143,7 @@ namespace TRock.FileReplicator
 
             WindowSettings.SetSave(shell, true);
             Application.Current.MainWindow = shell;
-            
+
             if (!StartHidden)
             {
                 Application.Current.MainWindow.Show();
@@ -169,6 +182,17 @@ namespace TRock.FileReplicator
             // register prism module
             Type coreModule = typeof(FileReplicatorModule);
             ModuleCatalog.AddModule(new ModuleInfo(coreModule.Name, coreModule.AssemblyQualifiedName));
+        }
+
+        private void UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            using (var stream = new FileStream(Path.Combine(AppConstants.LogFolder, "Crash.log"), FileMode.Create, FileAccess.Write))
+            {
+                using(var writer = new StreamWriter(stream))
+                {
+                    writer.WriteLine(e.ExceptionObject);
+                }
+            }
         }
 
         private void RegisterTypeIfMissing(ContainerBuilder builder, Type fromType, Type toType, bool registerAsSingleton)
