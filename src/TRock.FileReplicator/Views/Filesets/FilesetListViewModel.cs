@@ -251,6 +251,7 @@ namespace TRock.FileReplicator.Views.Filesets
                     {
                         var clone = task.Result;
                         clone.Name = model.Name + " [Clone]";
+                        clone.Category = model.Category;
                         clone.Includes.AddRange(model.Includes);
                         clone.Excludes.AddRange(model.Excludes);
                         clone.KillLockingProcess = model.KillLockingProcess;
