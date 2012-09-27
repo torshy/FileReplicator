@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Input;
 
 namespace TRock.FileReplicator.Services
@@ -19,6 +20,8 @@ namespace TRock.FileReplicator.Services
         ICommandBar AddSubmenu(string displayName);
 
         ICommandBar Clear();
+
+        ICommandBar Remove(Func<CommandModel, bool> predicate);
 
         #endregion Methods
     }

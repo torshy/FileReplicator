@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.ViewModel;
+using System.Linq;
+using TRock.Extensions;
 
 namespace TRock.FileReplicator.Services
 {
@@ -79,6 +82,13 @@ namespace TRock.FileReplicator.Services
         public ICommandBar Clear()
         {
             _items.Clear();
+            return this;
+        }
+
+        public ICommandBar Remove(Func<CommandModel, bool> predicate)
+        {
+            var itemsToRemove = _items.Where(predicate).ToArray();
+            itemsToRemove.ForEach(i => _items.Remove(i));
             return this;
         }
 
@@ -275,6 +285,11 @@ namespace TRock.FileReplicator.Services
         public ICommandBar Clear()
         {
             return _commandBar.Clear();
+        }
+
+        public ICommandBar Remove(Func<CommandModel, bool> predicate)
+        {
+            return _commandBar.Remove(predicate);
         }
 
         #endregion Methods
