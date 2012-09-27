@@ -3,7 +3,7 @@ namespace TRock.FileReplicator
     public class AppTheme
     {
         //// Colors
-        //public const string AccentColorKey = "AccentColorKey";
+        public const string AccentColorKey = "AccentColor";
         public const string SubtleColorKey = "SubtleColorKey";
 
         //// Brushes

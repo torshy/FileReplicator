@@ -12,9 +12,11 @@
         <StackPanel
             DockPanel.Dock="Bottom"
             Orientation="Horizontal"
-            Height="25">
+            Height="25"
+            Margin="0,4,0,4">
             <Button
-                Command="{Binding ClearActivityLogCommand}">
+                Command="{Binding ClearActivityLogCommand}"
+                Padding="4,0,4,0">
                 <StackPanel
                     Orientation="Horizontal">
                     <Image

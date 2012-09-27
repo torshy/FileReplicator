@@ -115,19 +115,22 @@
                             <Button
                                 Margin="0,0,4,0"
                                 Command="{Binding AddIncludeFileCommand}"
-                                ToolTip="Add files to include in the copy routine">
+                                ToolTip="Add files to include in the copy routine"
+                                Padding="1">
                                 <Image
                                     Source="../../../Resources/Light/appbar.add.png" />
                             </Button>
                             <Button
                                 Command="{Binding RemoveIncludeFileCommand}"
                                 CommandParameter="{Binding SelectedItem, ElementName=IncludeFilesDataGrid}"
-                                ToolTip="Remove selected files from the copy routine">
+                                ToolTip="Remove selected files from the copy routine"
+                                Padding="1">
                                 <Image
                                     Source="../../../Resources/Light/appbar.minus.png" />
                             </Button>
                         </StackPanel>
                         <TextBlock
+                            MinWidth="125"
                             Text="Include files"
                             Style="{StaticResource HeaderTextBlockStyle}" />
                     </DockPanel>
@@ -160,19 +163,22 @@
                             <Button
                                 Margin="0,0,4,0"
                                 Command="{Binding AddExcludeFileCommand}"
-                                ToolTip="Add files to exclude from the copy routine">
+                                ToolTip="Add files to exclude from the copy routine"
+                                Padding="1">
                                 <Image
                                     Source="../../../Resources/Light/appbar.add.png" />
                             </Button>
                             <Button
                                 Command="{Binding RemoveExcludeFileCommand}"
                                 CommandParameter="{Binding SelectedItem, ElementName=ExcludeFileDataGrid}"
-                                ToolTip="Remove selected files which are excluded from the copy routine">
+                                ToolTip="Remove selected files which are excluded from the copy routine"
+                                Padding="1">
                                 <Image
                                     Source="../../../Resources/Light/appbar.minus.png" />
                             </Button>
                         </StackPanel>
                         <TextBlock
+                            MinWidth="125"
                             Text="Exclude files"
                             Style="{StaticResource HeaderTextBlockStyle}" />
                     </DockPanel>

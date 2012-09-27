@@ -37,7 +37,13 @@
 
             <Color
                 x:Key="{x:Static FileReplicator:AppTheme.SubtleColorKey}">#FF999999</Color>
-            
+
+            <SolidColorBrush
+                x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                Color="{DynamicResource {x:Static FileReplicator:AppTheme.AccentColorKey}}" />
+            <SolidColorBrush
+                x:Key="{x:Static FileReplicator:AppTheme.AccentBrushKey}"
+                Color="{DynamicResource {x:Static FileReplicator:AppTheme.AccentColorKey}}" />
             <SolidColorBrush
                 x:Key="{x:Static FileReplicator:AppTheme.BackgroundBrushKey}"
                 Color="#FFFFFFFF" />
