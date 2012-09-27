@@ -2,6 +2,18 @@
 {
     public interface ISettingsViewModel
     {
-        bool IsAutoStartupEnabled { get; set; }
+        #region Properties
+
+        bool IsAutoStartupEnabled
+        {
+            get; set;
+        }
+
+        string ApplicationVersion
+        {
+            get;
+        }
+
+        #endregion Properties
     }
 }

@@ -5,14 +5,14 @@ end
 
 desc "Assembly info generator"
 assemblyinfo :assemblyinfo do |asm|
-  asm.version = "0.9.0.0"
-  asm.file_version = "0.9.0.0"
+  asm.version = "0.10.0.0"
+  asm.file_version = "0.10.0.0"
   asm.company_name = "TRock"
   asm.product_name = "File Replicator"
   asm.title = "File Replicator"
   asm.description = "Simple file replicator"
   asm.copyright = "Copyright 2012"  
-  asm.custom_attributes :AssemblyInformationalVersionAttribute => "0.9.0.0 RC1"
+  asm.custom_attributes :AssemblyInformationalVersionAttribute => "0.10.0.0 RC1"
   asm.output_file = "src/CommonAssemblyInfo.cs"
 end
 

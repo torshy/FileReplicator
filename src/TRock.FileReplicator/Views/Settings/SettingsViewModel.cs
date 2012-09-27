@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Reflection;
 using System.Windows.Input;
 
 using Microsoft.Practices.Prism.Commands;
@@ -17,6 +18,7 @@ namespace TRock.FileReplicator.Views.Settings
         private readonly RegistryKey _autostartKey;
 
         private IRegionNavigationService _navigationService;
+        private string _applicationVersion;
 
         #endregion Fields
 
@@ -24,8 +26,10 @@ namespace TRock.FileReplicator.Views.Settings
 
         public SettingsViewModel()
         {
-            BackCommand = new DelegateCommand(ExecuteNavigateBack);
             _autostartKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            
+            BackCommand = new DelegateCommand(ExecuteNavigateBack);
+            ApplicationVersion = GetInformationalVersion(Assembly.GetExecutingAssembly());
         }
 
         #endregion Constructors
@@ -42,7 +46,6 @@ namespace TRock.FileReplicator.Views.Settings
         {
             get
             {
-
                 try
                 {
                     return _autostartKey.GetValue(AppName) != null;
@@ -77,6 +80,17 @@ namespace TRock.FileReplicator.Views.Settings
             }
         }
 
+        public string ApplicationVersion
+        {
+            get { return _applicationVersion; }
+            set
+            {
+                if (value == _applicationVersion) return;
+                _applicationVersion = value;
+                RaisePropertyChanged("ApplicationVersion");
+            }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -102,6 +116,12 @@ namespace TRock.FileReplicator.Views.Settings
                 _navigationService.Journal.GoBack();
             }
         }
+
+        public string GetInformationalVersion(Assembly assembly)
+        {
+            return FileVersionInfo.GetVersionInfo(assembly.Location).ProductVersion;
+        }
+
 
         #endregion Methods
     }
