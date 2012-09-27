@@ -125,6 +125,24 @@ namespace TRock.FileReplicator.ViewModels
             }
         }
 
+        public string Category
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_fileset.Category))
+                {
+                    return "Filesets";
+                }
+
+                return _fileset.Category;
+            }
+            set
+            {
+                _fileset.Category = value; 
+                RaisePropertyChanged("Category");
+            }
+        }
+
         public IEnumerable<FilesetItem> Includes
         {
             get { return _fileset.Includes; }

@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -27,6 +30,7 @@ namespace TRock.FileReplicator.Views.Fileset
 
         private IEnumerable<ActivityLogEvent> _acivityLog;
         private FilesetViewModel _fileset;
+        private ObservableCollection<string> _categories;
 
         #endregion Fields
 
@@ -40,6 +44,9 @@ namespace TRock.FileReplicator.Views.Fileset
             _filesetService = filesetService;
             _fileReplicationService = fileReplicationService;
             _activityLogService = activityLogService;
+            _categories = new ObservableCollection<string>();
+
+            Categories = CollectionViewSource.GetDefaultView(_categories);
 
             BrowseDestinationFolderCommand = new AutomaticCommand(ExecuteBrowseDestinationFolder, CanExecuteBrowseDestinationFolder);
             BrowseSourceFolderCommand = new AutomaticCommand(ExecuteBrowseSourceFolder, CanExecuteBrowseSourceFolder);
@@ -76,6 +83,12 @@ namespace TRock.FileReplicator.Views.Fileset
                 _acivityLog = value;
                 RaisePropertyChanged("ActivityLog");
             }
+        }
+
+        public ICollectionView Categories
+        {
+            get; 
+            private set;
         }
 
         public ICommand ManualCopyCommand
@@ -135,6 +148,11 @@ namespace TRock.FileReplicator.Views.Fileset
                     Fileset = new FilesetViewModel(fileset);
                     ActivityLog = _activityLogService.GetEvents(fileset.Id);
                 }
+
+                _filesetService.Filesets.Select(fs => fs.Category)
+                    .Distinct()
+                    .Where(c => !string.IsNullOrEmpty(c))
+                    .ForEach(_categories.Add);
             }
         }
 

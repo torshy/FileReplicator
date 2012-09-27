@@ -165,7 +165,9 @@ namespace TRock.FileReplicator.Views.Filesets
 
             foreach (var fileset in _filesetService.Filesets)
             {
-                _filesets.Add(new FilesetViewModel(fileset));
+                var viewModel = new FilesetViewModel(fileset);
+                viewModel.PropertyChanged += OnFilesetPropertyChanged;
+                _filesets.Add(viewModel);
             }
 
             _filesetAdded = _filesetService
@@ -174,6 +176,7 @@ namespace TRock.FileReplicator.Views.Filesets
                 .Subscribe(fileset =>
                 {
                     var viewModel = new FilesetViewModel(fileset);
+                    viewModel.PropertyChanged += OnFilesetPropertyChanged;
                     _filesets.Add(viewModel);
                     Filesets.MoveCurrentTo(viewModel);
                 });
@@ -187,6 +190,7 @@ namespace TRock.FileReplicator.Views.Filesets
 
                     if (fs != null)
                     {
+                        fs.PropertyChanged -= OnFilesetPropertyChanged;
                         _filesets.Remove(fs);
                     }
 
@@ -198,6 +202,7 @@ namespace TRock.FileReplicator.Views.Filesets
                 });
 
             Filesets = CollectionViewSource.GetDefaultView(_filesets);
+            Filesets.GroupDescriptions.Add(new PropertyGroupDescription("Category"));
             Filesets.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             Filesets.CurrentChanged += CurrentFilesetChanged;
             Filesets.MoveCurrentTo(null);
@@ -219,6 +224,14 @@ namespace TRock.FileReplicator.Views.Filesets
             if (_filesetRemoved != null)
             {
                 _filesetRemoved.Dispose();
+            }
+        }
+
+        private void OnFilesetPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Category" && Filesets != null)
+            {
+                Filesets.Refresh();
             }
         }
 

@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:FileReplicator="clr-namespace:TRock.FileReplicator"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:FileReplicator="clr-namespace:TRock.FileReplicator"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300">
@@ -33,14 +34,34 @@
                         Style="{StaticResource HeaderTextBlockStyle}" />
                 </GroupBox.Header>
                 <StackPanel>
-                    <CheckBox
-                        ToolTip="Enable/disable this fileset"
-                        IsChecked="{Binding Fileset.IsEnabled}"
-                        Content="Active" />
-                    <CheckBox
-                        ToolTip="Automatically kill locking processes?"
-                        IsChecked="{Binding Fileset.KillLockingProcess}"
-                        Content="Kill locking processes?" />
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Margin="0,0,0,8">
+                        <CheckBox
+                            ToolTip="Enable/disable this fileset"
+                            IsChecked="{Binding Fileset.IsEnabled}"
+                            Content="Active" />
+                        <CheckBox
+                            ToolTip="Automatically kill locking processes?"
+                            IsChecked="{Binding Fileset.KillLockingProcess}"
+                            Content="Kill locking processes?" 
+                            Margin="8,0,0,0" />
+                    </StackPanel>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Height="25">
+                        <TextBlock
+                            Text="Category"
+                            VerticalAlignment="Center"
+                            Margin="0,0,4,0" />
+                        <ComboBox
+                            MinWidth="175"
+                            ItemsSource="{Binding Categories}"
+                            SelectedValue="{Binding Fileset.Category}"
+                            IsEditable="True"
+                            IsTextSearchEnabled="False"
+                            Text="{Binding Fileset.Category, UpdateSourceTrigger=LostFocus}" />
+                    </StackPanel>
                     <Button
                         Command="{Binding ManualCopyCommand}"
                         Height="25"

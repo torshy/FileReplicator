@@ -6,9 +6,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ViewModels="clr-namespace:TRock.FileReplicator.ViewModels"
     xmlns:Controls="clr-namespace:TRock.FileReplicator.Controls"
-    xmlns:Filesets="clr-namespace:TRock.FileReplicator.Views.Filesets" mc:Ignorable="d"
+    xmlns:Filesets="clr-namespace:TRock.FileReplicator.Views.Filesets"
+    xmlns:FileReplicator="clr-namespace:TRock.FileReplicator"
+    xmlns:Converters="clr-namespace:TRock.FileReplicator.Converters"
+    mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300">
+    <UserControl.Resources>
+        <Converters:StringToUpperConverter
+            x:Key="StringToUpperConverter" />
+    </UserControl.Resources>
     <DockPanel
         Margin="4">
         <StackPanel
@@ -56,6 +63,36 @@
                 <Controls:CommandBarContextMenu
                     DataContext="{Binding PlacementTarget.DataContext.CommandBar, RelativeSource={RelativeSource Self}}" />
             </ItemsControl.ContextMenu>
+            <DataGrid.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style
+                            TargetType="{x:Type GroupItem}">
+                            <Setter
+                                Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate
+                                        TargetType="{x:Type GroupItem}">
+                                        <StackPanel>
+                                            <TextBlock
+                                                Foreground="{DynamicResource {x:Static FileReplicator:AppTheme.SubtleBrushKey}}"
+                                                FontFamily="{DynamicResource {x:Static FileReplicator:AppTheme.FontFamilyLight}}"
+                                                FontSize="{DynamicResource {x:Static FileReplicator:AppTheme.FontSizeMedium}}"
+                                                Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}" />
+                                            <ItemsPresenter />
+                                        </StackPanel>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                    <GroupStyle.Panel>
+                        <ItemsPanelTemplate>
+                            <DataGridRowsPresenter />
+                        </ItemsPanelTemplate>
+                    </GroupStyle.Panel>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
             <DataGrid.Columns>
                 <DataGridTemplateColumn
                     Width="*">
@@ -89,7 +126,7 @@
                                 <TextBlock
                                     Text="{Binding Name}"
                                     TextWrapping="Wrap"
-                                    VerticalAlignment="Center" 
+                                    VerticalAlignment="Center"
                                     Cursor="Hand" />
                             </DockPanel>
                             <DataTemplate.Triggers>

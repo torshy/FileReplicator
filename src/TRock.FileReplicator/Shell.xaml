@@ -51,7 +51,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition
-                Width="0.2*"
+                Width="0.3*"
                 MinWidth="100" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>

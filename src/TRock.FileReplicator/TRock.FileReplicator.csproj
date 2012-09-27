@@ -175,6 +175,7 @@
     <Compile Include="Controls\CommandBarContextMenu.cs" />
     <Compile Include="Converters\InstanceToObjectTypeConverter.cs" />
     <Compile Include="Converters\StringEmptyToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringToUpperConverter.cs" />
     <Compile Include="CustomAutofacAdapter.cs" />
     <Compile Include="Events\CopiedEvent.cs" />
     <Compile Include="Events\CopyErrorEvent.cs" />

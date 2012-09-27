@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Input;
 
 using TRock.FileReplicator.Services;
@@ -20,6 +21,11 @@ namespace TRock.FileReplicator.Views.Fileset
             get;
         }
 
+        ICollectionView Categories
+        {
+            get;
+        }
+            
         ICommand ManualCopyCommand
         {
             get;

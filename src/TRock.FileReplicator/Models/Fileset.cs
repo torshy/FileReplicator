@@ -9,6 +9,11 @@ namespace TRock.FileReplicator.Models
         #region Fields
 
         private bool _isEnabled;
+        private string _name;
+        private string _category;
+        private string _sourcePath;
+        private string _destinationPath;
+        private bool _killLockingProcess;
 
         #endregion Fields
 
@@ -51,33 +56,74 @@ namespace TRock.FileReplicator.Models
                 {
                     _isEnabled = value;
                     OnIsEnabledChanged();
-                    OnPropertyChanged("IsEnabled");
+                    RaisePropertyChanged("IsEnabled");
                 }
             }
         }
 
         public string Name
         {
-            get;
-            set;
+            get { return _name; }
+            set
+            {
+                if (_name != value)
+                {
+                    _name = value;
+                    RaisePropertyChanged("Name");
+                }
+            }
+        }
+
+        public string Category
+        {
+            get { return _category; }
+            set
+            {
+                if (_category != value)
+                {
+                    _category = value;
+                    RaisePropertyChanged("Category");
+                }
+            }
         }
 
         public string SourcePath
         {
-            get;
-            set;
+            get { return _sourcePath; }
+            set
+            {
+                if (_sourcePath != value)
+                {
+                    _sourcePath = value;
+                    RaisePropertyChanged("SourcePath");
+                }
+            }
         }
 
         public string DestinationPath
         {
-            get;
-            set;
+            get { return _destinationPath; }
+            set
+            {
+                if (_destinationPath != value)
+                {
+                    _destinationPath = value;
+                    RaisePropertyChanged("DestinationPath");
+                }
+            }
         }
 
         public bool KillLockingProcess
         {
-            get;
-            set;
+            get { return _killLockingProcess; }
+            set
+            {
+                if (_killLockingProcess != value)
+                {
+                    _killLockingProcess = value;
+                    RaisePropertyChanged("KillLockingProcess");
+                }
+            }
         }
 
         public ObservableCollection<FilesetItem> Includes
@@ -130,7 +176,7 @@ namespace TRock.FileReplicator.Models
             }
         }
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        protected virtual void RaisePropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;
 

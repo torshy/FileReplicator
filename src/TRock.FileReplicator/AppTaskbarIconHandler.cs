@@ -97,18 +97,22 @@ namespace TRock.FileReplicator
 
         private void OnItemErrorCopy(Tuple<ReplicationItem, Exception> payload)
         {
+            var title = GetBalloonTipTitle(payload.Item1);
+
             _taskbarIcon.HideBalloonTip();
             _taskbarIcon.ShowBalloonTip(
-                payload.Item1.Fileset.Name,
+                title,
                 "Unable to copy " + payload.Item1.FileName + ".\n" + payload.Item2.Message,
                 BalloonIcon.Error);
         }
 
         private void OnItemCopied(ReplicationItem item)
         {
+            var title = GetBalloonTipTitle(item);
+
             _taskbarIcon.HideBalloonTip();
             _taskbarIcon.ShowBalloonTip(
-                item.Fileset.Name,
+                title,
                 item.FileName + " copied",
                 BalloonIcon.Info);
 
@@ -119,6 +123,19 @@ namespace TRock.FileReplicator
             {
                 _lastActiveFilesets.RemoveAt(_lastActiveFilesets.Count - 1);
             }
+        }
+
+        private static string GetBalloonTipTitle(ReplicationItem payload)
+        {
+            string title = string.Empty;
+
+            if (!string.IsNullOrEmpty(payload.Fileset.Category))
+            {
+                title += "[" + payload.Fileset.Category + "] ";
+            }
+
+            title += payload.Fileset.Name;
+            return title;
         }
 
         private void ExecuteDoubleClick()
