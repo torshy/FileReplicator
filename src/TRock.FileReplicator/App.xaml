@@ -1,7 +1,8 @@
 ﻿<Application
     x:Class="TRock.FileReplicator.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:FileReplicator="clr-namespace:TRock.FileReplicator"
     xmlns:TaskbarNotification="clr-namespace:Hardcodet.Wpf.TaskbarNotification;assembly=Hardcodet.Wpf.TaskbarNotification"
     xmlns:Models="clr-namespace:TRock.FileReplicator.Models">
@@ -24,14 +25,58 @@
 
             <TaskbarNotification:TaskbarIcon
                 x:Key="App_TaskbarIcon"
-                IconSource="/Resources/app.ico"
-                ToolTipText="File replicator">
+                IconSource="/Resources/app.ico">
                 <TaskbarNotification:TaskbarIcon.TrayToolTip>
-                    <Border>
-                        <TextBlock
-                            Text="{Binding Path=ToolTipText}"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
+                    <Border
+                        Background="{DynamicResource {x:Static FileReplicator:AppTheme.BackgroundBrushKey}}"
+                        BorderBrush="{DynamicResource {x:Static FileReplicator:AppTheme.AccentBrushKey}}"
+                        BorderThickness="1"
+                        Padding="8">
+                        <ContentControl
+                            Content="{Binding ToolTip}">
+                            <ContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <TextBlock
+                                            DockPanel.Dock="Top"
+                                            Text="File Replicator"
+                                            FontSize="{DynamicResource {x:Static FileReplicator:AppTheme.FontSizeMedium}}" />
+                                        <TextBlock
+                                            Margin="0,8,0,0"
+                                            Name="LastActiveLabel"
+                                            DockPanel.Dock="Top"
+                                            Text="Last active filesets"
+                                            Foreground="{DynamicResource {x:Static FileReplicator:AppTheme.SubtleBrushKey}}"
+                                            FontSize="{DynamicResource {x:Static FileReplicator:AppTheme.FontSizeSmall}}" />
+                                        <ItemsControl
+                                            Name="LastActiveList"
+                                            ItemsSource="{Binding}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate
+                                                    DataType="{x:Type Models:Fileset}">
+                                                    <TextBlock
+                                                        Text="{Binding Name}" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DockPanel>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding Count}"
+                                            Value="0">
+                                            <Setter
+                                                Property="Visibility"
+                                                Value="Collapsed"
+                                                TargetName="LastActiveLabel" />
+                                            <Setter
+                                                Property="Visibility"
+                                                Value="Collapsed"
+                                                TargetName="LastActiveList" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ContentControl.ContentTemplate>
+                        </ContentControl>
                     </Border>
                 </TaskbarNotification:TaskbarIcon.TrayToolTip>
             </TaskbarNotification:TaskbarIcon>
@@ -96,6 +141,9 @@
                 BasedOn="{StaticResource {x:Type ToolTip}}"
                 TargetType="ToolTip">
                 <Setter
+                    Property="Background"
+                    Value="{DynamicResource {x:Static FileReplicator:AppTheme.BackgroundBrushKey}}" />
+                <Setter
                     Property="Foreground"
                     Value="{DynamicResource TextBrush}" />
             </Style>
@@ -123,7 +171,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
+
             <Style
                 TargetType="{x:Type DataGridColumnHeader}">
                 <Setter

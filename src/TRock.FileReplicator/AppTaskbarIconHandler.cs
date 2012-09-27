@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -27,6 +29,7 @@ namespace TRock.FileReplicator
         private readonly IFilesetService _filesetService;
         private readonly IFileReplicationService _replicationService;
         private readonly TaskbarIcon _taskbarIcon;
+        private readonly ObservableCollection<Fileset> _lastActiveFilesets;
 
         #endregion Fields
 
@@ -41,6 +44,7 @@ namespace TRock.FileReplicator
             _replicationService = replicationService;
             _eventAggregator = eventAggregator;
             _commandBar = new CommandBar();
+            _lastActiveFilesets = new ObservableCollection<Fileset>();
             _taskbarIcon = Application.Current.TryFindResource("App_TaskbarIcon") as TaskbarIcon;
         }
 
@@ -52,6 +56,17 @@ namespace TRock.FileReplicator
         {
             _eventAggregator.GetEvent<CopiedEvent>().Subscribe(OnItemCopied, ThreadOption.UIThread, true);
             _eventAggregator.GetEvent<CopyErrorEvent>().Subscribe(OnItemErrorCopy, ThreadOption.UIThread, true);
+
+            if (_taskbarIcon.SupportsCustomToolTips)
+            {
+                _taskbarIcon.ToolTip = _lastActiveFilesets;
+            }
+            else
+            {
+                _taskbarIcon.TrayToolTip = null;
+                _taskbarIcon.ToolTipText = "File Replicator";
+            }
+
             _taskbarIcon.DoubleClickCommand = new DelegateCommand(ExecuteDoubleClick);
             _taskbarIcon.ContextMenu = new CommandBarContextMenu();
             _taskbarIcon.ContextMenu.Opened += (sender, args) =>
@@ -93,6 +108,14 @@ namespace TRock.FileReplicator
                 item.Fileset.Name,
                 item.FileName + " copied",
                 BalloonIcon.Info);
+
+            _lastActiveFilesets.Remove(item.Fileset);
+            _lastActiveFilesets.Insert(0, item.Fileset);
+
+            if (_lastActiveFilesets.Count > 5)
+            {
+                _lastActiveFilesets.RemoveAt(_lastActiveFilesets.Count - 1);
+            }
         }
 
         private void ExecuteDoubleClick()
