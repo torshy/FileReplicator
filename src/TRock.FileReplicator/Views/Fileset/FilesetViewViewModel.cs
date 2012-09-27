@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -25,12 +26,12 @@ namespace TRock.FileReplicator.Views.Fileset
         #region Fields
 
         private readonly IActivityLogService _activityLogService;
+        private readonly ObservableCollection<string> _categories;
         private readonly IFileReplicationService _fileReplicationService;
         private readonly IFilesetService _filesetService;
 
         private IEnumerable<ActivityLogEvent> _acivityLog;
         private FilesetViewModel _fileset;
-        private ObservableCollection<string> _categories;
 
         #endregion Fields
 
@@ -52,10 +53,10 @@ namespace TRock.FileReplicator.Views.Fileset
             BrowseSourceFolderCommand = new AutomaticCommand(ExecuteBrowseSourceFolder, CanExecuteBrowseSourceFolder);
 
             AddIncludeFileCommand = new AutomaticCommand(ExecuteAddIncludeFile, CanExecuteAddIncludeFile);
-            RemoveIncludeFileCommand = new AutomaticCommand<FilesetItem>(ExecuteRemoveIncludeFile, CanExecuteRemoveIncludeFile);
+            RemoveIncludeFileCommand = new AutomaticCommand<IEnumerable>(ExecuteRemoveIncludeFile, CanExecuteRemoveIncludeFile);
 
             AddExcludeFileCommand = new AutomaticCommand(ExecuteAddExcludeFile, CanExecuteAddExcludeFile);
-            RemoveExcludeFileCommand = new AutomaticCommand<FilesetItem>(ExecuteRemoveExcludeFile, CanExecuteRemoveExcludeFile);
+            RemoveExcludeFileCommand = new AutomaticCommand<IEnumerable>(ExecuteRemoveExcludeFile, CanExecuteRemoveExcludeFile);
 
             ManualCopyCommand = new DelegateCommand(ExecuteManualCopy);
             ClearActivityLogCommand = new DelegateCommand(ExecuteClearActiviyLog);
@@ -87,7 +88,7 @@ namespace TRock.FileReplicator.Views.Fileset
 
         public ICollectionView Categories
         {
-            get; 
+            get;
             private set;
         }
 
@@ -186,14 +187,14 @@ namespace TRock.FileReplicator.Views.Fileset
             }
         }
 
-        private bool CanExecuteRemoveExcludeFile(FilesetItem item)
+        private bool CanExecuteRemoveExcludeFile(IEnumerable items)
         {
-            return item != null && Fileset != null;
+            return Fileset != null && items != null && items.OfType<FilesetItem>().Any();
         }
 
-        private void ExecuteRemoveExcludeFile(FilesetItem item)
+        private void ExecuteRemoveExcludeFile(IEnumerable items)
         {
-            Fileset.RemoveExclude(item);
+            items.OfType<FilesetItem>().ToArray().ForEach(Fileset.RemoveExclude);
         }
 
         private bool CanExecuteAddExcludeFile()
@@ -214,14 +215,14 @@ namespace TRock.FileReplicator.Views.Fileset
             }
         }
 
-        private bool CanExecuteRemoveIncludeFile(FilesetItem item)
+        private bool CanExecuteRemoveIncludeFile(IEnumerable items)
         {
-            return Fileset != null && item != null;
+            return Fileset != null && items != null && items.OfType<FilesetItem>().Any();
         }
 
-        private void ExecuteRemoveIncludeFile(FilesetItem item)
+        private void ExecuteRemoveIncludeFile(IEnumerable items)
         {
-            Fileset.RemoveInclude(item);
+            items.OfType<FilesetItem>().ToArray().ForEach(Fileset.RemoveInclude);
         }
 
         private bool CanExecuteAddIncludeFile()

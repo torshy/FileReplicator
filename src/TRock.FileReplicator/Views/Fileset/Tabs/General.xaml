@@ -143,7 +143,7 @@
                             </Button>
                             <Button
                                 Command="{Binding RemoveIncludeFileCommand}"
-                                CommandParameter="{Binding SelectedItem, ElementName=IncludeFilesDataGrid}"
+                                CommandParameter="{Binding SelectedItems, ElementName=IncludeFilesDataGrid}"
                                 ToolTip="Remove selected files from the copy routine"
                                 Padding="1">
                                 <Image
@@ -191,7 +191,7 @@
                             </Button>
                             <Button
                                 Command="{Binding RemoveExcludeFileCommand}"
-                                CommandParameter="{Binding SelectedItem, ElementName=ExcludeFileDataGrid}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ExcludeFileDataGrid}"
                                 ToolTip="Remove selected files which are excluded from the copy routine"
                                 Padding="1">
                                 <Image
