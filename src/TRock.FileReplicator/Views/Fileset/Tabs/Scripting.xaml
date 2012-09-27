@@ -72,14 +72,16 @@
                         <Button
                             Margin="4,0,4,0"
                             Command="{Binding AddExpressionCommand}"
-                            ToolTip="Add files to include in the copy routine">
+                            ToolTip="Add files to include in the copy routine"
+                            Padding="1">
                             <Image
                                 Source="../../../Resources/Light/appbar.add.png" />
                         </Button>
                         <Button
                             Command="{Binding RemoveScriptCommand}"
                             CommandParameter="{Binding SelectedItem, ElementName=CopyEventScriptsDataGrid}"
-                            ToolTip="Remove selected files from the copy routine">
+                            ToolTip="Remove selected files from the copy routine"
+                            Padding="1">
                             <Image
                                 Source="../../../Resources/Light/appbar.minus.png" />
                         </Button>
@@ -90,14 +92,16 @@
                         <Button
                             Margin="0,0,4,0"
                             Command="{Binding AddFileCommand}"
-                            ToolTip="Add files to include in the copy routine">
+                            ToolTip="Add files to include in the copy routine"
+                            Padding="1">
                             <Image
                                 Source="../../../Resources/Light/appbar.add.png" />
                         </Button>
                         <Button
                             Command="{Binding RemoveScriptCommand}"
                             CommandParameter="{Binding SelectedItem, ElementName=CopyEventScriptsDataGrid}"
-                            ToolTip="Remove selected files from the copy routine">
+                            ToolTip="Remove selected files from the copy routine"
+                            Padding="1">
                             <Image
                                 Source="../../../Resources/Light/appbar.minus.png" />
                         </Button>
