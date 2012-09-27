@@ -87,7 +87,7 @@ namespace TRock.FileReplicator
                             CommandParameter = fs,
                             Icon = new Image
                             {
-                                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/light/appbar.layer.png"))
+                                Source = new BitmapImage(new Uri("pack://application:,,,/Resources/light/appbar.diagram.png"))
                             }
                         });
                 });

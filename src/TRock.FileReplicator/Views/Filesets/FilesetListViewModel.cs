@@ -169,7 +169,7 @@ namespace TRock.FileReplicator.Views.Filesets
                         Icon = new Image
                         {
                             Source =
-                                new BitmapImage(new Uri("pack://application:,,,/Resources/light/appbar.layer.png"))
+                                new BitmapImage(new Uri("pack://application:,,,/Resources/light/appbar.diagram.png"))
                         }
                     });
                 }
