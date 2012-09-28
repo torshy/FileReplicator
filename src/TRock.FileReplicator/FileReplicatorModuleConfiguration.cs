@@ -1,4 +1,5 @@
 using Autofac;
+using MahApps.Metro.Controls;
 using TRock.FileReplicator.Services;
 using TRock.FileReplicator.Views.Fileset;
 using TRock.FileReplicator.Views.Filesets;

@@ -6,6 +6,7 @@
         {
             InitializeComponent();
             DataContext = viewModel;
+            Flyouts = viewModel.Flyouts;
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using System.Windows.Input;
-
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
+using MahApps.Metro.Controls;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 
 using TRock.FileReplicator.Views.Settings;
-using System.Linq;
 
 namespace TRock.FileReplicator
 {
@@ -18,8 +20,9 @@ namespace TRock.FileReplicator
 
         #region Constructors
 
-        public ShellViewModel(IRegionManager regionManager)
+        public ShellViewModel(IRegionManager regionManager, IEnumerable<Flyout> flyouts)
         {
+            Flyouts = new ObservableCollection<Flyout>(flyouts);
             _regionManager = regionManager;
 
             OpenSettingsViewCommand = new DelegateCommand(ExecuteOpenSettingsView);
@@ -28,6 +31,11 @@ namespace TRock.FileReplicator
         #endregion Constructors
 
         #region Properties
+
+        public ObservableCollection<Flyout> Flyouts
+        {
+            get; private set;
+        }
 
         public ICommand OpenSettingsViewCommand
         {
