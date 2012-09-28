@@ -71,15 +71,16 @@ namespace TRock.FileReplicator
             _taskbarIcon.DoubleClickCommand = new DelegateCommand(ExecuteDoubleClick);
             _taskbarIcon.ContextMenu = new CommandBarContextMenu();
             _taskbarIcon.ContextMenu.Placement = PlacementMode.Left;
-            _taskbarIcon.ContextMenu.FlowDirection = FlowDirection.RightToLeft;
             _taskbarIcon.ContextMenu.Opened += (sender, args) =>
             {
                 _commandBar.Clear();
 
                 _filesetService.Filesets.ForEach(fs =>
                 {
+                    string subMenuName = GetBalloonTipTitle(fs);
+
                     _commandBar
-                        .AddSubmenu(fs.Name)
+                        .AddSubmenu(subMenuName)
                         .AddCommand(new CommandModel
                         {
                             Content = "Execute file copy",
@@ -97,7 +98,7 @@ namespace TRock.FileReplicator
 
         private void OnItemErrorCopy(Tuple<ReplicationItem, Exception> payload)
         {
-            var title = GetBalloonTipTitle(payload.Item1);
+            var title = GetBalloonTipTitle(payload.Item1.Fileset);
 
             _taskbarIcon.HideBalloonTip();
             _taskbarIcon.ShowBalloonTip(
@@ -108,7 +109,7 @@ namespace TRock.FileReplicator
 
         private void OnItemCopied(ReplicationItem item)
         {
-            var title = GetBalloonTipTitle(item);
+            var title = GetBalloonTipTitle(item.Fileset);
 
             _taskbarIcon.HideBalloonTip();
             _taskbarIcon.ShowBalloonTip(
@@ -125,16 +126,16 @@ namespace TRock.FileReplicator
             }
         }
 
-        private static string GetBalloonTipTitle(ReplicationItem payload)
+        private static string GetBalloonTipTitle(Fileset fileset)
         {
             string title = string.Empty;
 
-            if (!string.IsNullOrEmpty(payload.Fileset.Category))
+            if (!string.IsNullOrEmpty(fileset.Category))
             {
-                title += "[" + payload.Fileset.Category + "] ";
+                title += "[" + fileset.Category + "] ";
             }
 
-            title += payload.Fileset.Name;
+            title += fileset.Name;
             return title;
         }
 

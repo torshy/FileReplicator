@@ -1,7 +1,9 @@
 ﻿using System.Windows.Controls;
+using Microsoft.Practices.Prism.Regions;
 
 namespace TRock.FileReplicator.Views.Fileset
 {
+    [RegionMemberLifetime(KeepAlive = false)]
     public partial class FilesetView : UserControl, IFilesetView
     {
         #region Constructors

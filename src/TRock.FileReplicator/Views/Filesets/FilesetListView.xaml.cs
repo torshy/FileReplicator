@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-
+using Microsoft.Practices.Prism.Regions;
 using TRock.FileReplicator.ViewModels;
 
 namespace TRock.FileReplicator.Views.Filesets
@@ -30,6 +30,7 @@ namespace TRock.FileReplicator.Views.Filesets
         #endregion Methods
     }
 
+    [RegionMemberLifetime(KeepAlive = false)]
     public partial class FilesetListView : UserControl, IFilesetListView
     {
         #region Constructors

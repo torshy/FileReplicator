@@ -1,7 +1,9 @@
 ﻿using System.Windows.Controls;
+using Microsoft.Practices.Prism.Regions;
 
 namespace TRock.FileReplicator.Views.Welcome
 {
+    [RegionMemberLifetime(KeepAlive = false)]
     public partial class WelcomeView : UserControl, IWelcomeView
     {
         #region Constructors

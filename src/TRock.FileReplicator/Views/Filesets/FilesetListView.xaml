@@ -71,8 +71,9 @@
             IsSynchronizedWithCurrentItem="True"
             AutoGenerateColumns="False"
             IsReadOnly="False"
-            SelectionUnit="FullRow"
             HeadersVisibility="None"
+            SelectionUnit="FullRow"
+            SelectionMode="Single"
             SelectionChanged="DataGridSelectionChanged"
             ContextMenuOpening="DataGridContextMenuOpening"
             Style="{StaticResource {x:Type DataGrid}}">
