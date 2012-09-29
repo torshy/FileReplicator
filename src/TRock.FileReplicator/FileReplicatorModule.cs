@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
-using MahApps.Metro.Controls;
+
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
@@ -24,11 +24,9 @@ namespace TRock.FileReplicator
         #region Constructors
 
         public FileReplicatorModule(
-            IFlyoutService flyoutService,
             IFilesetService filesetService,
             IRegionManager regionManager)
         {
-            flyoutService.RegisterFlyout(new Flyout {Content = "Hello"});
             _filesetService = filesetService;
             _regionManager = regionManager;
         }
