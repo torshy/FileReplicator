@@ -183,6 +183,7 @@
     <Compile Include="Services\CommandModel.cs" />
     <Compile Include="Services\FileReplicationService.cs" />
     <Compile Include="Services\FilesetService.cs" />
+    <Compile Include="Services\FlyoutService.cs" />
     <Compile Include="Services\IActivityLogService.cs" />
     <Compile Include="Services\ActivityLogEvent.cs" />
     <Compile Include="Services\ICommandBar.cs" />
