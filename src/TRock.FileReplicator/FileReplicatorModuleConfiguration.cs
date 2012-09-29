@@ -33,6 +33,10 @@ namespace TRock.FileReplicator
                 .As<IStartable>()
                 .SingleInstance();
 
+            builder.RegisterType<FlyoutService>()
+                .As<IFlyoutService>()
+                .SingleInstance();
+
             builder.RegisterType<ShellViewModel>()
                 .As<IShellViewModel>();
 

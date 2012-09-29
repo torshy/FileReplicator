@@ -136,9 +136,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WPFToolkit.Extended">
-      <HintPath>..\..\packages\Extended.Wpf.Toolkit.1.7.0\lib\net40\WPFToolkit.Extended.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -190,6 +187,7 @@
     <Compile Include="Services\ActivityLogEvent.cs" />
     <Compile Include="Services\ICommandBar.cs" />
     <Compile Include="Services\IFileReplicationService.cs" />
+    <Compile Include="Services\IFlyoutService.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="ViewModels\FilesetViewModel.cs" />
     <Compile Include="ViewModels\ScriptViewModel.cs" />

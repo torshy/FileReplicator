@@ -2,7 +2,6 @@
     x:Class="TRock.FileReplicator.Views.Fileset.Dialogs.TextInputDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     Title="Input"
     Width="450"
@@ -24,9 +23,9 @@
                 Width="75"
                 Click="CancelClick" />
         </StackPanel>
-        <xctk:WatermarkTextBox
+        <TextBox
             x:Name="TextBox"
             x:FieldModifier="private"
-            Watermark="Enter file-mask" />
+            Controls:TextboxHelper.Watermark="Enter file-mask" />
     </DockPanel>
 </Controls:MetroWindow>
