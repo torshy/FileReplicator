@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace TRock.FileReplicator.Models
+namespace TRock.FileReplicator.Core
 {
     public class Fileset : INotifyPropertyChanged
     {

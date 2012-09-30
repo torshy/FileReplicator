@@ -7,8 +7,7 @@ using System.Text;
 using System.Windows;
 
 using Microsoft.Practices.Prism.ViewModel;
-
-using TRock.FileReplicator.Models;
+using TRock.FileReplicator.Core;
 
 namespace TRock.FileReplicator.ViewModels
 {

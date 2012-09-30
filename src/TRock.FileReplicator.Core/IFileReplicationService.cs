@@ -1,6 +1,4 @@
-using TRock.FileReplicator.Models;
-
-namespace TRock.FileReplicator.Services
+namespace TRock.FileReplicator.Core
 {
     public interface IFileReplicationService
     {

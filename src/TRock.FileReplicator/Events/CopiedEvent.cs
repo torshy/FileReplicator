@@ -1,6 +1,5 @@
 ﻿using Microsoft.Practices.Prism.Events;
-
-using TRock.FileReplicator.Models;
+using TRock.FileReplicator.Core;
 
 namespace TRock.FileReplicator.Events
 {

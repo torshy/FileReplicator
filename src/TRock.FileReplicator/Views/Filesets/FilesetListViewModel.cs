@@ -18,6 +18,7 @@ using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Win32;
 
 using TRock.FileReplicator.Commands;
+using TRock.FileReplicator.Core;
 using TRock.FileReplicator.Services;
 using TRock.FileReplicator.ViewModels;
 using TRock.FileReplicator.Views.Fileset;

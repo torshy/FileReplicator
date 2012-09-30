@@ -5,7 +5,7 @@
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:FileReplicator="clr-namespace:TRock.FileReplicator"
     xmlns:TaskbarNotification="clr-namespace:Hardcodet.Wpf.TaskbarNotification;assembly=Hardcodet.Wpf.TaskbarNotification"
-    xmlns:Models="clr-namespace:TRock.FileReplicator.Models">
+    xmlns:Core="clr-namespace:TRock.FileReplicator.Core;assembly=TRock.FileReplicator.Core">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -53,7 +53,7 @@
                                             ItemsSource="{Binding}">
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate
-                                                    DataType="{x:Type Models:Fileset}">
+                                                    DataType="{x:Type Core:Fileset}">
                                                     <TextBlock
                                                         Text="{Binding Name}" />
                                                 </DataTemplate>

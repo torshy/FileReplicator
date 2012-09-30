@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace TRock.FileReplicator.Models
+namespace TRock.FileReplicator.Core
 {
     public class FilesetItem
     {

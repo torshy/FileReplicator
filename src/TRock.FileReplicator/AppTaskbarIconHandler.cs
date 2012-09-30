@@ -15,8 +15,8 @@ using Microsoft.Practices.Prism.Events;
 
 using TRock.Extensions;
 using TRock.FileReplicator.Controls;
+using TRock.FileReplicator.Core;
 using TRock.FileReplicator.Events;
-using TRock.FileReplicator.Models;
 using TRock.FileReplicator.Services;
 
 namespace TRock.FileReplicator

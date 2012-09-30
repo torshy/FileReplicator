@@ -1,9 +1,6 @@
-﻿using System;
-using System.Windows.Threading;
+﻿using MahApps.Metro.Controls;
 
-using MahApps.Metro.Controls;
-
-namespace TRock.FileReplicator.Services
+namespace TRock.FileReplicator.Core
 {
     public interface IFlyoutService
     {

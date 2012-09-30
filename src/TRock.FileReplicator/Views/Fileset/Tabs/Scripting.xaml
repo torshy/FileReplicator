@@ -4,14 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:Models="clr-namespace:TRock.FileReplicator.Models"
     xmlns:ViewModels="clr-namespace:TRock.FileReplicator.ViewModels"
+    xmlns:Core="clr-namespace:TRock.FileReplicator.Core;assembly=TRock.FileReplicator.Core"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate
-            DataType="{x:Type Models:ScriptExpression}">
+            DataType="{x:Type Core:ScriptExpression}">
             <DockPanel
                 Margin="0,1,0,1">
                 <Image
@@ -32,7 +32,7 @@
             </DockPanel>
         </DataTemplate>
         <DataTemplate
-            DataType="{x:Type Models:ScriptFile}">
+            DataType="{x:Type Core:ScriptFile}">
             <DockPanel
                 Margin="0,1,0,1">
                 <Image

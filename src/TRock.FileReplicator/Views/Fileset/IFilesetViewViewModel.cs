@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
-
+using TRock.FileReplicator.Core;
 using TRock.FileReplicator.Services;
 using TRock.FileReplicator.ViewModels;
 

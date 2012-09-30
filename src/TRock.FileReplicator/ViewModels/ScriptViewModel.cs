@@ -9,7 +9,7 @@ using Microsoft.Win32;
 
 using TRock.Extensions;
 using TRock.FileReplicator.Commands;
-using TRock.FileReplicator.Models;
+using TRock.FileReplicator.Core;
 using TRock.FileReplicator.Views.Fileset.Dialogs;
 using TRock.FileReplicator.Views.Fileset.Tabs;
 

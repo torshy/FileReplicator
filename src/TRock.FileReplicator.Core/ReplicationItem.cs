@@ -6,7 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 
-namespace TRock.FileReplicator.Models
+namespace TRock.FileReplicator.Core
 {
     public class ReplicationItem
     {

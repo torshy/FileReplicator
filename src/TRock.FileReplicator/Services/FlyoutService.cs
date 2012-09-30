@@ -2,6 +2,8 @@ using System.Windows;
 
 using MahApps.Metro.Controls;
 
+using TRock.FileReplicator.Core;
+
 namespace TRock.FileReplicator.Services
 {
     public class FlyoutService : IFlyoutService
@@ -14,6 +16,8 @@ namespace TRock.FileReplicator.Services
 
             if (mainWindow != null)
             {
+                flyout.Loaded += IsOpenBeforeLoadedWorkaround;
+
                 mainWindow.Flyouts.Add(flyout);
             }
         }
@@ -24,7 +28,20 @@ namespace TRock.FileReplicator.Services
 
             if (mainWindow != null)
             {
+                flyout.Loaded -= IsOpenBeforeLoadedWorkaround;
+
                 mainWindow.Flyouts.Remove(flyout);
+            }
+        }
+
+        private void IsOpenBeforeLoadedWorkaround(object sender, RoutedEventArgs e)
+        {
+            var flyout = ((Flyout)sender);
+
+            if (flyout.IsOpen)
+            {
+                flyout.IsOpen = false;
+                flyout.IsOpen = true;
             }
         }
 

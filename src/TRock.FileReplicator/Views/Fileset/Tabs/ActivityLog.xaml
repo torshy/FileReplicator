@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:Services="clr-namespace:TRock.FileReplicator.Services"
+    xmlns:Core="clr-namespace:TRock.FileReplicator.Core;assembly=TRock.FileReplicator.Core"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300">
@@ -32,7 +32,7 @@
             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ItemsControl.ItemTemplate>
                 <DataTemplate
-                    DataType="{x:Type Services:ActivityLogEvent}">
+                    DataType="{x:Type Core:ActivityLogEvent}">
                     <DockPanel>
                         <TextBlock
                             DockPanel.Dock="Left"

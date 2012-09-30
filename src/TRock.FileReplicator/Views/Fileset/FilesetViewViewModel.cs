@@ -13,7 +13,7 @@ using Microsoft.Practices.Prism.ViewModel;
 
 using TRock.Extensions;
 using TRock.FileReplicator.Commands;
-using TRock.FileReplicator.Models;
+using TRock.FileReplicator.Core;
 using TRock.FileReplicator.Services;
 using TRock.FileReplicator.ViewModels;
 

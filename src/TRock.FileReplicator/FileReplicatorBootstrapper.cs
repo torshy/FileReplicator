@@ -21,6 +21,7 @@ using Microsoft.Scripting.Hosting;
 using Prism.AutofacExtension;
 
 using TRock.Extensions;
+using TRock.FileReplicator.Core;
 using TRock.FileReplicator.Regions;
 using TRock.FileReplicator.Services;
 

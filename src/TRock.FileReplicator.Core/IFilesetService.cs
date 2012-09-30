@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-using TRock.FileReplicator.Models;
-
-namespace TRock.FileReplicator.Services
+namespace TRock.FileReplicator.Core
 {
     public interface IFilesetService
     {

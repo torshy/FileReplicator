@@ -11,9 +11,8 @@ using Autofac;
 
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Scripting.Hosting;
-
+using TRock.FileReplicator.Core;
 using TRock.FileReplicator.Events;
-using TRock.FileReplicator.Models;
 
 namespace TRock.FileReplicator.Services
 {

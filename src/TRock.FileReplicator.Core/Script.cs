@@ -1,6 +1,6 @@
 using Microsoft.Scripting.Hosting;
 
-namespace TRock.FileReplicator.Models
+namespace TRock.FileReplicator.Core
 {
     public abstract class Script
     {

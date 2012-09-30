@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-using TRock.FileReplicator.Models;
+using TRock.FileReplicator.Core;
+using TRock.FileReplicator.Serialization;
 
 namespace TRock.FileReplicator.Services
 {
@@ -84,7 +85,7 @@ namespace TRock.FileReplicator.Services
         {
             return Task.Factory.StartNew(s =>
             {
-                var factory = (Func<Stream>) s;
+                var factory = (Func<Stream>)s;
                 using (var stream = factory())
                 using (var textWriter = new StreamWriter(stream))
                 using (var jsonWriter = new JsonTextWriter(textWriter))
@@ -133,11 +134,11 @@ namespace TRock.FileReplicator.Services
         {
             return Task.Factory.StartNew(s =>
             {
-                var factory = (Func<Stream>) s;
+                var factory = (Func<Stream>)s;
                 using (var stream = factory())
                 {
                     var fs = LoadFilesetFromStream(stream);
-                    
+
                     if (_filesets.Any(f => f.Id == fs.Id))
                     {
                         throw new ArgumentException("Fileset with same Id already exists");
@@ -206,7 +207,30 @@ namespace TRock.FileReplicator.Services
             using (var streamReader = new StreamReader(stream))
             using (var jsonReader = new JsonTextReader(streamReader))
             {
-                var serializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.Objects };
+                var serializer = new JsonSerializer
+                {
+                    TypeNameHandling = TypeNameHandling.Objects,
+                    Binder = new NamespaceMigrationSerializationBinder(
+                                        new NamespaceMigration
+                                        {
+                                            FromAssembly = "FileReplicator",
+                                            FromType = "TRock.FileReplicator.Models.Fileset",
+                                            ToType = typeof(Fileset)
+                                        },
+                                        new NamespaceMigration
+                                        {
+                                            FromAssembly = "FileReplicator",
+                                            FromType = "TRock.FileReplicator.Models.FilesetItem",
+                                            ToType = typeof(FilesetItem)
+                                        },
+                                        new NamespaceMigration
+                                        {
+                                            FromAssembly = "FileReplicator",
+                                            FromType = "TRock.FileReplicator.Models.ScriptFile",
+                                            ToType = typeof(ScriptFile)
+                                        })
+                };
+
                 return serializer.Deserialize<Fileset>(jsonReader);
             }
         }

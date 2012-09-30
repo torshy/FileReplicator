@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TRock.FileReplicator.Services
+namespace TRock.FileReplicator.Core
 {
     public interface IActivityLogService
     {

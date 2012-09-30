@@ -5,7 +5,7 @@ using System.Windows;
 
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
-
+using TRock.FileReplicator.Core;
 using TRock.FileReplicator.Services;
 using TRock.FileReplicator.Views.Filesets;
 using TRock.FileReplicator.Views.Welcome;
