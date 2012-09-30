@@ -124,12 +124,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\MahApps.Metro.0.9.9.46-ALPHA\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xml" />
     <Reference Include="TRock.Extensions">
       <HintPath>..\..\lib\TRock\TRock.Extensions.dll</HintPath>
     </Reference>
