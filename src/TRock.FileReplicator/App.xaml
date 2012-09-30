@@ -28,9 +28,6 @@
                 IconSource="/Resources/trayapp.ico">
                 <TaskbarNotification:TaskbarIcon.TrayToolTip>
                     <Border
-                        Background="{DynamicResource {x:Static FileReplicator:AppTheme.BackgroundBrushKey}}"
-                        BorderBrush="{DynamicResource {x:Static FileReplicator:AppTheme.AccentBrushKey}}"
-                        BorderThickness="1"
                         Padding="8">
                         <ContentControl
                             Content="{Binding ToolTip}">
@@ -40,6 +37,7 @@
                                         <TextBlock
                                             DockPanel.Dock="Top"
                                             Text="File Replicator"
+                                            Foreground="Black"
                                             FontSize="{DynamicResource {x:Static FileReplicator:AppTheme.FontSizeMedium}}" />
                                         <TextBlock
                                             Margin="0,8,0,0"
@@ -55,6 +53,7 @@
                                                 <DataTemplate
                                                     DataType="{x:Type Core:Fileset}">
                                                     <TextBlock
+                                                        Foreground="Black"
                                                         Text="{Binding Name}" />
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
@@ -88,14 +87,11 @@
                 x:Key="{x:Static SystemColors.HighlightBrushKey}"
                 Color="{DynamicResource {x:Static FileReplicator:AppTheme.AccentColorKey}}" />
             <SolidColorBrush
-                x:Key="{x:Static FileReplicator:AppTheme.AccentBrushKey}"
+                x:Key="{x:Static SystemColors.ControlBrush}"
                 Color="{DynamicResource {x:Static FileReplicator:AppTheme.AccentColorKey}}" />
             <SolidColorBrush
-                x:Key="{x:Static FileReplicator:AppTheme.BackgroundBrushKey}"
-                Color="#FFFFFFFF" />
-            <SolidColorBrush
-                x:Key="{x:Static FileReplicator:AppTheme.ContrastBackgroundKey}"
-                Color="#FF000000" />
+                x:Key="{x:Static FileReplicator:AppTheme.AccentBrushKey}"
+                Color="{DynamicResource {x:Static FileReplicator:AppTheme.AccentColorKey}}" />
             <SolidColorBrush
                 x:Key="{x:Static FileReplicator:AppTheme.ContrastForegroundKey}"
                 Color="#FFFFFFFF" />
@@ -137,16 +133,15 @@
                 x:Key="{x:Static FileReplicator:AppTheme.FontSizeHuge}">46</System:Double>
 
             <Style
-                x:Key="{x:Type ToolTip}"
-                BasedOn="{StaticResource {x:Type ToolTip}}"
-                TargetType="ToolTip">
-                <Setter
-                    Property="Background"
-                    Value="{DynamicResource {x:Static FileReplicator:AppTheme.BackgroundBrushKey}}" />
-                <Setter
-                    Property="Foreground"
-                    Value="{DynamicResource TextBrush}" />
+                TargetType="{x:Type ToolTip}"
+                BasedOn="{StaticResource {x:Type ToolTip}}">
+                <Style.Resources>
+                    <SolidColorBrush
+                        x:Key="TextBrush"
+                        Color="Black" />
+                </Style.Resources>
             </Style>
+            
             <Style
                 x:Key="ColumnHeaderGripperStyle"
                 TargetType="{x:Type Thumb}">
@@ -325,6 +320,15 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
+                <Style.Triggers>
+                    <Trigger
+                        Property="DataGridCell.IsSelected"
+                        Value="True">
+                        <Setter
+                            Property="Background"
+                            Value="{DynamicResource {x:Static FileReplicator:AppTheme.AccentBrushKey}}" />
+                    </Trigger>
+                </Style.Triggers>
             </Style>
 
             <Style
@@ -400,6 +404,41 @@
                 <Setter
                     Property="HeadersVisibility"
                     Value="Column" />
+            </Style>
+
+            <Style
+                TargetType="{x:Type GroupBox}">
+                <Setter
+                    Property="BorderBrush"
+                    Value="{DynamicResource GrayBrush13}" />
+                <Setter
+                    Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate
+                            TargetType="GroupBox">
+                            <Grid
+                                Background="{TemplateBinding Background}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="Auto" />
+                                    <RowDefinition
+                                        Height="*" />
+                                </Grid.RowDefinitions>
+                                <ContentPresenter
+                                    Margin="4"
+                                    ContentSource="Header"
+                                    RecognizesAccessKey="True" />
+                                <Border
+                                    Grid.Row="1"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="0,0,0,1">
+                                    <ContentPresenter
+                                        Margin="4" />
+                                </Border>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

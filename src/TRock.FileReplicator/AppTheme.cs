@@ -9,7 +9,7 @@ namespace TRock.FileReplicator
         //// Brushes
         //public const string AppBackgroundBrush = "AppBackgroundBrush";
         public const string AccentBrushKey = "AccentColorBrush";
-        public const string BackgroundBrushKey = "BackgroundBrushKey";
+        public const string BackgroundBrushKey = "ControlBackgroundBrush";
         public const string ForegroundBrushKey = "TextBrush";
         public const string ContrastBackgroundKey = "ContrastBackgroundKey";
         public const string ContrastForegroundKey = "ContrastForegroundKey";

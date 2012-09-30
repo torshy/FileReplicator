@@ -8,6 +8,14 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="..\..\..\Resources\Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <DockPanel>
         <StackPanel
             DockPanel.Dock="Bottom"
@@ -19,8 +27,16 @@
                 Padding="4,0,4,0">
                 <StackPanel
                     Orientation="Horizontal">
-                    <Image
-                        Source="../../../Resources/Light/appbar.clear.inverse.png" />
+                    <Rectangle
+                        Width="16"
+                        Height="16"
+                        Margin="0,0,4,0">
+                        <Rectangle.Fill>
+                            <VisualBrush
+                                Stretch="Uniform"
+                                Visual="{StaticResource appbar_clear_inverse}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
                     <TextBlock
                         Text="Clear log"
                         VerticalAlignment="Center" />
@@ -29,7 +45,9 @@
         </StackPanel>
         <ListBox
             ItemsSource="{Binding ActivityLog}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            BorderThickness="0"
+            Background="{x:Null}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate
                     DataType="{x:Type Core:ActivityLogEvent}">

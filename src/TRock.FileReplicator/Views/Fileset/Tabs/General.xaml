@@ -5,23 +5,30 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:FileReplicator="clr-namespace:TRock.FileReplicator"
-    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" mc:Ignorable="d"
+    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300">
     <UserControl.Resources>
-        <Style
-            TargetType="{x:Type TextBlock}"
-            x:Key="HeaderTextBlockStyle">
-            <Setter
-                Property="FontFamily"
-                Value="{DynamicResource {x:Static FileReplicator:AppTheme.FontFamilyLight}}" />
-            <Setter
-                Property="FontSize"
-                Value="{DynamicResource {x:Static FileReplicator:AppTheme.FontSizeLarge}}" />
-            <Setter
-                Property="Foreground"
-                Value="{DynamicResource {x:Static FileReplicator:AppTheme.SubtleBrushKey}}" />
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="..\..\..\Resources\Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style
+                TargetType="{x:Type TextBlock}"
+                x:Key="HeaderTextBlockStyle">
+                <Setter
+                    Property="FontFamily"
+                    Value="{DynamicResource {x:Static FileReplicator:AppTheme.FontFamilyLight}}" />
+                <Setter
+                    Property="FontSize"
+                    Value="{DynamicResource {x:Static FileReplicator:AppTheme.FontSizeLarge}}" />
+                <Setter
+                    Property="Foreground"
+                    Value="{DynamicResource {x:Static FileReplicator:AppTheme.SubtleBrushKey}}" />
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
     <ScrollViewer>
         <StackPanel>
@@ -67,9 +74,17 @@
                         HorizontalAlignment="Right"
                         Padding="4,0,4,0">
                         <DockPanel>
-                            <Image
+                            <Rectangle
                                 DockPanel.Dock="Left"
-                                Source="../../../Resources/Light/appbar.diagram.png" />
+                                Width="16"
+                                Height="16"
+                                Margin="0,0,4,0">
+                                <Rectangle.Fill>
+                                    <VisualBrush
+                                        Stretch="Uniform"
+                                        Visual="{StaticResource appbar_diagram}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
                             <TextBlock
                                 Text="Execute manual copy"
                                 VerticalAlignment="Center" />
@@ -91,8 +106,15 @@
                         Padding="2"
                         Command="{Binding BrowseDestinationFolderCommand}"
                         Margin="4,0,0,0">
-                        <Image
-                            Source="../../../Resources/Light/appbar.folder.open.png" />
+                        <Rectangle
+                            Width="16"
+                            Height="16">
+                            <Rectangle.Fill>
+                                <VisualBrush
+                                    Stretch="Uniform"
+                                    Visual="{StaticResource appbar_folder_open}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
                     </Button>
                     <TextBox
                         Controls:TextboxHelper.Watermark="Browse to where the files will be copied"
@@ -113,8 +135,15 @@
                         Padding="2"
                         Command="{Binding BrowseSourceFolderCommand}"
                         Margin="4,0,0,0">
-                        <Image
-                            Source="../../../Resources/Light/appbar.folder.open.png" />
+                        <Rectangle
+                            Width="16"
+                            Height="16">
+                            <Rectangle.Fill>
+                                <VisualBrush
+                                    Stretch="Uniform"
+                                    Visual="{StaticResource appbar_folder_open}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
                     </Button>
                     <TextBox
                         Controls:TextboxHelper.Watermark="Browse to where the files will be copied from"
@@ -136,17 +165,33 @@
                                 Margin="0,0,4,0"
                                 Command="{Binding AddIncludeFileCommand}"
                                 ToolTip="Add files to include in the copy routine"
-                                Padding="1">
-                                <Image
-                                    Source="../../../Resources/Light/appbar.add.png" />
+                                Padding="1"
+                                Width="25">
+                                <Rectangle
+                                    Width="16"
+                                    Height="16">
+                                    <Rectangle.Fill>
+                                        <VisualBrush
+                                            Stretch="Uniform"
+                                            Visual="{StaticResource appbar_add}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
                             </Button>
                             <Button
                                 Command="{Binding RemoveIncludeFileCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=IncludeFilesDataGrid}"
                                 ToolTip="Remove selected files from the copy routine"
-                                Padding="1">
-                                <Image
-                                    Source="../../../Resources/Light/appbar.minus.png" />
+                                Padding="1"
+                                Width="25">
+                                <Rectangle
+                                    Width="16"
+                                    Height="4">
+                                    <Rectangle.Fill>
+                                        <VisualBrush
+                                            Stretch="Uniform"
+                                            Visual="{StaticResource appbar_minus}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
                             </Button>
                         </StackPanel>
                         <TextBlock
@@ -184,17 +229,33 @@
                                 Margin="0,0,4,0"
                                 Command="{Binding AddExcludeFileCommand}"
                                 ToolTip="Add files to exclude from the copy routine"
-                                Padding="1">
-                                <Image
-                                    Source="../../../Resources/Light/appbar.add.png" />
+                                Padding="1"
+                                Width="25">
+                                <Rectangle
+                                    Width="16"
+                                    Height="16">
+                                    <Rectangle.Fill>
+                                        <VisualBrush
+                                            Stretch="Uniform"
+                                            Visual="{StaticResource appbar_add}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
                             </Button>
                             <Button
                                 Command="{Binding RemoveExcludeFileCommand}"
                                 CommandParameter="{Binding SelectedItems, ElementName=ExcludeFileDataGrid}"
                                 ToolTip="Remove selected files which are excluded from the copy routine"
-                                Padding="1">
-                                <Image
-                                    Source="../../../Resources/Light/appbar.minus.png" />
+                                Padding="1"
+                                Width="25">
+                                <Rectangle
+                                    Width="16"
+                                    Height="4">
+                                    <Rectangle.Fill>
+                                        <VisualBrush
+                                            Stretch="Uniform"
+                                            Visual="{StaticResource appbar_minus}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
                             </Button>
                         </StackPanel>
                         <TextBlock

@@ -13,8 +13,14 @@
     d:DesignHeight="300"
     d:DesignWidth="300">
     <UserControl.Resources>
-        <Converters:StringToUpperConverter
-            x:Key="StringToUpperConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="..\..\Resources\Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Converters:StringToUpperConverter
+                x:Key="StringToUpperConverter" />
+        </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel
         Margin="4">
@@ -27,43 +33,83 @@
                 Command="{Binding AddFilesetCommand}"
                 ToolTip="Add new fileset"
                 Margin="0,0,4,0"
+                Width="25"
                 Padding="0">
-                <Image
-                    Source="../../Resources/Light/appbar.add.png" />
+                <Rectangle
+                    Stretch="Uniform"
+                    Width="16"
+                    Height="16">
+                    <Rectangle.Fill>
+                        <VisualBrush
+                            Visual="{StaticResource appbar_add}" />
+                    </Rectangle.Fill>
+                </Rectangle>
             </Button>
             <Button
                 Command="{Binding RemoveFilesetCommand}"
                 CommandParameter="{Binding Filesets.CurrentItem}"
                 ToolTip="Remove selected fileset"
+                Width="25"
                 Margin="0,0,4,0"
                 Padding="0">
-                <Image
-                    Source="../../Resources/Light/appbar.minus.png" />
+                <Rectangle
+                    Width="16"
+                    Height="4">
+                    <Rectangle.Fill>
+                        <VisualBrush
+                            Stretch="Uniform"
+                            Visual="{StaticResource appbar_minus}" />
+                    </Rectangle.Fill>
+                </Rectangle>
             </Button>
             <Button
                 Command="{Binding SaveAllFilesetsCommand}"
                 ToolTip="Save all filesets"
                 Margin="0,0,4,0"
+                Width="25"
                 Padding="0">
-                <Image
-                    Source="../../Resources/Light/appbar.save.png" />
+                <Rectangle
+                    Width="16"
+                    Height="16">
+                    <Rectangle.Fill>
+                        <VisualBrush
+                            Stretch="Fill"
+                            Visual="{StaticResource appbar_save}" />
+                    </Rectangle.Fill>
+                </Rectangle>
             </Button>
             <Button
                 Command="{Binding ImportFilesetCommand}"
                 ToolTip="Import fileset"
                 Margin="0,0,4,0"
+                Width="25"
                 Padding="0">
-                <Image
-                    Source="../../Resources/Light/appbar.cabinet.in.png" />
+                <Rectangle
+                    Width="16"
+                    Height="16">
+                    <Rectangle.Fill>
+                        <VisualBrush
+                            Stretch="Uniform"
+                            Visual="{StaticResource appbar_inbox_in}" />
+                    </Rectangle.Fill>
+                </Rectangle>
             </Button>
             <Button
                 Command="{Binding ExportFilesetCommand}"
                 CommandParameter="{Binding Filesets.CurrentItem}"
                 ToolTip="Export fileset"
                 Margin="0,0,4,0"
+                Width="25"
                 Padding="0">
-                <Image
-                    Source="../../Resources/Light/appbar.cabinet.out.png" />
+                <Rectangle
+                    Width="16"
+                    Height="16">
+                    <Rectangle.Fill>
+                        <VisualBrush
+                            Stretch="Uniform"
+                            Visual="{StaticResource appbar_inbox_out}" />
+                    </Rectangle.Fill>
+                </Rectangle>
             </Button>
         </StackPanel>
         <Filesets:DisableEnterDataGrid
@@ -119,11 +165,22 @@
                             DataType="{x:Type ViewModels:FilesetViewModel}">
                             <DockPanel
                                 Name="panel">
-                                <Image
+                                <Decorator
                                     DockPanel.Dock="Left"
                                     Height="25"
-                                    Source="../../Resources/Dark/appbar.edit.png"
-                                    Margin="0,0,4,0" />
+                                    Width="25"
+                                    Margin="0,0,4,0">
+                                    <Rectangle
+                                        x:Name="icon"
+                                        Width="16"
+                                        Height="16">
+                                        <Rectangle.Fill>
+                                            <VisualBrush
+                                                Stretch="Uniform"
+                                                Visual="{StaticResource appbar_edit}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </Decorator>
                                 <TextBox
                                     Name="inputTextBox"
                                     Text="{Binding Name}" />
@@ -146,13 +203,20 @@
                             DataType="{x:Type ViewModels:FilesetViewModel}">
                             <DockPanel
                                 Name="panel">
-                                <Image
-                                    Name="image"
-                                    DockPanel.Dock="Left"
+                                <Decorator
                                     Height="25"
-                                    Source="../../Resources/Light/appbar.eye.close.png"
-                                    Margin="0,0,4,0"
-                                    ToolTip="Not active" />
+                                    Width="25">
+                                    <Rectangle
+                                        x:Name="icon"
+                                        Width="16"
+                                        Height="16">
+                                        <Rectangle.Fill>
+                                            <VisualBrush
+                                                Stretch="Uniform"
+                                                Visual="{StaticResource appbar_eye_close}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </Decorator>
                                 <TextBlock
                                     Text="{Binding Name}"
                                     TextWrapping="Wrap"
@@ -164,13 +228,18 @@
                                     Binding="{Binding IsEnabled}"
                                     Value="True">
                                     <Setter
-                                        Property="Source"
-                                        Value="../../Resources/Light/appbar.eye.check.png"
-                                        TargetName="image" />
+                                        Property="Fill"
+                                        TargetName="icon">
+                                        <Setter.Value>
+                                            <VisualBrush
+                                                Stretch="Uniform"
+                                                Visual="{StaticResource appbar_eye_check}" />
+                                        </Setter.Value>
+                                    </Setter>
                                     <Setter
                                         Property="ToolTip"
                                         Value="Active"
-                                        TargetName="image" />
+                                        TargetName="icon" />
                                 </DataTrigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>
