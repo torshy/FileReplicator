@@ -1,12 +1,16 @@
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
+using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
-
+using MahApps.Metro;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Win32;
+using System.Linq;
 
 namespace TRock.FileReplicator.Views.Settings
 {
@@ -19,6 +23,7 @@ namespace TRock.FileReplicator.Views.Settings
 
         private IRegionNavigationService _navigationService;
         private string _applicationVersion;
+        private string _activeAccent;
 
         #endregion Fields
 
@@ -88,6 +93,32 @@ namespace TRock.FileReplicator.Views.Settings
                 if (value == _applicationVersion) return;
                 _applicationVersion = value;
                 RaisePropertyChanged("ApplicationVersion");
+            }
+        }
+
+        public string ActiveAccent
+        {
+            get { return _activeAccent; }
+            set
+            {
+                if (value == _activeAccent) return;
+                _activeAccent = value;
+                RaisePropertyChanged("ActiveAccent");
+
+                var accent = ThemeManager.DefaultAccents.FirstOrDefault(a => a.Name == _activeAccent);
+
+                if (accent != null)
+                {
+                    ThemeManager.ChangeTheme(Application.Current, accent, Theme.Light);
+                }
+            }
+        }
+
+        public ICollectionView Accents
+        {
+            get
+            {
+                return CollectionViewSource.GetDefaultView(ThemeManager.DefaultAccents);
             }
         }
 

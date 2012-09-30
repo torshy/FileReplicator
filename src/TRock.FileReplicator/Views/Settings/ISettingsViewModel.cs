@@ -1,4 +1,6 @@
-﻿namespace TRock.FileReplicator.Views.Settings
+﻿using System.ComponentModel;
+
+namespace TRock.FileReplicator.Views.Settings
 {
     public interface ISettingsViewModel
     {
@@ -12,6 +14,17 @@
         string ApplicationVersion
         {
             get;
+        }
+
+        ICollectionView Accents
+        {
+            get;
+        }
+
+        string ActiveAccent
+        {
+            get; 
+            set;
         }
 
         #endregion Properties

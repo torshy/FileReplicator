@@ -37,6 +37,11 @@
                         ToolTip="Automatically start File Replicator at Window startup?"
                         IsChecked="{Binding IsAutoStartupEnabled}"
                         Content="Automatically start File Replicator?" />
+                    <ComboBox
+                        ItemsSource="{Binding Accents}" 
+                        SelectedValue="{Binding ActiveAccent}"
+                        SelectedValuePath="Name"
+                        DisplayMemberPath="Name" />
                 </StackPanel>
             </GroupBox>
         </StackPanel>
