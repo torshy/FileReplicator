@@ -125,8 +125,20 @@
                                     Source="../../Resources/Dark/appbar.edit.png"
                                     Margin="0,0,4,0" />
                                 <TextBox
+                                    Name="inputTextBox"
                                     Text="{Binding Name}" />
                             </DockPanel>
+                            <DataTemplate.Triggers>
+                                <Trigger
+                                    SourceName="inputTextBox"
+                                    Property="IsVisible"
+                                    Value="True">
+                                    <Setter
+                                        TargetName="inputTextBox"
+                                        Property="FocusManager.FocusedElement"
+                                        Value="{Binding ElementName=inputTextBox}" />
+                                </Trigger>
+                            </DataTemplate.Triggers>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                     <DataGridTemplateColumn.CellTemplate>
