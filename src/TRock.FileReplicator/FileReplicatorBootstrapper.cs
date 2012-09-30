@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
-
+using System.Windows.Media;
 using Autofac;
 
 using IronRuby;
@@ -23,7 +23,6 @@ using Prism.AutofacExtension;
 using TRock.Extensions;
 using TRock.FileReplicator.Core;
 using TRock.FileReplicator.Regions;
-using TRock.FileReplicator.Services;
 
 namespace TRock.FileReplicator
 {
@@ -141,6 +140,10 @@ namespace TRock.FileReplicator
         {
             base.InitializeShell();
             var shell = (Shell)Shell;
+
+            TextOptions.TextFormattingModeProperty.OverrideMetadata(
+                typeof(Window),
+                new FrameworkPropertyMetadata(TextFormattingMode.Display, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
             WindowSettings.SetSave(shell, true);
             Application.Current.MainWindow = shell;
