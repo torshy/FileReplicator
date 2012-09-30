@@ -24,6 +24,7 @@ namespace TRock.FileReplicator.Views.Settings
         private IRegionNavigationService _navigationService;
         private string _applicationVersion;
         private string _activeAccent;
+        private Theme _activeTheme;
 
         #endregion Fields
 
@@ -32,7 +33,8 @@ namespace TRock.FileReplicator.Views.Settings
         public SettingsViewModel()
         {
             _autostartKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            
+            _activeAccent = "Blue";
+
             BackCommand = new DelegateCommand(ExecuteNavigateBack);
             ApplicationVersion = GetInformationalVersion(Assembly.GetExecutingAssembly());
         }
@@ -96,6 +98,24 @@ namespace TRock.FileReplicator.Views.Settings
             }
         }
 
+        public Theme ActiveTheme
+        {
+            get { return _activeTheme; }
+            set
+            {
+                if (value == _activeTheme) return;
+                _activeTheme = value;
+                RaisePropertyChanged("ActiveTheme");
+
+                var accent = ThemeManager.DefaultAccents.FirstOrDefault(a => a.Name == _activeAccent);
+
+                if (accent != null)
+                {
+                    ThemeManager.ChangeTheme(Application.Current, accent, ActiveTheme);
+                }
+            }
+        }
+
         public string ActiveAccent
         {
             get { return _activeAccent; }
@@ -109,7 +129,7 @@ namespace TRock.FileReplicator.Views.Settings
 
                 if (accent != null)
                 {
-                    ThemeManager.ChangeTheme(Application.Current, accent, Theme.Light);
+                    ThemeManager.ChangeTheme(Application.Current, accent, ActiveTheme);
                 }
             }
         }

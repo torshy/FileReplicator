@@ -5,6 +5,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:FileReplicator="clr-namespace:TRock.FileReplicator"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:Metro="clr-namespace:MahApps.Metro;assembly=MahApps.Metro"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300">
@@ -22,6 +24,15 @@
                 Property="Foreground"
                 Value="{DynamicResource {x:Static FileReplicator:AppTheme.SubtleBrushKey}}" />
         </Style>
+        <ObjectDataProvider
+            MethodName="GetValues"
+            ObjectType="{x:Type System:Enum}"
+            x:Key="ExampleEnumValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type
+                    TypeName="Metro:Theme" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </UserControl.Resources>
     <ScrollViewer>
         <StackPanel>
@@ -38,10 +49,13 @@
                         IsChecked="{Binding IsAutoStartupEnabled}"
                         Content="Automatically start File Replicator?" />
                     <ComboBox
-                        ItemsSource="{Binding Accents}" 
+                        ItemsSource="{Binding Accents}"
                         SelectedValue="{Binding ActiveAccent}"
                         SelectedValuePath="Name"
                         DisplayMemberPath="Name" />
+                    <ComboBox
+                        ItemsSource="{Binding Source={StaticResource ExampleEnumValues}}"
+                        SelectedValue="{Binding ActiveTheme}" />
                 </StackPanel>
             </GroupBox>
         </StackPanel>
