@@ -28,6 +28,7 @@
                 IconSource="/Resources/trayapp.ico">
                 <TaskbarNotification:TaskbarIcon.TrayToolTip>
                     <Border
+                        Background="White"
                         Padding="8">
                         <ContentControl
                             Content="{Binding ToolTip}">
