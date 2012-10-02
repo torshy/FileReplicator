@@ -12,7 +12,7 @@ assemblyinfo :assemblyinfo do |asm|
   asm.title = "File Replicator"
   asm.description = "Simple file replicator"
   asm.copyright = "Copyright 2012"  
-  asm.custom_attributes :AssemblyInformationalVersionAttribute => "1.0.0.0 RC1"
+  asm.custom_attributes :AssemblyInformationalVersionAttribute => "1.0.0.0"
   asm.output_file = "src/CommonAssemblyInfo.cs"
 end
 
