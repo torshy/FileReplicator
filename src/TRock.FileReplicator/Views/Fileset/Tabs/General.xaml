@@ -102,6 +102,7 @@
                 <DockPanel>
                     <Button
                         Height="25"
+                        Width="25"
                         DockPanel.Dock="Right"
                         Padding="2"
                         Command="{Binding BrowseDestinationFolderCommand}"
@@ -131,6 +132,7 @@
                 <DockPanel>
                     <Button
                         Height="25"
+                        Width="25"
                         DockPanel.Dock="Right"
                         Padding="2"
                         Command="{Binding BrowseSourceFolderCommand}"
