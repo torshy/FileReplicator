@@ -208,6 +208,12 @@
                         ItemsSource="{Binding Fileset.Includes}"
                         HeadersVisibility="None"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.InputBindings>
+                            <KeyBinding
+                                Key="Delete"
+                                Command="{Binding RemoveIncludeFileCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=IncludeFilesDataGrid}" />
+                        </DataGrid.InputBindings>
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Width="*"
@@ -272,6 +278,12 @@
                         ItemsSource="{Binding Fileset.Excludes}"
                         HeadersVisibility="None"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <DataGrid.InputBindings>
+                            <KeyBinding
+                                Key="Delete"
+                                Command="{Binding RemoveExcludeFileCommand}"
+                                CommandParameter="{Binding SelectedItems, ElementName=ExcludeFileDataGrid}" />
+                        </DataGrid.InputBindings>
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Width="*"

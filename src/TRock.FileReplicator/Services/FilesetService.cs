@@ -179,8 +179,16 @@ namespace TRock.FileReplicator.Services
                     try
                     {
                         var fileset = LoadFilesetFromFile(file);
-                        _filesets.Add(fileset);
-                        _filesetAdded.OnNext(fileset);
+
+                        if (fileset != null)
+                        {
+                            _filesets.Add(fileset);
+                            _filesetAdded.OnNext(fileset);
+                        }
+                        else
+                        {
+                            Trace.WriteLine("Unable to load fileset " + file);
+                        }
                     }
                     catch (Exception e)
                     {
